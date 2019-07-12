@@ -1,0 +1,37 @@
+<%# Render the top bar and navigation bar %>
+<%= render "shared/top-bar" %>
+<%= render "shared/navigation-bar" %>
+
+<div class = "center_div">
+  <h1>Edit Post</h1>
+
+  <%= form_for @blog, id: "blog_form", method: :PATCH do |form| %>
+    <%= form.text_field :title, class: "title_box" do %>
+      <%= @blog.title %>
+    <% end %>
+    <%= form.select :consumer, ['For Consumer', 'For Insurer'], prompt: "Who is this post for?" %><br><br>
+    <%= form.hidden_field :text%>
+    <div id="editor">
+      <%= raw sanitize @blog.text, scrubber: BlogScrubber.new %>
+    </div>
+  
+    <%= form.submit 'Update Post', class: "btn btn-default" %>
+  <% end %>
+  <br>
+
+  <%= link_to 'Back', blogs_path, class: "btn btn-default"%>
+</div>
+
+<%# Render footer %>
+<%= render "shared/footer" %>
+
+<script>
+  //Initialize Quill editor
+  var quill = new Quill('#editor', options);
+
+  // Update the text
+  quill.on('text-change', function() {
+    var text = document.querySelector('#blog_text');
+    text.value = parseQuill(quill.root);
+  });
+</script>

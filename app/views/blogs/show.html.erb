@@ -1,0 +1,52 @@
+<%# Render the top bar and navigation bar %>
+<%= render "shared/top-bar" %>
+<%= render "shared/navigation-bar" %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+      <div class="wrapper-content bg-white pinside40">
+        <div class="row">
+          <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12">
+            <div class="row">
+              <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="post-holder">
+                  <div class="post-block mb40">
+                    <% if !@image.blank? %>
+                      <div class="post-img mb30">
+                        <%= link_to image_tag(@image.first), @blog, class: "imghover" %>
+                      </div>
+                    <% end %>
+                    <br>
+                    <% if user_signed_in? %>
+                      <%= link_to 'Edit', edit_blog_path(@blog), class: "btn btn-default" %>
+                      <%= link_to 'Destroy', @blog, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default" %>
+                    <% end %>
+                    <div class="bg-white">
+                      <h1><%= @blog.title %></h1>
+                        <p class="meta">
+                          <span class="meta-date"><%= @blog.created_at.strftime("%d/%m/%Y") %></span>
+                          <span class="meta-author">By <%= link_to "Admin", team_path, class: "meta-link" %>
+                          </span><span class="meta-comments">0<a href="#" class=" meta-link"> Comments</a></span>
+                        </p>
+                        <%== sanitize @blog.text, scrubber: BlogScrubber.new %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <%# Render Siderbar %>
+          <%= render "shared/sidebar" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <!-- /.content end -->
+  
+
+
+
+<%# Render footer %>
+<%= render "shared/footer" %>

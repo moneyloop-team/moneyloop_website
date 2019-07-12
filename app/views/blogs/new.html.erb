@@ -1,0 +1,30 @@
+<%# Render the top bar and navigation bar %>
+<%= render "shared/top-bar" %>
+<%= render "shared/navigation-bar" %>
+
+<div class = "center_div">
+  <h1>New Post</h1>
+  <%= form_with scope: :blog, url: blogs_path, id: "blog_form", multipart: true, local: true do |form| %>
+    <%= form.text_field :title, class: "title_box", placeholder: "Title" %>
+    <%= form.select :consumer, ['For Consumer', 'For Insurer'], prompt: "Who is this post for?" %><br><br>
+    <%= form.hidden_field :text %>
+    <div id="editor"></div><br>
+    <%= form.submit 'Create Post', class: "btn btn-default" %>
+  <% end %>
+  <br>
+  <%= link_to 'Back', blogs_path, class: "btn btn-default"%>
+</div>
+
+<%# Render footer %>
+<%= render "shared/footer" %>
+
+<script>
+  //Initialize Quill editor
+  var quill = new Quill('#editor', options);
+
+  // Submit the form
+  document.querySelector('#blog_form').onsubmit = function() {
+    var text = document.querySelector('#blog_text');
+    text.value = parseQuill(quill.root);
+  };
+</script>

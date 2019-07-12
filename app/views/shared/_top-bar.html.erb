@@ -1,0 +1,17 @@
+<!-- top-bar -->
+<div class="top-bar">
+    <div class="container">
+        <div class="row">
+            <div class="col text-right">
+                    <div class="top-nav"><span class="top-text">
+                        <% if cookies[:consumer].to_s == 'true' %>
+                            <%= link_to "For Consumers", goto_consumer_path %>
+                        <% else %>
+                            <%= link_to "For Insurers", goto_consumer_path %>
+                        <% end %>
+                        </span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.top-bar -->

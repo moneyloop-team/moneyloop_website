@@ -1,0 +1,24 @@
+<%# Render the top bar and navigation bar %>
+<%= render "shared/top-bar" %>
+<%= render "shared/navigation-bar" %>
+
+<div class="center_div">
+    <h1> Sorry, something went wrong </h1>
+    <%= puts @error_code %>
+
+    <% if @error_code == "400" %>
+        <p> Please fill out these fields correctly and try again:
+        <ul>
+            <% @data = JSON.parse(@error_body) %>
+            <% @data.each do |error, value| %>
+                <%# TODO - convert into a nicer value %>
+                <li> <%= error %> </li>
+            <% end %>
+        </ul>
+    <% else %>
+        <h3> Unknown error (<%= @error_code %>) </h3>
+    <% end %>
+
+</div>
+<%# Render footer %>
+<%= render "shared/footer" %>
