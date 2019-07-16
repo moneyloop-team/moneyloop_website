@@ -16,8 +16,9 @@ Rails.application.routes.draw do
   devise_for :users
 
   # Blogging
-  resources :blogs
-  post 'blogs/upload', to: 'blogs#upload'
+  get '/blogs', to: redirect('https://blog.moneyloop.com.au', status: 301)
+  # resources :blogs
+  # post 'blogs/upload', to: 'blogs#upload'
  
   # Changing between consumer/insurer mode
   get 'goto_consumer', to: 'home#consumer'

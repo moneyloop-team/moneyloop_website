@@ -1,0 +1,191 @@
+/*---------------------------------------
+  General  
+-----------------------------------------*/
+body {
+  background-color: #ffff
+}
+h1, h2, h3, h4, h5, h6 { 
+  margin: 0px 0px 10px 0px;
+  color: #323232;
+  font-weight: 500;
+} 
+h1 {
+  font-size: 32px;
+  line-height: 44px;
+  letter-spacing: -1px;
+} 
+h2 {
+  font-size: 24px;
+  line-height: 32px;
+} 
+h3 {
+  font-size: 20px;
+} 
+h4 {
+  font-size: 16px;
+  line-height: 1.6;
+} 
+p { 
+  margin: 0 0 26px;
+  line-height: 1.6;
+  font-weight: 400;
+  &:last-child {
+    margin-bottom: 0px;
+  }
+} 
+ul li, ol li {
+  line-height: 1.8
+}
+section {
+  padding-top: 65px; 
+}
+a {
+  color: #323232;
+  text-decoration: none;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  &:focus, :hover{
+      text-decoration: none;
+      color: #323232;
+  }
+} 
+strong {
+  font-weight: 600;
+}
+blockquote {
+  padding: 10px 20px;
+  margin: 0 0 0px;
+  font-size: 21px;
+  border-left: 5px solid #eff1f4;
+  color: #414346;
+  font-style: italic;
+  line-height: 35px;
+  font-family: 'Merriweather', serif;
+  font-weight: 700;
+  &.alignright{
+    max-width: 50%;
+  }
+  &.alignleft {
+    max-width: 50%;
+  }
+
+}
+::selection {
+  background: #ffecb3;
+  color: #333;
+}
+*, *::before, *::after {
+  transition: all .3s ease-in-out;
+}
+section {
+  margin: 20px 0px;
+}
+img {
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  border: none;
+  line-height: normal;
+  vertical-align: middle;
+}
+
+
+
+.text-highlight {
+  color: #ffecb3;
+}
+.highlight {
+  color: #f51f8a;
+}
+.listnone {
+  list-style: none;
+  margin: 0px 0px 20px 0px;
+  padding: 0;
+}
+.required {
+  color: red 
+}
+.lead {
+  color: #3c4d6b;
+  line-height: 36px;
+  font-size: 24px;
+}
+.text-white {
+  color: #fff;
+}
+.title-white {
+  color: #fff;
+}
+.title {
+  color: #3c4d6b;
+}
+.title_box{
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+/*-----------------------------------------
+Background & Block Colours 
+------------------------------------------*/
+.bg-light {
+  background-color: #fafcfd;
+}
+.bg-primary {
+  background-color: #eff1f4 !important;
+  color: #778191;
+}
+.bg-default {
+  background-color: #15549a;
+  color: #87c0ff;
+}
+.bg-white {
+  background-color: #fff;
+}
+.outline {
+  border: 1px solid #dee4ee;
+}
+.small-title {
+  font-size: 14px;
+  color: #778191;
+  font-weight: 500;
+}
+.big-title {
+  font-size: 36px;
+  font-weight: 600;
+  color: #15549a;
+}
+.capital-title {
+  text-transform: uppercase;
+  font-size: 16px;
+  font-weight: 600;
+}
+.bg-boxshadow {
+  -webkit-box-shadow: 0px 4px 16px 3px rgba(213, 221, 234, .5);
+  -moz-box-shadow: 0px 4px 16px 3px rgba(213, 221, 234, .5);
+  box-shadow: 0px 4px 16px 3px rgba(213, 221, 234, .5);
+}
+.bg-gradient {
+  position: relative;
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#1f2b70+0,1f2b70+47,943a9e+100&0.9+0,0.9+100 */
+  background: -moz-linear-gradient(-45deg, rgba(31, 43, 112, 1) 0%, rgba(31, 43, 112, 1) 47%, rgba(148, 58, 158, 1) 100%);
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(-45deg, rgba(31, 43, 112, 0.9) 0%, rgba(31, 43, 112, 0.9) 47%, rgba(148, 58, 158, 0.9) 100%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(135deg, rgba(31, 43, 112, 0.9) 0%, rgba(31, 43, 112, 0.9) 47%, rgba(148, 58, 158, 0.9) 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e61f2b70', endColorstr='#e6943a9e', GradientType=1);
+  /* IE6-9 fallback on horizontal gradient */
+}
+.well-box {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 4px;
+}

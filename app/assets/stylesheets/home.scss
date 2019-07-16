@@ -1,4 +1,52 @@
-// Stylesheets related to :home
-//= require material/owl.carousel
-//= require material/owl.theme
-//= require material/known
+// Styles for :home
+//= require owl.carousel.css
+
+.home {
+    padding: 0;
+    & h1 {
+        color: #ffffff;
+    }
+    & h3 {
+        color: #f9f9f9;
+        font-size: 16px;
+        font-weight: 300;
+        margin: 0;
+        padding: 5px 0 40px 0;
+    }
+}
+
+.home-slider {
+    & .item{
+        background-repeat: no-repeat;
+        background-attachment: local;
+        background-size: cover;
+        height: 650px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 70%;
+    }
+    & .item-first {
+        background-image: image-url('slider-2.jpg');
+        background-position: center;
+    }
+    
+    & .item-second {
+        background-image: image-url('slider-1.jpg');
+        background-position: center;
+    }
+    
+    & .item-third {
+        background-image: image-url('slider-3.jpg');
+        background-position: center;
+    }
+    & .caption {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        text-align: left;
+        background-color: rgba(20,20,20,0.2);
+        height: 100%;
+        color: #fff;
+    }
+}
