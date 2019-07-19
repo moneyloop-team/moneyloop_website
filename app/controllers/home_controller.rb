@@ -2,6 +2,12 @@ class HomeController < ApplicationController
   def home
   end
 
+  def insurer
+  end
+
+  def faq
+  end
+
   def consumer
     if cookies[:consumer] == 'true'
       # Go to insurer mode

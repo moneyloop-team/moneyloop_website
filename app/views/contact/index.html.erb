@@ -1,98 +1,37 @@
-<%# Render the header %>
-<%= render "shared/header" %>
+<%= render "shared/contact" %>
 
-<div class="container">
-    <div class="row">
-        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-            <div class="wrapper-content bg-white pinside40">
-                <div class="contact-form mb60">
-                    <div class=" ">
-                        <div class="offset-xl-2 col-xl-8 offset-lg-2 col-lg-8 col-md-12 col-sm-12 col-12">
-                            <div class="mb60  section-title text-center  ">
-                                <!-- section title start-->
-                                <h1>Get In Touch</h1>
-                                <p>Reach out to us &amp; we will respond as soon as we can.</p>
-                            </div>
-                        </div>
-                            <% if flash[:notice] %>
-                              <div class="offset-xl-2 col-xl-8 offset-lg-2 col-lg-8 col-md-12 col-sm-12 col-12">
-                                <div class="mb60  section-title text-center  ">
-                                  <h1><%= flash[:notice] %><h1>
-                                </div>
-                              </div>
-                            <% else %>
-                              <%= form_tag(send_email_path, method: "post", :class=>"form-horizontal") do %>
-                                <div class=" ">
-                                    <!-- Text input-->
-                                    <div class="row">
-                                    <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
-                                        <div class="form-group">
-                                            <label class="sr-only control-label" for="name">name<span class=" "> </span></label>
-                                            <input id="name" name="name" type="text" placeholder="Name" class="form-control input-md" required>
-                                        </div>
-                                    </div>
-                                    <!-- Text input-->   
-                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
-                                        <div class="form-group">
-                                            <label class="sr-only control-label" for="email">Email<span class=" "> </span></label>
-                                            <input id="email" name="email" type="email" placeholder="Email" class="form-control input-md" required>
-                                        </div>
-                                    </div>
-                                    <!-- Text input-->
-                                    <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
-                                        <div class="form-group">
-                                            <label class="sr-only control-label" for="phone">Phone<span class=" "> </span></label>
-                                            <input id="phone" name="phone" type="text" placeholder="Phone" class="form-control input-md" required>
-                                        </div>
-                                    </div>
-                                    <!-- Select Basic -->
-                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                        <div class="form-group">
-                                            <label class="control-label" for="message"> </label>
-                                            <textarea class="form-control" id="message" rows="7" name="message" placeholder="Message"></textarea>
-                                        </div>
-                                    </div>
-                                    <!-- Button -->
-                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                        <button type="submit" class="btn btn-default">Submit</button>
-                                    </div>
-                                </div>
-                            <% end %>
-                            <% end %>
-                        </div>
-                    </div>
-                    <!-- /.section title start-->
-                </div>
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                 <div class="contact-us mb60">
+                    <%# Some Description %>
                     <div class="row">
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                            <div class="mb60  section-title">
-                                <!-- section title start-->
-                                <h1>We are here to help you </h1>
-                                <p class="lead">Various versions have evolved over the years sometimes by accident sometimes on purpose injected humour and the like.</p>
+                            <div class="mb60 text-center section-title">
+                                <h1>We are here to help you</h1>
+                                <p class="lead">With our credit decisioning engine we are able to accept any customer you send us. We use our score to determine the required discount to service the customer. This includes your customers who are eligible for financial hardship.</p>
                             </div>
-                            <!-- /.section title start-->
                         </div>
                     </div>
                     <div class="row">
+                        <%# Address %>
                         <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
-                            <div class="bg-boxshadow pinside60 outline text-center mb30">
-                                <div class="mb40"><i class="icon-briefcase icon-2x icon-default"></i></div>
+                            <div class="bg-boxshadow pinside60 outline text-center mb30 box-size">
                                 <h2 class="capital-title">Branch Office</h2>
-                                <p>2843 Lakewood Drive
-                                    <br> Jersey City, CA 07304</p>
+                                <p>Level 4, 11 York Street<br/>Sydney NSW.</p>
                             </div>
                         </div>
+                        <%# Phone number %>
                         <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
-                            <div class="bg-boxshadow pinside60 outline text-center mb30">
-                                <div class="mb40"><i class="icon-phone-call icon-2x icon-default"></i></div>
+                            <div class="bg-boxshadow pinside60 outline text-center mb30 box-size">
                                 <h2 class="capital-title">Call us at </h2>
-                                <h1 class="text-big">800-123-456 / 789 </h1>
+                                <h2>1300 339 993</h2>
                             </div>
                         </div>
+                        <%# Email Address %>
                         <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
-                            <div class="bg-boxshadow pinside60 outline text-center mb30">
-                                <div class="mb40"> <i class="icon-letter icon-2x icon-default"></i></div>
+                            <div class="bg-boxshadow pinside60 outline text-center mb30 box-size">
                                 <h2 class="capital-title">Email Address</h2>
                                 <p>contact@moneyloop.com</p>
                             </div>
@@ -102,8 +41,4 @@
             </div>
         </div>
     </div>
-</div>
-</div>
-
-<%# Render footer %>
-<%= render "shared/footer" %>
+</section>

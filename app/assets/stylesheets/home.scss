@@ -1,30 +1,36 @@
 // Styles for :home
-//= require owl.carousel.css
+//= require owl.carousel
+//= require owl.theme
+//= require "material/_testimonials"
+//= require "material/_faq"
 
-.home {
-    padding: 0;
+.home-slider {
     & h1 {
+        font-size: 45px;
         color: #ffffff;
     }
-    & h3 {
+
+    & h3, a {
         color: #f9f9f9;
-        font-size: 16px;
+        font-size: 30px;
         font-weight: 300;
         margin: 0;
         padding: 5px 0 40px 0;
     }
-}
 
-.home-slider {
+    & a {
+        text-decoration: none;
+    }
+
     & .item{
         background-repeat: no-repeat;
         background-attachment: local;
         background-size: cover;
-        height: 650px;
+        height: 500px;
         display: block;
         margin-left: auto;
         margin-right: auto;
-        width: 70%;
+        width: 75%;
     }
     & .item-first {
         background-image: image-url('slider-2.jpg');
@@ -48,5 +54,56 @@
         background-color: rgba(20,20,20,0.2);
         height: 100%;
         color: #fff;
+
+        & img {
+            float: right;
+            height: 100px;
+            width: 150px;
+            padding-right: 20px;
+        }
     }
+    & .caption-bg1 {
+        background-color: rgba(245,140,67, 0.5);
+        padding: 30px;
+        margin: 0px;
+    }
+    & .caption-bg2 {
+        background-color: rgba(51, 118, 142, 0.5);
+        padding: 30px;
+        margin: 0px;
+    }
+}
+
+.home-section1 {
+    padding-top: 30px;
+    padding-bottom: 20px;
+    & img {
+        float: right;
+        padding-right: 15px;
+    }
+}
+
+.home-section2 {
+    padding-top: 30px;
+    padding-bottom: 20px;
+    display: block;
+}
+
+.home-section3 {
+    padding-top: 30px;
+    padding-bottom: 20px;
+    display: block;
+
+    & .home-title {
+        color: white;
+        text-align: center;
+    }
+}
+
+.home-title {
+    margin: auto;
+    width: 50%;
+    font-style: italic;
+    font-size: 30px;
+    text-align: center;
 }

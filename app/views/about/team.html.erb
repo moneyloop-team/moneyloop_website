@@ -1,5 +1,3 @@
-<%# Render the header %>
-<%= render "shared/header" %>
 <section>
 <div class="container">
     <div class="row">
@@ -12,79 +10,38 @@
                         </div>
                     </div>
                 </div>
+
+                <%# Team Member Profiles %>
                 <div class="row">
                     <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
                         <div class="team-block mb30">
-                            <div class="team-img mb30"> <%= image_tag("team1.jpg", alt: "Borrow - Loan Company Website Template", class: "img-responsive") %> </div>
-                            <div class="team-content text-center">
+                            <div class="team-igm1 mb30"> 
+                                <%= link_to image_tag("team1.jpg", alt: "Borrow - Loan Company Website Template", class: "img-responsive"), "https://www.linkedin.com", target: :_blank %>
+                            </div>
+                            <div class="text-center">
                                 <h3>Daniel Moore</h3>
-                                <small class="designation">Senior Advisor</small> </div>
+                                <small class="designation">Senior Advisor</small> 
+                            </div>
+
                         </div>
                     </div>
                     <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
                         <div class="team-block mb30">
-                            <div class="team-img mb30"> <%= image_tag("team2.jpg", alt: "Borrow - Loan Company Website Template", class: "img-responsive") %> </div>
+                            <div class="team-img2 mb30">
+                            <%= image_tag("team2.jpg", alt: "Borrow - Loan Company Website Template", class: "img-responsive") %>
+                            </div>
                             <div class="team-content text-center">
                                 <h3>Rodney Raymond</h3>
                                 <small class="designation">Senior Advisor</small> </div>
                         </div>
                     </div>
                         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
-                        <div class="team-block mb30">
-                            <div class="team-img mb30"> <%= image_tag("team3.jpg", alt: "Borrow - Loan Company Website Template", class: "img-responsive") %> </div>
+                        <div class="team-block1 mb30">
+                            <div class="team-img1 mb30"> <%= image_tag("team3.jpg", alt: "Borrow - Loan Company Website Template", class: "img-responsive") %> </div>
                             <div class="team-content text-center">
                                 <h3>Laura Wright</h3>
                                 <small class="designation">Business Manager</small> </div>
                         </div>
-                    </div>
-                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
-                        <div class="team-block mb30">
-                            <div class="team-img mb30"> <%= image_tag("team4.jpg", alt: "Borrow - Loan Company Website Template", class: "img-responsive") %> </div>
-                            <div class="team-content text-center">
-                                <h3>Robert C. Sanchez</h3>
-                                <small class="designation">Senior Advisor</small> </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
-                        <div class="team-block mb30">
-                            <div class="team-img mb30"> <%= image_tag("team5.jpg", alt: "Borrow - Loan Company Website Template", class: "img-responsive") %> </div>
-                            <div class="team-content text-center">
-                                <h3>Royce M. Larsen</h3>
-                                <small class="designation">Senior Advisor</small> </div>
-                        </div>
-                    </div>
-                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
-                        <div class="team-block mb30">
-                            <div class="team-img mb30"> <%= image_tag("team6.jpg", alt: "Borrow - Loan Company Website Template", class: "img-responsive") %> </div>
-                            <div class="team-content text-center">
-                                <h3>Belinda S. Manson</h3>
-                                <small class="designation">Business Manager</small> </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
-                            <div class="team-block mb30">
-                            <div class="team-img mb30"> <%= image_tag("team7.jpg", alt: "Borrow - Loan Company Website Template", class: "img-responsive") %> </div>
-                            <div class="team-content text-center">
-                                <h3>Ryder Lothian</h3>
-                                <small class="designation">Senior Advisor</small> </div>
-                        </div>
-                    </div>
-                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
-                        <div class="team-block mb30">
-                            <div class="team-img mb30"> <%= image_tag("team8.jpg", alt: "Borrow - Loan Company Website Template", class: "img-responsive") %> </div>
-                            <div class="team-content text-center">
-                                <h3>Michael Cody</h3>
-                                <small class="designation">Senior Advisor</small> </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
-                        <div class="team-block mb30">
-                            <div class="team-img mb30"> <%= image_tag("team9.jpg", alt: "Borrow - Loan Company Website Template", class: "img-responsive") %> </div>
-                            <div class="team-content text-center">
-                                <h3>Mariam Ness</h3>
-                                <small class="designation">Business Manager</small> </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -92,5 +49,3 @@
 </div>
 </div>
 </section>
-<%# Render footer %>
-<%= render "shared/footer" %>

@@ -32,6 +32,8 @@ gem 'font-awesome-rails'
 gem 'fontello-rails'
 # Use jQuery UI
 gem 'jquery-ui-rails'
+# Owl Carousel
+gem 'owlcarousel-rails'
 
 # AWS s3 buckets for ActiveStorage
 gem "aws-sdk-s3", require: false

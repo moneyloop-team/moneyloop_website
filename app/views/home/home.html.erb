@@ -1,27 +1,34 @@
-<%# Render the header %>
-<%= render "shared/header" %>
-
-<section class="home">
-    <%# Homepage slider %>
-    <div class="owl-carousel home-slider">
+<%# Homepage slider %>
+<section>
+    <div class="owl-carousel owl-theme home-slider">
         <%# First Item %>
         <div class="item item-first">
             <div class="caption">
-                <div class="container">
-                    <div class="col-md-6 col-sm-12">
-                        <h1>Principled Lender</h1>
-                        <a href="#feature" class="section-btn btn btn-default smoothScroll">Register Interest</a>
+                <div class="container-fluid caption-bg1">
+                    <div class="row">
+                        <div class="col-xl-8 col-md-4 col-sm-12">
+                            <h1> Having Car Trouble? </h1>
+                            <%= link_to "We've got you covered", root_path %>
+                        </div>
+                        <div class="col-xl-4 col-md-2 col-sm-12">
+                            <%= image_tag "moneyloop/motif_blue.png" %>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
         <%# Second Item %>
-        <div class="item item-second">
+         <div class="item item-second">
             <div class="caption">
-                <div class="container">
-                    <div class="col-md-6 col-sm-12">
-                        <h1>Innovative Consumer Product</h1>
-                        <a href="#courses" class="section-btn btn btn-default smoothScroll">Get Involved</a>
+                <div class="container-fluid caption-bg2">
+                    <div class="row">
+                        <div class="col-xl-8 col-md-4 col-sm-12">
+                            <h1> Having Car Trouble? </h1>
+                            <%= link_to "We've got you covered", root_path %>
+                        </div>
+                        <div class="col-xl-4 col-md-2 col-sm-12">
+                            <%= image_tag "moneyloop/motif_blue.png" %>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -29,16 +36,73 @@
         <%# Third Item %>
         <div class="item item-third">
             <div class="caption">
-                <div class="container">
-                    <div class="col-md-6 col-sm-12">
-                        <h1>Easy to get Started</h1>
-                        <a href="#contact" class="section-btn btn btn-default smoothScroll">Connect Now</a>
+                <div class="container-fluid caption-bg1">
+                    <div class="row">
+                        <div class="col-xl-8 col-md-4 col-sm-12">
+                            <h1> Having Car Trouble? </h1>
+                            <%= link_to "We've got you covered", root_path %>
+                        </div>
+                        <div class="col-xl-4 col-md-2 col-sm-12">
+                            <%= image_tag "moneyloop/motif_blue.png" %>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>    
+    </div>
 </section>
 
-<%# Render footer %>
-<%= render "shared/footer" %>
+<%# Insurer Information %>
+<section class="home-section1">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-6 moneyloop-color-gradient home-title">
+                <p>
+                    We empower insurers to offer their customers interest-free and flexible excess payment
+                    plans during life’s unexpected emergencies.
+                </p>
+            </div>
+            <div class="col-xl-6">
+                <%= image_tag "blog-img-2.jpg", alt: "Some Image", class:"homeimg" %>
+            </div>
+        </div>
+    </div>
+</section>
+
+<%# About %>
+<section class="home-section2 moneyloop-bg1">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-3"></div>
+            <div class="col-xl-6">
+                <h2 class="text-center">Simple Steps</h2>
+                <ol>
+                    <li>You add customer details to MoneyLoop platform</li>
+                    <li>We perform proprietary checks and advise on risk</li>
+                    <li>You directly offer your customer a branded payment solution</li>
+                    <li>Once customer agrees to repayment terms, we pay you the excess within 7 business days</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+
+<%# Testimonials %>
+<%= render "shared/testimonials" %>
+
+<%# Partners %>
+
+<%# Awards %>
+<section class="home-section3 moneyloop-bg2">
+    <div class="container">
+        <h1 class="home-title"> Proud winner of: </h1>
+        <div class="row">
+        </div>
+    </div>
+</section>
+
+<%# News %>
+<%= render "shared/news" %>
+
+<%# Contact %>
+<%= render "shared/contact" %>

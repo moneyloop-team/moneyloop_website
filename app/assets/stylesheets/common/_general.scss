@@ -4,7 +4,8 @@
 body {
   background-color: #ffff
 }
-h1, h2, h3, h4, h5, h6 { 
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Nunito', sans-serif;
   margin: 0px 0px 10px 0px;
   color: #323232;
   font-weight: 500;
@@ -37,9 +38,10 @@ ul li, ol li {
   line-height: 1.8
 }
 section {
-  padding-top: 65px; 
+  padding-top: 5%;
 }
 a {
+  font-family: 'Nunito', sans-serif;
   color: #323232;
   text-decoration: none;
   -webkit-transition: all 0.3s ease-in-out;
@@ -61,7 +63,7 @@ blockquote {
   color: #414346;
   font-style: italic;
   line-height: 35px;
-  font-family: 'Merriweather', serif;
+  font-family: 'Nunito', sans-serif;
   font-weight: 700;
   &.alignright{
     max-width: 50%;
@@ -132,6 +134,11 @@ img {
   box-sizing: border-box;
 }
 
+.box-size{
+  min-width: 350px;
+  min-height: 215px;
+}
+
 /*-----------------------------------------
 Background & Block Colours 
 ------------------------------------------*/
@@ -188,4 +195,28 @@ Background & Block Colours
   background-color: #fff;
   padding: 30px;
   border-radius: 4px;
+}
+
+.moneyloop-color-gradient {
+  background: rgb(245,140,67);
+  background: -webkit-linear-gradient(65deg, rgba(245,140,67,0.8449754901960784) 40%, rgba(23,145,127,1) 60%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 0.1px black;
+}
+
+.moneyloop-bg1 {
+  background-image: image-url('moneyloop/motif_white.png');
+  background-repeat: space round;
+  background-size: 150px 100px;
+  background-color: #f6893d;
+}
+
+.moneyloop-bg2 {
+  background-image: image-url('moneyloop/motif_white.png');
+  background-repeat: space round;
+  background-size: 150px 100px;
+  background-color: #33768e;
+  color: white;
 }

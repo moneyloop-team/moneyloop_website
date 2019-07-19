@@ -25,7 +25,11 @@
     <%= javascript_include_tag  params[:controller], 'data-turbolinks-track': 'true' %>
   </head>
 
-  <body>  
+  <body>
+    <%# Render the header %>
+    <%= render "shared/header" %>
     <%= yield %>
+    <%# Render footer %>
+    <%= render "shared/footer" %>
   </body>
 </html>

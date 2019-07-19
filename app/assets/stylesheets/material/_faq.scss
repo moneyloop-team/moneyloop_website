@@ -1,0 +1,16 @@
+.categories {
+    & ul {
+        list-style-type: none;
+        padding-left:0; 
+    }
+    & a:hover{
+        color: #17917f;
+        text-decoration: none;
+    }
+}
+
+.faqs {
+    & h2 {
+        color: black;
+    }
+}

@@ -215,22 +215,7 @@ Service-img
 .circle-large { width: 100px; height: 100px; border-radius: 100%; line-height: 2; padding: 10px; text-align: center; font-size: 42px; }
 .circle-default { background-color: #f51f8a; color: #fff; }
 
-/*--------------------------------
-testimonial
----------------------------------*/
-.testimonial-block { position: relative; }
-.testimonial-text { font-family: 'Merriweather', serif; color: #414855; font-style: italic; line-height: 32px; }
-.testimonial-autor { padding-top: 15px; padding-bottom: 12px; }
-.testimonial-name { color: #fff; line-height: 1; margin-bottom: 5px; }
-.testimonial-autor-box { }
-.testimonial-title { color: #f51f8a; margin-bottom: 0px; }
-.testimonial-img { float: left; padding-right: 29px; }
-.testimonial-meta { font-size: 12px; }
-.testimonial-simple { }
-.testimonial-name-inverse { color: #15549a; text-transform: uppercase; font-size: 14px; font-weight: 600; }
-.client-rating { margin-bottom: 10px; }
-.rate-done { color: #f9b218; }
-.rate-remain { color: #c7ced5; }
+
 
 /*--------------------------------
 footer
@@ -460,24 +445,6 @@ img { width: auto; max-width: 100%; height: auto; margin: 0; padding: 0; border:
 .imghover:hover::before, .imghover:hover::after { opacity: 1; }
 .imghover:hover::before { background: rgba(34, 62, 92, .55); }
 .imghover:hover::after { color: #FFFFFF; }
-
-/*--------------------------------
-Team  
----------------------------------*/
-.team-block { }
-.team-img { }
-.team-content { }
-.designation { font-size: 12px; color: #f51f8a; text-transform: uppercase; font-weight: 600; }
-
-/*--------------------------------
-About us 
----------------------------------*/
-.about-section { }
-.counter-section { }
-.why-choose-section { }
-.testimonial-section { }
-.cta-section { }
-.text-big { font-size: 20px; color: #f51f8a; font-weight: 600; margin-bottom: 0px; }
 
 /*--------------------------------
 Contact us 

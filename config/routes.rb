@@ -21,7 +21,13 @@ Rails.application.routes.draw do
   # post 'blogs/upload', to: 'blogs#upload'
  
   # Changing between consumer/insurer mode
-  get 'goto_consumer', to: 'home#consumer'
+  get 'insurer', to: 'home#insurer'
+
+  # Dashboard
+  get 'login', to: redirect('http://development-dashboard.moneyloop.com.au/admins/sign_in', status: 301)
+
+  # FAQ
+  get 'faq', to: 'home#faq'
 
   # Root address
   root 'home#home'

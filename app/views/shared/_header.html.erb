@@ -1,12 +1,3 @@
-<%# Top Bar %>
-<header class="header">
-    <% if cookies[:consumer].to_s == 'true' %>
-        <%= link_to "For Consumers", goto_consumer_path %>
-    <% else %>
-        <%= link_to "For Insurers", goto_consumer_path %>
-    <% end %>
-</header>
-
 <%# Navigation Bar %>
 <nav class="nav_bar">
     <div class="container">
@@ -20,20 +11,20 @@
             <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
                 <div class="nav_items">
                     <ul>
-                        <%# Home page%>
-                        <li> <%= link_to "Home", root_path, class: "animsition-link"%> </li>
                         <%# About Us %>
                         <li>
-                            <%= link_to "About Us", about_path, class: "animsition-link" %>
+                            <%= link_to "About", about_path, class: "animsition-link" %>
                             <ul>
-                                <li> <%= link_to "About Us", about_path, class: "animsition-link" %> </li>
                                 <li> <%= link_to "Team", team_path, class: "animsition-link" %> </li>
                             </ul>
                         </li>
+                        <li> <%= link_to "Insurers", insurer_path, class: "animsition-link" %> </li>
                         <%# Blog %>
-                        <li> <%= link_to "Blog", blogs_path, class: "animsition-link" %> </li>
+                        <li> <%= link_to "News", blogs_path, class: "animsition-link" %> </li>
                         <%# Contact Us %>
-                        <li> <%= link_to "Contact Us", contact_path, class: "animsition-link"%> </li>
+                        <li> <%= link_to "Contact", contact_path, class: "animsition-link"%> </li>
+                        <li> <%= link_to "FAQ", faq_path, class: "animsition-link" %> </li>
+                        <li> <%= link_to "Login", login_path, class: "animsition-link" %> </li>
                     </ul>
                 </div>
             </div>
