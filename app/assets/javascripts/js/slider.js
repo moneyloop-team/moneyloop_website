@@ -13,6 +13,18 @@ $(document).on('turbolinks:load', function() {
         margin:10
     });
 
+    // Slider for partners
+    $(".partners-slider").owlCarousel({
+        animateOut:'fadeOut',
+        items:4,
+        loop:true,
+        dots:false,
+        center:true,
+        autoplay: true,
+        smartSpeed: 10000,
+        margin:10
+    });
+
     // Slider for testimonials
     $(".testimonials-slider").owlCarousel({
         animateOut:'fadeOut',
@@ -20,8 +32,9 @@ $(document).on('turbolinks:load', function() {
         loop:true,
         dots:true,
         center:true,
-        autoplay: true,
+        autoplay:true,
         smartSpeed: 1000,
+        autoplayTimeout: 10000,
         margin:10
     });
 });

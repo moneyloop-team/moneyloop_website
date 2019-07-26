@@ -1,22 +1,26 @@
-.testimonials-slider{
-
-}
 .testimonial-block {
     position: relative;
     outline: solid;
 }
 .testimonial-text {
     font-family: 'Nutino', sans-serif;
-    color: #414855; 
     font-style: italic; 
     line-height: 32px;
-    min-height: 100px;
+    min-height: 160px;
 }
-.testimonial-autor{
+.testimonial-customer{
     padding-top: 15px;
     padding-bottom: 12px;
+    color: #17917f;
 }
-.testimonial-name { color: #fff;
+.testimonial-insurer{
+    padding-top: 15px;
+    padding-bottom: 12px;
+    color: #f6893d;
+}
+
+.testimonial-name { 
+    color: #fff;
     line-height: 1;
     margin-bottom: 5px;
 }

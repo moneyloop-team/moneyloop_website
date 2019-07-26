@@ -2,17 +2,7 @@
 //= require owl.carousel
 //= require owl.theme
 //= require "material/_testimonials"
-
-.power-statement {
-     font-size: 3vw;
-}
-.text-big {
-     font-size: 20px;
-     color: #33768e;
-     font-weight: 600;
-     margin-bottom: 0px;
-}
-
+@import url("https://unpkg.com/aos@next/dist/aos.css");
 
 .team-block { 
      & .team-img1:hover{

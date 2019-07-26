@@ -1,0 +1,13 @@
+.news-list {
+    text-align: left;
+    & ul{
+        list-style-type: none;
+    }
+    & a {
+        color: #66707f;
+        text-decoration: none;
+        &:hover {
+            color: #f6893d;
+        }
+    }
+}

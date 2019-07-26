@@ -1,0 +1,101 @@
+/*---------------------------------------
+  Navigation Bar 
+-----------------------------------------*/
+.nav_bar {
+    background-color: #ffffff;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    position: relative;
+    z-index: 99;
+    -webkit-box-shadow: 0px 5px 9px 1px rgba(144, 161, 180, 0.2);
+    box-shadow: 0px 5px 9px 1px rgba(144, 161, 180, 0.2);
+    -moz-box-shadow: 0px 5px 9px 1px rgba(144, 161, 180, 0.2);
+}
+.nav_logo {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.nav_items, .nav_items ul, .nav_items ul li, .nav_items ul li a {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    list-style: none;
+    line-height: 1;
+    display: block;
+    position: relative;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    &:after, >ul:after{
+        content: ".";
+        display: block;
+        clear: both;
+        visibility: hidden;
+        line-height: 0;
+        height: 0;
+    }
+}
+.nav_items {
+    margin-right: -80px;
+    float: right;
+    position: relative;
+    z-index: 99;
+
+    // Top level nav items
+    &>ul>li {
+        float: left;
+        &>a {
+            padding: 16px 15px;
+            font-size: 15px;
+            text-decoration: none;
+            color: #66707f;
+            font-weight: 600;
+            &:hover {
+                color: #323232;
+            }
+        }
+        &:hover {
+            color: #323232;
+        }
+    }
+
+    // Second level nav items
+    & ul ul {
+        position: absolute;
+        left: -9999px;
+
+        & li {
+            height: 0;
+            -webkit-transition: all .25s ease;
+            -moz-transition: all .25s ease;
+            -ms-transition: all .25s ease;
+            -o-transition: all .25s ease;
+            transition: all .25s ease;
+
+            & a {
+                border-bottom: 1px solid rgba(222, 231, 242, 1);
+                padding: 15px 15px 16px 15px;
+                width: 220px;
+                font-size: 13px;
+                text-decoration: none;
+                color: #66707f;
+                font-weight: 500;
+                background: #fff;
+                &:hover {
+                    color: #323232;
+                }
+            }
+        }
+    }
+    & li:hover>ul {
+        left: auto;
+        &>li{
+            height: 45px;
+        }
+    }
+}

@@ -13,18 +13,22 @@
                     <ul>
                         <%# About Us %>
                         <li>
-                            <%= link_to "About", about_path, class: "animsition-link" %>
+                            <%= link_to "About", about_path %>
                             <ul>
-                                <li> <%= link_to "Team", team_path, class: "animsition-link" %> </li>
+                                <li> <%= link_to "Team", team_path %> </li>
                             </ul>
                         </li>
-                        <li> <%= link_to "Insurers", insurer_path, class: "animsition-link" %> </li>
-                        <%# Blog %>
-                        <li> <%= link_to "News", blogs_path, class: "animsition-link" %> </li>
+                        <%# For Insurers %>
+                        <li> <%= link_to "For Insurers", insurer_path %> </li>
+                        <%# FAQ %>
+                        <li> <%= link_to "FAQ", faq_path %> </li>
+                        <%# News %>
+                        <%# TODO 
+                        <li> <%# link_to "News", blogs_path </li> %>
                         <%# Contact Us %>
-                        <li> <%= link_to "Contact", contact_path, class: "animsition-link"%> </li>
-                        <li> <%= link_to "FAQ", faq_path, class: "animsition-link" %> </li>
-                        <li> <%= link_to "Login", login_path, class: "animsition-link" %> </li>
+                        <li> <%= link_to "Contact", contact_path %> </li>
+                        <%# Login %>
+                        <li> <%= link_to "Login", login_path %> </li>
                     </ul>
                 </div>
             </div>

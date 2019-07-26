@@ -1,93 +1,118 @@
-@import '_general';
-@import '_button';
-@import '_header';
-@import '_footer';
+@import '../material/_general';
+@import '../material/_colours';
+@import '../material/_spacing';
+@import '../material/_header';
+@import '../material/_footer';
 
-/* 
- Custom CSS Stylesheet
- + General
-    - General
-    - Background & Block Colours
- + Buttons
- + Header
-    - Header
-    - Navigation Bar
- + Home
- + Footer
-    - Footer
-    - Social Icons
-*/
+/*-----------------------------------------
+Commonly used custom classes
+------------------------------------------*/
+.title-card {
+   padding: 2%;
+   & .title {
+         padding-top: 7%;
+         color: #f6f7ef;
+         font-size: 50px;
+         font-style: normal;
+   }
+   & .subtitle {
+         color: #f6f7ef;
+         font-size: 20px;
+         font-style: normal;
+         padding-bottom: 7%;
+   }
+}
+.btn {
+   text-transform: none;
+   background: #f6f7ef;
+   color: #323232;
+   padding: 5px;
+   text-align: center;
+   &:hover{
+         color: #17917f;
+         background: #d4d4d4;
+   }
+}
+.btn-small{
+   padding: 5px;
+}
+.btn-large{
+   padding: 15px;
+   margin: 20px;
+}
+.btn-submit{
+   padding-bottom: 15px;
+   //background: #ffffff;
+   color: #66707f;
+}
 
 
-/*-----------------------------------
-Space css class
------------------------------------*/
+.box {
+   margin-top: 10%;
+   margin-bottom: 10%;
+   & h1 {
+         font-style: bold;
+   }
+   & p {
+         color: #66707f;
+   }
+}
+.box-img {
+   max-width: 270px;
+   max-height: 270px;
+}
 
-/*----------------
-margin space
------------------*/
+// For a div that splits into four groups
+.quarter-section {
+   display: block;
 
-.mb0 { margin-bottom: 0px; }
-.mb10 { margin-bottom: 10px; }
-.mb20 { margin-bottom: 20px; }
-.mb30 { margin-bottom: 30px; }
-.mb40 { margin-bottom: 40px; }
-.mb60 { margin-bottom: 60px; }
-.mb80 { margin-bottom: 80px; }
-.mb100 { margin-bottom: 100px; }
-.mt0 { margin-top: 0px; }
-.mt10 { margin-top: 10px; }
-.mt20 { margin-top: 20px; }
-.mt30 { margin-top: 30px; }
-.mt40 { margin-top: 40px; }
-.mt60 { margin-top: 60px; }
-.mt80 { margin-top: 80px; }
-.mt100 { margin-top: 100px; }
+   & img{
+       max-width: 100px;
+       max-height: 100px;
+       padding: 10px;
+       margin: 0 80px;
+   }
+}
 
-/*----------------
-less margin space from top
------------------*/
-.mt-20 { margin-top: -20px; }
-.mt-40 { margin-top: -40px; }
-.mt-60 { margin-top: -60px; }
-.mt-80 { margin-top: -80px; }
+.title {
+   color: #66707f;
+   font-style: italic;
+   font-size: 25px;
+   text-align: center;
+}
+.subtitle {
+   color: #66707f;
+   font-style: italic;
+   font-size: 20px;
+   text-align: center;
+   & a {
+       color: #66707f;
+       text-decoration: none;
+       &:hover {
+           color: #f6893d;
+       }
+   }
+}
+.required {
+   color: red 
+}
 
-/*---------------
-Padding space
------------------*/
-.nopadding { padding: 0px; }
-.nopr { padding-right: 0px; }
-.nopl { padding-left: 0px; }
-.pinside10 { padding: 10px; }
-.pinside20 { padding: 20px; }
-.pinside30 { padding: 30px; }
-.pinside40 { padding: 40px; }
-.pinside50 { padding: 50px; }
-.pinside60 { padding: 60px; }
-.pinside80 { padding: 80px; }
-.pdt10 { padding-top: 10px; }
-.pdt20 { padding-top: 20px; }
-.pdt30 { padding-top: 30px; }
-.pdt40 { padding-top: 40px; }
-.pdt60 { padding-top: 60px; }
-.pdt80 { padding-top: 80px; }
-.pdb10 { padding-bottom: 10px; }
-.pdb20 { padding-bottom: 20px; }
-.pdb30 { padding-bottom: 30px; }
-.pdb40 { padding-bottom: 40px; }
-.pdb60 { padding-bottom: 60px; }
-.pdb80 { padding-bottom: 80px; }
-.pdl10 { padding-left: 10px; }
-.pdl20 { padding-left: 20px; }
-.pdl30 { padding-left: 30px; }
-.pdl40 { padding-left: 40px; }
-.pdl60 { padding-left: 60px; }
-.pdl80 { padding-left: 80px; }
-.pdr10 { padding-right: 10px; }
-.pdr20 { padding-right: 20px; }
-.pdr30 { padding-right: 30px; }
-.pdr40 { padding-right: 40px; }
-.pdr60 { padding-right: 60px; }
-.pdr80 { padding-right: 80px; }
-.x { }
-.y { padding-top: 220px; }
+.lead {
+   color: #3c4d6b;
+   line-height: 36px;
+   font-size: 24px;
+}
+
+.title_box{
+width: 100%;
+padding: 12px 20px;
+margin: 8px 0;
+display: inline-block;
+border: 1px solid #ccc;
+border-radius: 4px;
+box-sizing: border-box;
+}
+.box-size{
+min-width: 350px;
+min-height: 215px;
+}

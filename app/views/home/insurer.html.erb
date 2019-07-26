@@ -1,33 +1,109 @@
-<%# Login Box %>
-<section>
+<%# Title Card %>
+<div class="moneyloop-color-gradient title-card">
     <div class="container">
         <div class="row">
-            <%# Benefits%>
-            <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12">
-                <h1> Benefits </h1>
-                <ul>
-                    <li> A </li>
-                    <li> list </li>
-                    <li> of </li>
-                    <li> benefits </li>
-                </ul>
+            <div class="title col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                Created for Insurers
             </div>
-            <%# Login Sidebar %>
-            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
-                <div class="sidebar-area">
-                    <div class="row">
-                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                            <div class="bg-primary">
-                                <div class="widget widget-search">
-                                    <h3 class="widget-title"> Go to the Dashboard </h3>
-                                    <%= link_to "Login", login_path, class: "btn btn-default" %>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="subtitle col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                All about improving customer experience,
+                decreasing customer churn,<br/>
+                reducing claim management costs and
+                improving cashflow.
+            </div>
+            <div class="text-center col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <%= link_to "Go to the Dashboard", login_path, class: "btn btn-small" %>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%# Benefits %>
+<section>
+    <div class="container">
+        <%# White Labelled %>
+        <div class="row box">
+            <div class="col-xl-6 offset-xl-1 col-lg-6 offset-lg-1 col-md-12 col-sm-12 col-12">
+                <h1>Easily White Labelled</h1>
+                <p>
+                    MoneyLoop offers insurers the ability to lessen the financial stress on a customer, 
+                    during the claims process, with interest-free and flexible payment plans.
+                </p>
+            </div>
+            <div class="box-img col-xl-4 offset-xl-1 col-lg-4 offset-lg-1 col-md-12 col-sm-12 col-12">
+                <%= image_tag "moneyloop/icons/white-label.svg" %>
+            </div>
+        </div>
+        <%# Robust %>
+        <div class="row box">
+
+            <div class="box-img col-xl-4 offset-xl-1 col-lg-4 offset-lg-1 col-md-12 col-sm-12 col-12">
+                <%= image_tag "moneyloop/icons/risk-check.svg" %>
+            </div>
+            <div class="col-xl-6 offset-xl-1 col-lg-6 offset-lg-1 col-md-12 col-sm-12 col-12">
+                <h1>Robust Proprietary Credit Decision</h1>
+                <p>
+                    With our credit-decisioning engine we are able to accept any customer you send us. 
+                    The score determines the risk and required discount to service the customer. 
+                    This includes your customers who are eligible for financial hardship.
+                </p>
+            </div>
+        </div>
+        <%# Flexible %>
+        <div class="row box">
+            <div class="col-xl-6 offset-xl-1 col-lg-6 offset-lg-1 col-md-12 col-sm-12 col-12">
+                <h1>Flexible Repayment Structures</h1>
+                <p>
+                    We understand that some customers will require more time to repay their excess.
+                    We offer flexible payment solutions ranging from 2 months up to 4 months, 
+                    to ensure you are there for your customers when they need you most.
+                </p>
+            </div>
+            <div class="box-img col-xl-4 offset-xl-1 col-lg-4 offset-lg-1 col-md-12 col-sm-12 col-12">
+                <%= image_tag "moneyloop/icons/repayment.svg" %>
             </div>
         </div>
     </div>
 </section>
-<%# Benefits %>
+
+<%# Find out More! %>
+<section class="title moneyloop-color-gradient1 pinside40">
+    <h2>Want to improve your customer&#39;s experience at the time of claim?</h2>
+    <%= link_to "Contact us now", contact_path, class: "btn btn-large" %>
+    <%= link_to "Lost? Read our FAQ", faq_path, class: "btn btn-large" %>
+</section>
+
+<%# Contact us Now %>
+<section class="quarter-section pinside80">
+    <div class="title">
+        MoneyLoop is here to help you service your customer when it matters most.
+    </div><br/>
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+                <%= image_tag "moneyloop/icons/customer-details.svg" %>
+                <p class="text-center"><br/>
+                    Interest-free finance
+                </p>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+                <%= image_tag "moneyloop/icons/risk-check.svg" %>
+                <p class="text-center"><br/>
+                    White-labelled
+                </p>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+                <%= image_tag "moneyloop/icons/offer.svg" %>
+                <p class="text-center"><br/>
+                    Flexible payment terms
+                </p>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+                <%= image_tag "moneyloop/icons/payment.svg" %>
+                <p class="text-center"><br/>
+                    Improved customer journey!
+                </p>
+            </div>
+        </div>
+    </div>
+</section>

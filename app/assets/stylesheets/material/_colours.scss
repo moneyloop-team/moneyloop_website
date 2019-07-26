@@ -1,0 +1,48 @@
+/*-----------------------------------------
+Background & Block Colours 
+------------------------------------------*/
+.moneyloop-color-gradient {
+    background: rgb(245,140,67);
+    background: -webkit-linear-gradient(65deg, rgba(245,140,67,0.8449754901960784) 40%, rgba(23,145,127,1) 60%);
+
+    & h2, h3, .title {
+        color: #f6f7ef;
+    }
+}
+.moneyloop-color-gradient1 {
+    background: rgb(23,145,127);
+    background: -webkit-linear-gradient(65deg, rgba(23,145,127,1) 40%, rgba(245,140,67,0.8449754901960784) 60%);
+
+    & h2, h3, .title {
+        color: #f6f7ef;
+    }
+}
+.moneyloop-white-bg {
+    background: #f6f7ef;
+}
+
+.moneyloop-bg1 {
+    background-image: image-url('moneyloop/motif_white.png');
+    background-repeat: space;
+    background-size: auto 50%;
+    background-color: #f6893d;
+}
+
+.moneyloop-bg2 {
+    background-image: image-url('moneyloop/motif_white.png');
+    background-repeat: space;
+    background-size: auto 50%;
+    background-color: #33768e;
+    color: white;
+}
+
+.moneyloop-bg3 {
+    background-image: image-url('moneyloop/background-band.png');
+    background-repeat: no-repeat;
+    background-size: auto 100%;
+    min-width: 1000px;
+}
+
+.black {
+    color: #323232 !important;
+}

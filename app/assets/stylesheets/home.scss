@@ -3,23 +3,20 @@
 //= require owl.theme
 //= require "material/_testimonials"
 //= require "material/_faq"
+//= require "material/_news"
+@import url("https://unpkg.com/aos@next/dist/aos.css");
 
 .home-slider {
     & h1 {
-        font-size: 45px;
+        font-style: italic;
+        font-size: 30px;
         color: #ffffff;
     }
 
-    & h3, a {
-        color: #f9f9f9;
-        font-size: 30px;
+    & h3 {
+        color: #ffffff;
+        font-size: 25px;
         font-weight: 300;
-        margin: 0;
-        padding: 5px 0 40px 0;
-    }
-
-    & a {
-        text-decoration: none;
     }
 
     & .item{
@@ -33,17 +30,17 @@
         width: 75%;
     }
     & .item-first {
-        background-image: image-url('slider-2.jpg');
+        background-image: image-url('moneyloop/slider/australian-family.jpg');
         background-position: center;
     }
     
     & .item-second {
-        background-image: image-url('slider-1.jpg');
+        background-image: image-url('moneyloop/slider/call-center.jpg');
         background-position: center;
     }
     
     & .item-third {
-        background-image: image-url('slider-3.jpg');
+        background-image: image-url('moneyloop/slider/car.jpg');
         background-position: center;
     }
     & .caption {
@@ -57,9 +54,7 @@
 
         & img {
             float: right;
-            height: 100px;
             width: 150px;
-            padding-right: 20px;
         }
     }
     & .caption-bg1 {
@@ -74,36 +69,24 @@
     }
 }
 
-.home-section1 {
-    padding-top: 30px;
-    padding-bottom: 20px;
-    & img {
-        float: right;
-        padding-right: 15px;
-    }
-}
-
-.home-section2 {
-    padding-top: 30px;
-    padding-bottom: 20px;
-    display: block;
-}
-
 .home-section3 {
     padding-top: 30px;
     padding-bottom: 20px;
     display: block;
 
-    & .home-title {
+    & .title {
         color: white;
         text-align: center;
     }
 }
 
-.home-title {
-    margin: auto;
-    width: 50%;
-    font-style: italic;
-    font-size: 30px;
-    text-align: center;
+.partners-slider{
+    padding-top: 20px;
+
+    & img {
+        position: relative;
+        top: 50%;
+        margin-top: 40px;
+        transform: translateY(-50%);
+    }
 }
