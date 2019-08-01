@@ -10,7 +10,7 @@ Commonly used custom classes
 .title-card {
    padding: 2%;
    & .title {
-         padding-top: 7%;
+         padding-top: 3%;
          color: #f6f7ef;
          font-size: 50px;
          font-style: normal;
@@ -19,7 +19,7 @@ Commonly used custom classes
          color: #f6f7ef;
          font-size: 20px;
          font-style: normal;
-         padding-bottom: 7%;
+         padding-bottom: 3%;
    }
 }
 .btn {
@@ -61,6 +61,21 @@ Commonly used custom classes
    max-height: 270px;
 }
 
+.ticklist {
+   list-style-type: none;
+   list-style-position: outside;
+   padding-left: 0;
+   & li:before {
+      content: '✅';
+      margin-left: -20px;
+      margin-right: 10px;
+   }
+   & li {
+      color: #66707f;
+   }
+   
+}
+
 // For a div that splits into four groups
 .quarter-section {
    display: block;
@@ -75,13 +90,11 @@ Commonly used custom classes
 
 .title {
    color: #66707f;
-   font-style: italic;
    font-size: 25px;
    text-align: center;
 }
 .subtitle {
    color: #66707f;
-   font-style: italic;
    font-size: 20px;
    text-align: center;
    & a {

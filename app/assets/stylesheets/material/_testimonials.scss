@@ -6,17 +6,35 @@
     font-family: 'Nutino', sans-serif;
     font-style: italic; 
     line-height: 32px;
-    min-height: 160px;
+    min-height: 190px;
 }
 .testimonial-customer{
     padding-top: 15px;
     padding-bottom: 12px;
-    color: #17917f;
+    border-color: #17917f;
+    border-style: solid;
+    color: #66707f;
+    & p{
+        display: flex;
+        align-items: center;
+    }
+    & h4 {
+        color: #66707f;
+    }
 }
 .testimonial-insurer{
     padding-top: 15px;
     padding-bottom: 12px;
-    color: #f6893d;
+    border-color: #f6893d;
+    border-style: solid;
+    color: #66707f;
+    & p{
+        display: flex;
+        align-items: center;
+    }
+    & h4 {
+        color: #66707f;
+    }
 }
 
 .testimonial-name { 

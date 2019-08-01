@@ -3,22 +3,38 @@ Background & Block Colours
 ------------------------------------------*/
 .moneyloop-color-gradient {
     background: rgb(245,140,67);
-    background: -webkit-linear-gradient(65deg, rgba(245,140,67,0.8449754901960784) 40%, rgba(23,145,127,1) 60%);
+    //background: -webkit-linear-gradient(65deg, rgba(245,140,67,0.8449754901960784) 40%, rgba(23,145,127,1) 60%);
 
-    & h2, h3, .title {
+    & h1, h2, h3, .title {
         color: #f6f7ef;
     }
 }
 .moneyloop-color-gradient1 {
     background: rgb(23,145,127);
-    background: -webkit-linear-gradient(65deg, rgba(23,145,127,1) 40%, rgba(245,140,67,0.8449754901960784) 60%);
+    //background: -webkit-linear-gradient(65deg, rgba(23,145,127,1) 40%, rgba(245,140,67,0.8449754901960784) 60%);
 
-    & h2, h3, .title {
+    & h1, h2, h3, .title {
         color: #f6f7ef;
     }
 }
 .moneyloop-white-bg {
     background: #f6f7ef;
+}
+
+.moneyloop-green {
+    color: #17917f;
+}
+
+.moneyloop-border-blue {
+    border-color: rgb(23,145,127);
+    border-style: solid;
+    color: #66707f;
+}
+
+.moneyloop-border-orange {
+    border-color: rgb(245,140,67);
+    border-style: solid;
+    color: #66707f;
 }
 
 .moneyloop-bg1 {
@@ -45,4 +61,12 @@ Background & Block Colours
 
 .black {
     color: #323232 !important;
+}
+
+.grey {
+    color: #66707f !important;
+}
+
+.white {
+    color: #f6f7ef;
 }

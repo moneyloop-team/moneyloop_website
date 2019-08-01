@@ -32,6 +32,14 @@ less margin space from top
 .mt-60 { margin-top: -60px; }
 .mt-80 { margin-top: -80px; }
 
+.marginside20 {
+   margin-left: 20px;
+   margin-right: 20px;
+}
+.marginl60 {
+   margin-left: 60px;
+}
+
 /*---------------
 Padding space
 -----------------*/
@@ -44,7 +52,9 @@ Padding space
 .paddingt3 {
    padding-top: 3%;
 }
-
+.paddingb3 {
+   padding-bottom: 3%;
+}
 
 .nopadding { padding: 0px; }
 .nopr { padding-right: 0px; }
