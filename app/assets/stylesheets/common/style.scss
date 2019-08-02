@@ -38,6 +38,12 @@ Images
    max-width: 270px;
    max-height: 270px;
 }
+.img-grayscale{
+   filter: grayscale(100%);
+   &:hover{
+      filter: grayscale(0%);
+   }
+}
 
 /*-----------------------------------------
 Text

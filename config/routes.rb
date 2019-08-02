@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   # post 'blogs/upload', to: 'blogs#upload'
 
   # Dashboard
-  get 'login', to: redirect('http://development-dashboard.moneyloop.com.au/admins/sign_in', status: 301)
+  get 'login', to: redirect('http://dashboard.moneyloop.com.au/admins/sign_in', status: 301)
 
   # Root address
   root 'home#home'
