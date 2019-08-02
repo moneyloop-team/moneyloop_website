@@ -1,3 +1,6 @@
+<%# Render the header %>
+<%= render "shared/header" %>
+
 <%# Title Card %>
 <div class="moneyloop-bg-orange mb30 title-card">
     <div class="container">
@@ -10,14 +13,14 @@
 </div>
 
 <%# Contact Us form %>
-<section class="padding2">                    
+<section class="padding2">  
     <% if flash[:notice] %>
         <div class="offset-xl-2 col-xl-8 offset-lg-2 col-lg-8 col-md-12 col-sm-12 col-12">
             <div class="mb60 text-center">
                 <h1><%= flash[:notice] %><h1>
             </div>
         </div>
-    <% else %>
+    <% else %>                  
         <%= render "shared/contact" %>
     <% end %>
 </section>
@@ -51,3 +54,6 @@
         </div>
     </div>
 </section>
+
+<%# Render footer %>
+<%= render "shared/footer" %>
