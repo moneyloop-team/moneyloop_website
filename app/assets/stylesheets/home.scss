@@ -7,18 +7,8 @@
 @import url("https://unpkg.com/aos@next/dist/aos.css");
 
 .home-slider {
-    & h1 {
-        font-size: 30px;
-        color: #ffffff;
-    }
-
-    & h3 {
-        color: #ffffff;
-        font-size: 25px;
-        font-weight: 300;
-    }
-
     & .item{
+        border-radius: 10px;
         background-repeat: no-repeat;
         background-attachment: local;
         background-size: cover;
@@ -47,41 +37,28 @@
         justify-content: center;
         flex-direction: column;
         text-align: left;
-        background-color: rgba(20,20,20,0.2);
         height: 100%;
         color: #fff;
-
         & img {
+            margin-top: 20px;
             float: right;
             width: 150px;
         }
     }
     & .caption-bg1 {
         background-color: rgba(245,140,67, 0.5);
-        padding: 30px;
-        margin: 0px;
+        margin-top: 20px;
+        margin-bottom: 20px;
     }
     & .caption-bg2 {
         background-color: rgba(51, 118, 142, 0.5);
-        padding: 30px;
-        margin: 0px;
-    }
-}
-
-.home-section3 {
-    padding-top: 30px;
-    padding-bottom: 20px;
-    display: block;
-
-    & .title {
-        color: white;
-        text-align: center;
+        margin-top: 20px;
+        margin-bottom: 20px;
     }
 }
 
 .partners-slider{
-    padding-top: 20px;
-
+    margin-bottom: -40px; // Offset the slider for when we put in the img's
     & img {
         position: relative;
         top: 50%;

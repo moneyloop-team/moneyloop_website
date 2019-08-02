@@ -10,10 +10,8 @@
 }
 
 .faqs {
-    & h2 {
-        color: black;
-    }
-    & h3 {
-        font-style: italic;
+    & a:hover{
+        color: #17917f;
+        text-decoration: none;
     }
 }

@@ -1,6 +1,7 @@
 //Stylesheets related to all controllers
 //= require_self
 //= require_tree ./common
+//= require "normalize"
 @import "bootstrap";
 @import "font-awesome";
 @import "fontello";

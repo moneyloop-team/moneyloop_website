@@ -3,32 +3,32 @@
     <div class="container">
         <div class="row">
             <%# Logo %>
-            <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 col-12">
-                <%= link_to image_tag("moneyloop/logo_blue.png", alt: "Moneyloop - Logo (blue)"), root_path, class: "nav_logo" %>
+            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
+                <%= link_to image_tag("moneyloop/logo_blue.png", alt: "Moneyloop - Logo (blue)"), root_url, class: "nav_logo" %>
             </div>
 
             <%# Navigation%>
-            <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+            <div class="col-xl-8 col-lg-8 col-md-6 col-sm-12 col-12">
                 <div class="nav_items">
                     <ul>
                         <%# About Us %>
                         <li>
-                            <%= link_to "About", about_path %>
+                            <%= link_to "About", about_url %>
                             <ul>
-                                <li> <%= link_to "Team", team_path %> </li>
+                                <li> <%= link_to "Team", team_url %> </li>
                             </ul>
                         </li>
                         <%# For Insurers %>
-                        <li> <%= link_to "For Insurers", insurer_path %> </li>
+                        <li> <%= link_to "For Insurers", insurer_url %> </li>
                         <%# FAQ %>
-                        <li> <%= link_to "FAQ", faq_path %> </li>
+                        <li> <%= link_to "FAQ", faq_url %> </li>
                         <%# News %>
                         <%# TODO 
-                        <li> <%# link_to "News", blogs_path </li> %>
+                        <li> <%# link_to "News", blogs_url </li> %>
                         <%# Contact Us %>
-                        <li> <%= link_to "Contact", contact_path %> </li>
+                        <li> <%= link_to "Contact", contact_url %> </li>
                         <%# Login %>
-                        <li> <%= link_to "Login", login_path %> </li>
+                        <li> <%= link_to "Login", login_url %> </li>
                     </ul>
                 </div>
             </div>

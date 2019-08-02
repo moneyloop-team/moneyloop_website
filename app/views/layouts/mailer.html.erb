@@ -1,25 +1,22 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <!-- Metadata -->
+    <meta charset="utf-8">
+
     <%# might need to change or update these %>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="MoneyLoop">
     <meta name="keywords" content="Financial Website Template, Bootstrap Template, Loan Product, Personal Loan">
     <title>MoneyLoop</title>
 
-    <%# These tags help fight XSS attacks %>
-    <%# TODO %>
-    <%# csrf_meta_tags %>
-    <%# csp_meta_tag %>
-  
     <!-- Favicon -->
     <link rel="icon" href=<%=image_path "moneyloop/motif_blue.png"%> type="image/png">
 
     <!-- Assets -->
-    <%# Not using controller-specific assets as it returns a nil class on post --> need to figure out how to change this %>
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'true' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'true' %>
   </head>
 
   <body>
@@ -27,6 +24,6 @@
     <%= render "shared/header" %>
     <%= yield %>
     <%# Render footer %>
-    <%= render "shared/footer" %>s
+    <%= render "shared/footer" %>
   </body>
 </html>

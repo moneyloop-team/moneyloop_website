@@ -5,23 +5,73 @@
 @import '../material/_footer';
 
 /*-----------------------------------------
-Commonly used custom classes
+Boxes, Cards and Sections
 ------------------------------------------*/
 .title-card {
    padding: 2%;
-   & .title {
-         padding-top: 3%;
-         color: #f6f7ef;
-         font-size: 50px;
-         font-style: normal;
-   }
-   & .subtitle {
-         color: #f6f7ef;
-         font-size: 20px;
-         font-style: normal;
-         padding-bottom: 3%;
-   }
 }
+.box {
+   margin-top: 7%;
+   margin-bottom: 7%;
+}
+.box-sm {
+   min-height: 150px;
+}
+.title_box{
+   width: 100%;
+   padding: 12px 20px;
+   margin: 8px 0;
+   display: inline-block;
+   border: 1px solid #ccc;
+   border-radius: 4px;
+   box-sizing: border-box;
+}
+
+/*-----------------------------------------
+Images
+------------------------------------------*/
+.img-md {
+   max-width: 100px;
+   max-height: 100px;
+}
+.img-lg {
+   max-width: 270px;
+   max-height: 270px;
+}
+
+/*-----------------------------------------
+Text
+------------------------------------------*/
+.lead {
+   line-height: 36px;
+   font-size: 24px;
+}
+.bold {
+   font-style: bold !important;
+}
+.ticklist {
+   padding-left: 0;
+   // list-style-type: none;
+   // list-style-position: outside;
+   // 
+   // & li:before {
+   //    content: '✅';
+   //    margin-left: -20px;
+   //    margin-right: 10px;
+   // }
+   & li {
+      color: #66707f;
+   }
+   
+}
+.center {
+   display: flex;
+   align-items: center;
+}
+
+/*-----------------------------------------
+Buttons
+------------------------------------------*/
 .btn {
    text-transform: none;
    background: #f6f7ef;
@@ -41,90 +91,8 @@ Commonly used custom classes
    margin: 20px;
 }
 .btn-submit{
-   padding-bottom: 15px;
-   //background: #ffffff;
-   color: #66707f;
-}
-
-.box {
-   margin-top: 10%;
-   margin-bottom: 10%;
-   & h1 {
-         font-style: bold;
-   }
-   & p {
-         color: #66707f;
-   }
-}
-.box-img {
-   max-width: 270px;
-   max-height: 270px;
-}
-
-.ticklist {
-   list-style-type: none;
-   list-style-position: outside;
-   padding-left: 0;
-   & li:before {
-      content: '✅';
-      margin-left: -20px;
-      margin-right: 10px;
-   }
-   & li {
-      color: #66707f;
-   }
-   
-}
-
-// For a div that splits into four groups
-.quarter-section {
-   display: block;
-
-   & img{
-       max-width: 100px;
-       max-height: 100px;
-       padding: 10px;
-       margin: 0 80px;
-   }
-}
-
-.title {
-   color: #66707f;
-   font-size: 25px;
-   text-align: center;
-}
-.subtitle {
-   color: #66707f;
-   font-size: 20px;
-   text-align: center;
-   & a {
-       color: #66707f;
-       text-decoration: none;
-       &:hover {
-           color: #f6893d;
-       }
-   }
-}
-.required {
-   color: red 
-}
-
-.lead {
-   color: #3c4d6b;
-   line-height: 36px;
-   font-size: 24px;
-}
-
-.title_box{
-width: 100%;
-padding: 12px 20px;
-margin: 8px 0;
-display: inline-block;
-border: 1px solid #ccc;
-border-radius: 4px;
-box-sizing: border-box;
-}
-.box-size{
-min-width: 350px;
-min-height: 215px;
+   display: flex;
+   align-items: center;
+   padding: 2%;
+   color: rgb(245,140,67);
 }

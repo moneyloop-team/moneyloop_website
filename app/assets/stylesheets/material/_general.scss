@@ -8,7 +8,7 @@ body {
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Nunito', sans-serif;
   margin: 0px 0px 10px 0px;
-  color: #323232;
+  color: #66707f;
   font-weight: 500;
 } 
 h1 {
@@ -41,14 +41,13 @@ ul li, ol li {
 }
 a {
   font-family: 'Nunito', sans-serif;
-  color: #323232;
+  color: #66707f;
   text-decoration: none;
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
   &:focus, :hover{
       text-decoration: none;
-      color: #323232;
   }
 } 
 ::selection {

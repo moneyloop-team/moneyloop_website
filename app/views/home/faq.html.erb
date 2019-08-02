@@ -1,14 +1,13 @@
 <%# Title Card %>
-<div class="moneyloop-color-gradient1 title-card">
+<div class="moneyloop-bg-blue mb30 title-card">
     <div class="container">
         <div class="row">
-            <div class="title mb40 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                Frequently Asked Questions
+            <div class="text-center padding2 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <h1>Frequently Asked Questions</h1>
             </div>
         </div>
     </div>
 </div>
-
 
 <section>
     <div class="container">
@@ -16,81 +15,104 @@
             <div class="col-xl-3 categories">
                 <h1> Categories </h1>
                 <ul>
-                    <li> <%= link_to "MoneyLoop Loans - The ins and outs", "#loans" %> </li>
-                    <li> <%= link_to "For Insurers", "#insurers" %> </li>
-                    <li> <%= link_to "For Customers", "#customers" %>  </li>
+                    <li> 
+                        <a href="#loans" data-toggle="collapse">MoneyLoop Loans - The ins and outs</a>
+                    </li>
+                    <li> <a href="#insurers" data-toggle="collapse">For Insurers</a> </li>
+                    <li> <a href="#customers" data-toggle="collapse">For Customers</a> </li>
                 </ul>
             </div>
             <div class="col-xl-9 faqs">
                 <%# General FAQs %>
-                <h2 id="loans"> MoneyLoop Loans - The ins and outs </h2>
-                <h3>How long can my customers take to repay their loan?</h3>
-                <p>
-                    We offer payment arrangements between 2 months and 4 months.
-                    However, we can negotiate other durations with each individual insurer.
-                </p>
-                <h3>What is the maximum size excess you support?</h3>
-                <p>
-                    We are happy to finance excesses of any size. 
-                    We have had some as small as $300 and others as large as $50,000
-                </p>
-                <h3>How do my customers make their repayments?</h3>
-                <p>
-                    When customers finalise their plan with you, they will be required to nominate a payment source. 
-                    We typically want a debit/or credit card to be provided.
-                </p>
-                <h3>How hard is it to get started with MoneyLoop?</h3>
-                <p>
-                   We have an easy to implement API endpoint and an online dashboard that allows you to get started today! 
-                   Just contact us today to learn more!
-                </p>
-                <h3>What if my customers don't repay their debt?</h3>
-                <p>
-                    We will inform you that your customer has not met their responsibilities to repay their debt. 
-                    You will also be able to track a customers repayment history via the dashboard provided.
-                </p>
-                <h3>If my customer doesn't pay MoneyLoop back, do I??</h3>
-                <p>
-                    No, you do not have to pay MoneyLoop any money if a customer doesn't meet their obligations. 
-                    We take all of the credit risk associated with this product.
-                </p>
-                <h3>How does MoneyLoop make money?</h3>
-                <p>
-                    We request that you provide us with a discount depending on the duration you wish to allow your customers to repay their loan over. 
-                    We will settle the upfront excess with you, and then recover the debt from the customer interest-free over the requested repayment period.
-                </p>
+                <h1 id="loans-top"><a href="#loans" data-toggle="collapse">
+                    MoneyLoop Loans - The ins and outs &nbsp;
+                    <i class="fa fa-angle-down"></i>
+                </a></h1>
+                <div id="loans" class="collapse">
+                    <h3>What is the maximum size excess you support?</h3>
+                    <p>
+                        We are happy to finance excesses of any size. 
+                        We have had some as small as $300 and others as large as $50,000
+                    </p>
+                    <h3>How hard is it to get started with MoneyLoop?</h3>
+                    <p>
+                    We have an easy to implement API endpoint and an online dashboard that allows you to get started today! 
+                    Just contact us today to learn more!
+                    </p>
+                    <h3>How does MoneyLoop make money?</h3>
+                    <p>
+                        We request that you provide us with a discount depending on the duration you wish to allow your customers to repay their loan over. 
+                        We will settle the upfront excess with you, and then recover the debt from the customer interest-free over the requested repayment period.
+                    </p>
+                </div>
 
                 <%# Insurer FAQs %>
-                <h2 id="insurers">For Insurers</h2>
-                <b> Coming Soon </b><br/><br/>
+                 <h1 id="insurers-top"><a href="#insurers" data-toggle="collapse">
+                    For Insurers &nbsp;
+                    <i class="fa fa-angle-down"></i>
+                </a></h1>
+                <div id="insurers" class="collapse">
+                    <h3>How long can my customers take to repay their loan?</h3>
+                    <p>
+                        We offer payment arrangements between 2 months and 4 months.
+                        However, we can negotiate other durations with each individual insurer.
+                    </p>
+                    <h3>How do my customers make their repayments?</h3>
+                    <p>
+                        When customers finalise their plan with you, they will be required to nominate a payment source. 
+                        We typically want a debit/or credit card to be provided.
+                    </p>
+                    <h3>What if my customers don't repay their debt?</h3>
+                    <p>
+                        We will inform you that your customer has not met their responsibilities to repay their debt. 
+                        You will also be able to track a customers repayment history via the dashboard provided.
+                    </p>
+                    <h3>If my customer doesn't pay MoneyLoop back, do I??</h3>
+                    <p>
+                        No, you do not have to pay MoneyLoop any money if a customer doesn't meet their obligations. 
+                        We take all of the credit risk associated with this product.
+                    </p>
+                </div>
 
                 <%# Customer FAQs %>
-                <h2 id="customers">For Customers</h2>
-                <h3>Does MoneyLoop give the excess payment plans directly to customers?</h3>
-                <p>
-                    No, our excess payments are paid direcrly to the insurance provider.
-                </p>
-                <h3>If I am a new customer can I go direct to MoneyLoop?</h3>
-                <p>
-                    No, you will need to go through your insurance provider.
-                </p>
-                <h3>If I am a MoneyLoop customer can I go direct to MoneyLoop?</h3>
-                <p>
-                    Yes!
-                </p>
+                <h1 id="customers-top"><a href="#customers" data-toggle="collapse">
+                    For Customers &nbsp;
+                    <i class="fa fa-angle-down"></i>
+                </a></h1>
+                <div id="customers" class="collapse">
+                    <h3>Does MoneyLoop give the excess payment plans directly to customers?</h3>
+                    <p>
+                        No, our excess payments are paid directly to the insurance provider.
+                    </p>
+                    <h3>If I am a new customer can I go direct to MoneyLoop?</h3>
+                    <p>
+                        No, you will need to go through your insurance provider.
+                    </p>
+                    <h3>If I am a MoneyLoop customer can I go direct to MoneyLoop?</h3>
+                    <p>
+                        Yes!
+                    </p>
+                </div>
             </div>
         </div>
     </div>
 </section>
 
-
-
-
-
-
-
-
-
-
-
-
+<%# Scroll to section%>
+<script>
+    $('#loans').on('shown.bs.collapse', function(e) {
+        $('html,body').animate({
+            scrollTop: $('#loans-top').offset().top
+        }, 500);
+    });
+    $('#insurers').on('shown.bs.collapse', function(e) {
+        $('html,body').animate({
+            scrollTop: $('#insurers-top').offset().top
+        }, 500);
+    });
+    $('#customers').on('shown.bs.collapse', function(e) {
+        $('html,body').animate({
+            scrollTop: $('#customers-top').offset().top
+        }, 500);
+    });
+</script>

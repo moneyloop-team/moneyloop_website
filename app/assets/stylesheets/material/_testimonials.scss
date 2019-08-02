@@ -1,51 +1,7 @@
-.testimonial-block {
-    position: relative;
-    outline: solid;
-}
 .testimonial-text {
-    font-family: 'Nutino', sans-serif;
+    display: flex;
+    align-items: center;
     font-style: italic; 
     line-height: 32px;
     min-height: 190px;
-}
-.testimonial-customer{
-    padding-top: 15px;
-    padding-bottom: 12px;
-    border-color: #17917f;
-    border-style: solid;
-    color: #66707f;
-    & p{
-        display: flex;
-        align-items: center;
-    }
-    & h4 {
-        color: #66707f;
-    }
-}
-.testimonial-insurer{
-    padding-top: 15px;
-    padding-bottom: 12px;
-    border-color: #f6893d;
-    border-style: solid;
-    color: #66707f;
-    & p{
-        display: flex;
-        align-items: center;
-    }
-    & h4 {
-        color: #66707f;
-    }
-}
-
-.testimonial-name { 
-    color: #fff;
-    line-height: 1;
-    margin-bottom: 5px;
-}
-.testimonial-img {
-    float: left;
-    padding-right: 29px;
-}
-.testimonial-meta {
-    font-size: 12px;
 }

@@ -1,54 +1,53 @@
 <%# Title Card %>
-<div class="moneyloop-color-gradient title-card">
+<div class="moneyloop-bg-orange mb30 title-card">
     <div class="container">
         <div class="row">
-            <div class="title mb40 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                We are here to help you
+            <div class="text-center padding2 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <h1>We're here to help</h1>
             </div>
         </div>
     </div>
 </div>
 
 <%# Contact Us form %>
-<%= render "shared/contact" %>
+<section class="padding2">                    
+    <% if flash[:notice] %>
+        <div class="offset-xl-2 col-xl-8 offset-lg-2 col-lg-8 col-md-12 col-sm-12 col-12">
+            <div class="mb60 text-center">
+                <h1><%= flash[:notice] %><h1>
+            </div>
+        </div>
+    <% else %>
+        <%= render "shared/contact" %>
+    <% end %>
+</section>
 
 <%# Contact information %>
-<section>
-    <div class="container">
-        <div class="row">
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                <div class="contact-us mb60">
-                    <%# Some Description %>
-                    <div class="row">
-                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                            <div class="mb60 text-center section-title">
-                                <p class="lead">
-                                    With our credit decisioning engine we are able to accept any customer you send us. <br/>
-                                    We use our score to determine the required discount to service the customer. <br/>
-                                    This includes your customers who are eligible for financial hardship. <br/>                    
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <%# Address %>
-                        <div class="pinside10 pdb10 moneyloop-border-blue moneyloop-white-bg text-center col-xl-2 offset-xl-2 col-lg-3 col-md-12 col-sm-12 col-12">
-                            <div class="title">Branch Office</div>
-                            <p>Level 4, 11 York Street<br/>Sydney NSW</p>
-                        </div>
-                        <%# Phone number %>
-                        <div class="pinside10 pdt20 pdb20 moneyloop-border-orange moneyloop-white-bg text-center col-xl-2 offset-xl-1 col-lg-3 offset-lg-1 col-md-12 col-sm-12 col-12">
-                            <div class="title">Call us at </div>
-                            <h2 class="grey">1300 339 993</h2>
-                        </div>
-                        <%# Email Address %>
-                        <div class="pinside10 pdt20 pdb40 moneyloop-border-blue moneyloop-white-bg text-center col-xl-2 offset-xl-1 col-lg-3 offset-lg-1 col-md-12 col-sm-12 col-12">
-                            <div class="title">Email Address</div>
-                            <p>hello@moneyloop.com</p>
-                        </div>
-                    </div>
-                </div>
+<section class="container mb80">
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <%# Some Description %>
+            <div class="mb60 text-center">
+                <p class="lead grey">
+                    With our credit decisioning engine we are able to accept any customer you send us. <br/>
+                    We use our score to determine the required discount to service the customer. <br/>
+                    This includes your customers who are eligible for financial hardship. <br/>                    
+                </p>
             </div>
+        </div>
+    </div>
+    <div class="row">
+        <%# Phone number %>
+        <div class="box-sm grey center moneyloop-border-blue text-center col-xl-2 offset-xl-2 col-lg-3 col-md-12 col-sm-12 col-12">
+            <h3 class="pdl10">1300 339 993</h3>
+        </div>
+        <%# Address %>
+        <div class="box-sm grey center moneyloop-border-orange text-center col-xl-2 offset-xl-1 col-lg-3 offset-lg-1 col-md-12 col-sm-12 col-12">
+            <h3 class="pdl20">Level 4<br/>11 York Street<br/>Sydney NSW</h3>
+        </div>
+        <%# Email Address %>
+        <div class="box-sm grey center moneyloop-border-blue text-center col-xl-2 offset-xl-1 col-lg-3 offset-lg-1 col-md-12 col-sm-12 col-12">
+            <p>hello@moneyloop.com<p>
         </div>
     </div>
 </section>
