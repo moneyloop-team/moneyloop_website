@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   post 'apply', to: 'applyform#apply'  
 
   # Users
-  devise_for :users
+  # devise_for :users
 
   # Blogging
   get '/blogs', to: redirect('https://blog.moneyloop.com.au', status: 301)
