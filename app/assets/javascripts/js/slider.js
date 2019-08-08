@@ -13,8 +13,6 @@ $(document).on('turbolinks:load', function() {
         smartSpeed: 3000,
         margin:10
     });
-    
-
 
     // Slider for partners
     $(".partners-slider").owlCarousel({
