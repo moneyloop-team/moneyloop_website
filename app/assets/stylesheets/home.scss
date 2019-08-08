@@ -12,25 +12,24 @@
         background-repeat: no-repeat;
         background-attachment: local;
         background-size: cover;
+        background-position: center;
         height: 450px;
         display: block;
         margin-left: auto;
         margin-right: auto;
         width: 75%;
     }
-    & .item-first {
+    & .item1 {
         background-image: image-url('moneyloop/slider/australian-family.jpg');
-        background-position: center;
+
     }
     
-    & .item-second {
+    & .item2 {
         background-image: image-url('moneyloop/slider/call-center.jpg');
-        background-position: center;
     }
     
-    & .item-third {
+    & .item3 {
         background-image: image-url('moneyloop/slider/car.jpg');
-        background-position: center;
     }
     & .caption {
         display: flex;
@@ -44,16 +43,6 @@
             float: right;
             width: 150px;
         }
-    }
-    & .caption-bg1 {
-        background-color: rgba(245,140,67, 0.5);
-        margin-top: 20px;
-        margin-bottom: 20px;
-    }
-    & .caption-bg2 {
-        background-color: rgba(51, 118, 142, 0.5);
-        margin-top: 20px;
-        margin-bottom: 20px;
     }
 }
 

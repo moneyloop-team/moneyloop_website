@@ -38,6 +38,12 @@ Images
    max-width: 270px;
    max-height: 270px;
 }
+
+.img-xl {
+   object-fit: cover;
+   width: 360px;
+   height: 360px;
+}
 .img-grayscale{
    filter: grayscale(100%);
    &:hover{
@@ -57,6 +63,7 @@ Text
 }
 .ticklist {
    padding-left: 0;
+   // list-style-image: image-url("moneyloop/motif_blue.png");
    // list-style-type: none;
    // list-style-position: outside;
    // 
@@ -68,7 +75,6 @@ Text
    & li {
       color: #66707f;
    }
-   
 }
 .center {
    display: flex;

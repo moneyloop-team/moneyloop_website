@@ -16,6 +16,18 @@ Background Colours
         color: #f6f7ef;
     }
 }
+.moneyloop-bg-orange-faded {
+    background: rgba(245,140,67, 0.5);
+    & h1, h2, h3 {
+        color: #f6f7ef;
+    }
+}
+.moneyloop-bg-blue-faded {
+    background: rgba(51, 118, 142, 0.5);
+    & h1, h2, h3 {
+        color: #f6f7ef;
+    }
+}
 .moneyloop-bg-gradient {
     background: rgb(245,140,67);
     background: -webkit-linear-gradient(65deg, rgba(245,140,67,0.8449754901960784) 40%, rgba(23,145,127,1) 60%);

@@ -4,6 +4,7 @@ $(document).on('turbolinks:load', function() {
     // Slider for the home page
     $(".home-slider").owlCarousel({
         animateOut:'fadeOut',
+        animateIn: 'fadeIn',
         items:1,
         loop:true,
         dots:true,
@@ -12,6 +13,8 @@ $(document).on('turbolinks:load', function() {
         smartSpeed: 3000,
         margin:10
     });
+    
+
 
     // Slider for partners
     $(".partners-slider").owlCarousel({
