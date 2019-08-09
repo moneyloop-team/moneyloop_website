@@ -1,153 +1,185 @@
-<section id="contact">
+<%# Title Card %>
+<div class="moneyloop-bg-blue mb30 title-card">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                <!-- Application Form Title -->
-                <div class="section-title">
-                    <h2>Application Form <small> 
-                        All you need to do is provide your details below to proceed with the online application. 
-                        For your interest-free instalment plan with <%#@company['name']%>.
-                    </small></h2>
-                </div>
-                <!-- Application Form -->
-                <%= form_tag apply_path, method: "post", id: "application_form" do |form| %>
-                    <%= hidden_field :time_zone, value: Time.zone.today %>
-                    <%= hidden_field_tag :resolution %>
-
-                    <div class="row mb30">
-                        <!-- Personal Details -->
-                        <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
-                            <h2 ><small>1. Personal Details</small></h2>
-                        </div>
-                        <div class="form-inline col-lg-3 col-md-3 col-sm-3 col-xs-3">Full Name</div>
-                        <div class="form-inline col-lg-9 col-md-9 col-sm-9 col-xs-9">
-                            <input type="text" id="first_name" class="form-control " placeholder="First Name" name="first_name" required>
-                            <input type="text" id="last_name" class="form-control" placeholder="Last Name" name="last_name" required>
-                        </div>
-                        <div class="form-inline col-lg-3 col-md-3 col-sm-3 col-xs-3">Birthday</div>
-                        <div class="form-inline col-lg-9 col-md-9 col-sm-9 col-xs-9">
-                            <select id="dobday" name="dobday" class="form-control" required></select>
-                            <select id="dobmonth" name="dobmonth" class="form-control" required></select>
-                            <select id="dobyear" name="dobyear" class="form-control" required></select>
-                        </div>
-
-                        <!-- Contact Details -->
-                        <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
-                            <h2><small>2. Contact Details</small></h2>
-                        </div>
-                        <div class="form-inline col-lg-3 col-md-3 col-sm-3 col-xs-3">Phone Number</div>
-                        <div class="form-group col-lg-9 col-md-9 col-sm-9 col-xs-9">
-                            <label class="control-label sr-only " for="Your Mobile Number"></label>
-                            <input id="number" name="mobile" type="text" placeholder="Your Mobile Number" class="form-control" required>
-                            <p id="alertPhone"></p>
-                        </div>
-                        <div class="form-inline col-lg-3 col-md-3 col-sm-3 col-xs-3">Email</div>
-                        <div class="form-group col-lg-9 col-md-9 col-sm-9 col-xs-9">
-                            <label class="control-label sr-only " for="email"></label>
-                            <input id="email" type="text" name="email"placeholder="Email Address" class="form-control">
-                            <p id="alertEmail"></p>
-                        </div>
-                        <div class="form-inline col-lg-3 col-md-3 col-sm-3 col-xs-3">State</div>
-                        <div class="form-group col-lg-9 col-md-9 col-sm-9 col-xs-9">
-                            <label class="control-label sr-only required" for="state"> </label>
-                            <select id="state" name="state" placeholder="state" type="text" class="form-control">
-                                <option> Select State </option>
-                                <option value="ACT">Australian Capital Territory</option>
-                                <option value="NSW">New South Wales</option>
-                                <option value="NT ">Northern Territory</option>
-                                <option value="QLD">Queensland</option>
-                                <option value="SA ">South Australia</option>
-                                <option value="TAS">Tasmania</option>
-                                <option value="VIC">Victoria</option>
-                                <option value="WA ">Western Australia</option>
-                            </select>
-                        </div>
-                        <div class="form-inline col-lg-3 col-md-3 col-sm-3 col-xs-3">Address</div>
-                        <div class="form-group col-lg-9 col-md-9 col-sm-9 col-xs-9">
-                            <label class="control-label sr-only" for="textarea"></label>
-                            <textarea class="form-control" id="textarea" name="address" rows="2" placeholder="Address" required></textarea>
-                        </div>
-
-                        <!-- Income Details -->
-                        <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
-                            <h2><small>3. Income Details</small></h2>
-                        </div>
-                        <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <label class="control-label sr-only required" for="Employer"> </label>
-                            <input id="Employer" name="employer" type="text" placeholder="Your Employer" class="form-control" required>
-                        </div>
-                        <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12 mb20">
-                            <label class="control-label sr-only required" for="Employment Type"> </label>
-                            <%= render "shared/job-positions" %>
-                        </div>
-                        <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <label class="control-label sr-only required" for="salary"> </label>
-                            <select id="salary" name="salary" placeholder="state" type="text" class="form-control">
-                                <option value="">Net Salary Income</option>
-                                <option value="1">$30,000 or less </option>
-                                <option value="2">$30,001-$50,000</option>
-                                <option value="3">$50,000-$100,000</option>
-                                <option value="4">$100,000-$300,000</option>
-                                <option value="5">$300,000+</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <!-- Submit --> 
-                    <div class="form-group form-group col-lg-12 col-md-12 col-sm-6 col-xs-12">
-                        <input class="checkbox-application" id="tou" name="termsofuse" type="checkbox"  class="form-control" required="Please Check this box to continue!">
-                        <label  class="checkbox-label" for="termsofuse"> &nbsp I have read and agree to the terms of use. <a onclick= "openInNewTab('<%#asset_url('Terms_of_use.pdf')%>')"> Terms of use </a>
-                    </div>
-
-                    <button id="myBtn" type="submit" class="btn btn-primary">submit</button>
-                <% end %>
-            </div>
-
-            <!-- Sidebar Widgets -->
-            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                <div class=" widget apply-widget">
-                    <h2 class="widget-title">Eligibility</h2>
-                    <ul class="angle angle-right">
-                    <li>Resident of Australia</li>
-                    <li>Atleast 18 year old</li>
-                    </ul>
-                </div>
-                <div class=" widget apply-widget">
-                    <h2 class="widget-title">Privacy &amp; Security</h2>
-                    <ul class="angle angle-right">
-                    <li>All Information is kept in Australia, and our services undergo regular security audits.
-                    </li>
-                    <li>Keeping your personal &amp; private information secure is our first priority. See our privacy policy. </li>
-                    </ul>
-                </div>
-                <div class=" widget apply-widget">
-                    <h2 class="widget-title">More Queries?</h2>
-                    <ul class="angle angle-right">
-                    <li>Email your queries:
-                        <small style="color: #00b231">contact@moneyloop.com</small></li>
-                    </ul>
-                    <ul class="angle angle-right">
-                        <li>Call us:
-                        <small style="color: #00b231">1-300-849-284</small></li>
-                        </ul>
-              </div>
+            <div class="text-center padding2 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <h1>Application Form</h1>
             </div>
         </div>
     </div>
-</section> 
+</div>
 
-<script>
-    $(document).ready(function(){
-        $.dobPicker({
-            daySelector: '#dobday',
-            monthSelector: '#dobmonth',
-            yearSelector: '#dobyear',
-            dayDefault: 'Day',
-            monthDefault: 'Month',
-            yearDefault: 'Year',
-            minimumAge: 18,
-            maximumAge: 80
-        });
-        document.getElementById('resolution').value = screen.width + "*" + screen.height;
-    });
-</script>
+<%# More Information %>
+<div class="container">
+    <div class="row">
+        <div class="text-center col-xl-10 offset-xl-1 col-lg-10 offset-lg-1 col-md-12 col-sm-12 col-12">
+            <h2>
+                All you need to do is provide your details below to proceed with the online application. <br/>
+                For your interest-free instalment plan with <%= @company['name'] %>.
+            </h2>
+        </div>
+    </div>
+</div>
+
+<section id="contact" class="mt30 container">
+    <div class="row">
+        <%# Application Form%>
+        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+            <%= form_tag apply_path, method: "post", id: "application_form" do |form| %>
+                <%= hidden_field :time_zone, value: Time.zone.today %>
+                <%= hidden_field_tag :resolution %>
+                <%= hidden_field_tag 'company', @company['name']%>
+                <%= hidden_field_tag 'exposure', @exposure%>
+
+                <%# Personal Details %>
+                <h2>1. Personal Details</h2>
+                <div class="row mb30">
+                    <div class="pinside10 col-lg-2 col-md-3 col-sm-3 col-xs-3">
+                        <p class="mt5">Full Name</p>
+                    </div>
+                    <div class="pinside10 col-lg-4 offset-lg-1 col-md-9 col-sm-9 col-xs-9">
+                        <input type="text" id="first_name" class="form-control" placeholder="First Name" name="first_name" required>
+                    </div>
+                    <div class="pinside10 col-lg-4 col-md-9 col-sm-9 col-xs-9">
+                        <input type="text" id="last_name" class="form-control" placeholder="Last Name" name="last_name" required>
+                    </div>
+                    <div class="pinside10 col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                        <p class="mt5">Birthday</p>
+                    </div>
+                    <div class="pinside10 col-lg-2 col-md-9 col-sm-9 col-xs-9">
+                        <select id="dobday" name="dobday" class="form-control" required></select>
+                    </div>
+                    <div class="pinside10 col-lg-2 col-md-9 col-sm-9 col-xs-9">
+                        <select id="dobmonth" name="dobmonth" class="form-control" required></select>
+                    </div>
+                    <div class="pinside10 col-lg-2 col-md-9 col-sm-9 col-xs-9">
+                        <select id="dobyear" name="dobyear" class="form-control" required></select>
+                    </div> 
+                </div>
+
+                <%# Contact Details %>
+                <h2>2. Contact Details</h2>
+                <div class="row mb30">
+                    <div class="pinside10 col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                        <p class="mt5">Phone Number</p>
+                    </div>
+                    <div class="pinside10 col-xl-4 col-lg-4 col-md-9 col-sm-9 col-xs-9">
+                        <input id="number" name="mobile" type="text" placeholder="Phone Number" class="form-control" required>
+                    </div>
+                    <div class="pinside10 col-xl-5 col-lg-5 col-md-5 col-sm-5 col-5"></div> 
+                    <div class="pinside10 col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                        <p class="mt5">Email</p>
+                    </div>
+                    <div class="pinside10 col-xl-4 col-lg-4 col-md-9 col-sm-9 col-xs-9">
+                        <input id="email" type="text" name="email"placeholder="Email Address" class="form-control">
+                    </div>
+                    <div class="pinside10 col-xl-5 col-lg-5 col-md-5 col-sm-5 col-5"></div> 
+                    <div class="pinside10 col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                        <p class="mt5">Address</p>
+                    </div>
+                    <div class="pinside10 col-lg-8 col-md-9 col-sm-9 col-xs-9">
+                        <input id="address" name="address" type="text" placeholder="Address" class="form-control mb10" required>
+                        <i class="grey">
+                            Please use the auto-completed address. <br/>
+                            Make sure your web browser has javascript enabled.
+                        </i>
+                    </div>
+                </div>
+
+                <%# Income Details %>
+                <h2>3. Income Details</h2>
+                <div class="row mb30">
+                    <div class="pinside10 col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                        <p class="mt5">Employer</p>
+                    </div>
+                    <div class="pinside10 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <input id="Employer" name="employer" type="text" placeholder="Your Employer" class="form-control" required>
+                    </div>
+                    <div class="pinside10 col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2"></div> 
+                    <div class="pinside10 col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                        <p class="mt5">Title</p>
+                    </div>
+                    <div class="pinside10 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <%= render "shared/job-positions" %>
+                    </div>
+                    <div class="pinside10 col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2"></div> 
+                    <div class="pinside10 col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                        <p class="mt5">Income</p>
+                    </div>
+                    <div class="pinside10 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <select id="salary" name="salary" placeholder="state" type="text" class="form-control">
+                            <option value="">Net Salary Income</option>
+                            <option value="1">$30,000 or less </option>
+                            <option value="2">$30,001-$50,000</option>
+                            <option value="3">$50,000-$100,000</option>
+                            <option value="4">$100,000-$300,000</option>
+                            <option value="5">$300,000+</option>
+                        </select>
+                    </div>
+                </div>
+
+                <%# Income Details %>
+                <h2>4. Reason for Loan Details</h2>
+                <div class="row mb30">
+                    <div class="pinside10 col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                        <p>Who you have a payment plan with</p>
+                    </div>
+                    <div class="pinside10 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <input id="company" name="company" type="text" value=<%= @company['name'] %> class="form-control" readonly>
+                    </div>
+                    <div class="pinside10 col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2"></div> 
+                    <div class="pinside10 col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                        <p class="mt5">Your total bill amount</p>
+                    </div>
+                    <div class="pinside10 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <input id="exposure" name="exposure" type="text" value=<%= @exposure %> class="form-control" readonly>
+                    </div>
+                </div>
+
+                <%# Terms of Use %>
+                <div class="pinside20 col-lg-12 col-md-12 col-sm-6 col-xs-12">
+                    <label>
+                        <input class="checkbox-application" id="tou" name="termsofuse" type="checkbox"  class="form-control" required="Please Check this box to continue!">
+                        &nbsp; I have read and agree to the <%= link_to "Terms of Use", asset_path("Terms_of_use.pdf"), class: "links", target: :_blank %>
+                    </label>
+                </div>
+
+                <button id="myBtn" type="submit" class="btn btn-submit mb30">Submit</button>
+            <% end %>
+        </div>
+
+        <%# Sidebar %>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+            <div class=" widget apply-widget">
+                <h2 class="widget-title">Eligibility</h2>
+                <ul>
+                    <li>Resident of Australia</li>
+                    <li>At least 18 year old</li>
+                </ul>
+            </div>
+            <div class=" widget apply-widget">
+                <h2 class="widget-title">Privacy &amp; Security</h2>
+                <ul>
+                    <li>
+                        All Information is kept in Australia, and our services undergo regular security audits.
+                    </li>
+                    <li>
+                        Keeping your personal &amp; private information secure is our first priority.<br/> 
+                        See our <%= link_to "Privacy Policy", "/todo" %>.
+                    </li>
+                </ul>
+            </div>
+            <div class=" widget apply-widget">
+                <h2 class="widget-title">More Queries?</h2>
+                <ul>
+                    <li>Email your queries: <%= link_to "hello@moneyloop.com", "mailto:hello@moneyloop.com" %> </li>
+                    <li>Call us on 1300 339 993</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Google's autocomplete address -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDHPVjNgG79rqU6e6_5nzbOwISVbTEAJig&libraries=places&callback=initAutocomplete"
+ async defer></script>

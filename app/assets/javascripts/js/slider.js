@@ -36,6 +36,6 @@ $(document).on('turbolinks:load', function() {
         autoplay:true,
         smartSpeed: 1000,
         autoplayTimeout: 10000,
-        margin:10
+        margin:60
     });
 });

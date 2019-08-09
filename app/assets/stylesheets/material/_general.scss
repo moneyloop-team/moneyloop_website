@@ -46,8 +46,9 @@ a {
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
-  &:focus, :hover{
+  &:hover{
       text-decoration: none;
+      color: rgb(245,140,67);
   }
 } 
 ::selection {

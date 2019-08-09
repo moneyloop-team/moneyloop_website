@@ -9,9 +9,20 @@ class ApplyformController < ApplicationController
   end
 
   def apply
+    # Get the company from the GET url params
+    @exposure = params['exposure']
+    id = params['company']
+    response = getCompany(id)
+    if(response.code == "200")
+      @company = JSON(response.body)
+    else
+      @error_msg = "Unable to find your Insurer"
+      render :error
+    end
+
     # The customer has submitted an application form, let's create a new customer
     if request.post?
-      get_request_params request # Get the parameters required that the user didn't supply
+      get_request_params request    # Get the parameters required that the user didn't supply
       response = create_customer()  # Send user data to the dashboard and save the response
       response = JSON(response.body)
       if response['code'] == "200"  # Send the appropriate response
@@ -26,10 +37,27 @@ class ApplyformController < ApplicationController
   end
 
   private
+  # Get the company
+  def getCompany(id)
+    uri = URI.parse("http://157.230.242.156/getCompany/#{id}")
+    request = Net::HTTP::Post.new(uri)
+    request.content_type = "application/json"
+    request["Postman-Token"] = "c3bf8176-37dc-4ba3-ad8e-a8de8f92befa"
+    request["Cache-Control"] = "no-cache"
+      req_options = {
+        use_ssl: uri.scheme == "https",
+      }
+      response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
+        http.request(request)
+      end
+      response.code
+      response.body
+      return response
+  end
+
   # Get parameters from the request that weren't supplied by the user
   def get_request_params(request)
     browser = Browser.new(request.user_agent)   # User agent parser
-    @exposure = "10"
     @dob = params[:dobday] + params[:dobmonth] + params[:dobyear]
     @location = "10.23.5.7" #request.ip # The user's IP address
     @type = if browser.mobile? then "mobile"      # is Mobile
@@ -55,8 +83,8 @@ class ApplyformController < ApplicationController
     request["Postman-Token"] = "c3bf8176-37dc-4ba3-ad8e-a8de8f92befa"
     request["Cache-Control"] = "no-cache"
     request.body = JSON.dump({
-      "uuid": "VSLNmOmwEWejohyQbdBzjGSNLRlzjengoHFsEajCFSgXAOkLvj",
-      "exposure": @exposure,
+      "uuid": "1",
+      "exposure": params[:exposure],
       "given_names": params[:first_name],
       "surname": params[:last_name],
       "email": params[:email],
@@ -77,6 +105,7 @@ class ApplyformController < ApplicationController
       "australian_resident": "true",
       "duration": params[:duration]
       })
+      byebug
       req_options = {
         use_ssl: uri.scheme == "https",
       }
