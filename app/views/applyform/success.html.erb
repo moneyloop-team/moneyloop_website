@@ -1,11 +1,187 @@
-<%# Render the top bar and navigation bar %>
-<%= render "shared/top-bar" %>
-<%= render "shared/navigation-bar" %>
+<section class="container">
+  <div class="row'">
+    <div class="text-center">
+       <h2 id="header-title">Congratulations</h2>
+    <p id="header-desc">You have been pre-approved for a MoneyLoop inbstallment plan. </p>
+    <div class="row" id="schedule" style="">
+      <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+        <h3 class="mb20">Repayment Schedule</h3>
+        <div style="display:none" id="source_added">
+          Payment Source Added
+        </div>
+        <button id="add_payment" onclick="showModal()">Add Payment Details </button>
+        <div class="modal fade" id="myModal" role="dialog">
+          <div class="modal-dialog">
 
-<div class="center_div">
-    <h1> You've been approved! </h1>
-    <p> Your credit score is: <b><%= @notice %></b> </p>
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Add Card</h4>
+
+              </div>
+              <div class="modal-body">
+                <div class="single-pro-review-area mt-t-30 mg-b-15">
+                  <div class="container-fluid">
+                    <div class="row">
+                      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="product-payment-inner-st">
+                          <ul id="myTab4" class="tab-review-design">
+                            <h3>Add you repayment method.</h3>
+
+                          </ul>
+
+                          <div id="myTabContent" class="tab-content custom-product-edit">
+                            <div class="product-tab-list " >
+                              <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                  <div class="review-content-section">
+                                    <div class="row">
+                                      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+                                        <form id="add_funds_form" method="POST" action=""data-remote="true" local="true">
+                                          <div class="devit-card-custom">
+                                            <div class="form-group">
+                                              <input type="text" class="form-control" placeholder="Type your Full Name", id="cardHolderName", name="cardHolderName" >
+                                            </div>
+                                            <div class="form-group CVV">
+                                              <input type="text" class="form-control" id="PayerEmail" placeholder="email" value="">
+                                            </div>
+                                            <div class="form-group CVV">
+                                              <input type="text" class="form-control" id="cvc" placeholder="CVV">
+                                            </div>
+                                            <div class="form-group" id="card-number-field">
+                                              <input id="cardNumber" class="form-control" placeholder="Card Number"/>
+                                            </div>
+                                            <select class="form-control mg-b-15" id="expiryMonth">
+                                              <option>Select Month</option>
+                                              <option value="01">January</option>
+                                              <option value="02">February </option>
+                                              <option value="03">March</option>
+                                              <option value="04">April</option>
+                                              <option value="05">May</option>
+                                              <option value="06">June</option>
+                                              <option value="07">July</option>
+                                              <option value="08">August</option>
+                                              <option value="09">September</option>
+                                              <option value="10">October</option>
+                                              <option value="11">November</option>
+                                              <option value="12">December</option>
+                                            </select>
+                                            <select class="form-control" id="expiryYear">
+                                              <option>Select Year</option>
+                                              <% (2019..2100).each do |i| %>
+                                              <option value='<%=i%>'> <%=i%></option>
+                                              <%end%>
+                                            </select>
+                                            <div class="padding-top-5">
+                                              <label><input type="checkbox" id="tou" name="tou" required/><a onlcick="openInNewTab('<%= asset_url('Terms_of_use.pdf')%>')" href="#"> Agree to Terms of Use</a></label>
+                                            </div>
+                                            <div class="payment-method-ht">
+                                              <span><i class="fa fa-cc-paypal" aria-hidden="true"></i></span>
+                                              <span><i class="fa fa-cc-visa" aria-hidden="true"></i></span>
+                                              <span><i class="fa fa-credit-card" aria-hidden="true"></i></span>
+                                              <span><i class="fa fa-cc-mastercard" aria-hidden="true"></i></span>
+                                            </div>
+                                            <input id="creditCardToken" name="creditCardToken" type="hidden"/>
+                                            <input type='hidden' id="customer_id" name="customer_id" value="<%=params[:customer_id]%>">
+                                            <input type ='hidden' id="duration" name="duration" value="<%=params[:duration]%>">
+                                            <%= hidden_field_tag :authenticity_token, form_authenticity_token, id: :form_token %>
+                                            <input type="hidden" value="<%=params[:customer_id]%>"/>
+                                            <div class="loader" id="loader"></div>
+                                            <p style="color: #17917f" id="alert_payment"></p>
+                                            <input type="submit" class="btn btn-primary waves-effect waves-light" id="payments_button">
+                                          </div>
+                                        </form>
+                                        <div class="form-group" id="errors" style="display:none;">
+                                          <h3>Errors:</h3>
+                                          <p>No errors.</p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
-<%# Render footer %>
-<%= render "shared/footer" %>
+    </div>
+  </div>
+</section>
+
+
+<script>
+
+    var form = document.getElementById("add_funds_form");
+    form.addEventListener('submit', function (e) {
+        var btn = document.getElementById('payments_button');
+        btn.style.display="none";
+        var loader = document.getElementById('loader');
+        loader.style.display="block";
+        e.preventDefault();
+        var capture = Pinch.Capture({
+            publishableKey: 'pk_test_kde7CD01xy4phyvG0CvK6fbj1dK3HBTo'
+        });
+        capture.createToken({
+            cardNumber: document.getElementById("cardNumber").value,
+            expiryMonth: document.getElementById("expiryMonth").value,
+            expiryYear: document.getElementById("expiryYear").value,
+            cvc: document.getElementById("cvc").value,
+            cardHolderName: document.getElementById("cardHolderName").value
+        }).then(function(result) {
+            console.log("Client received token: " + result.token);
+            var l = document.getElementById("creditCardToken");
+            l.value = result.token;
+            x = document.getElementById('add_funds_form');
+            var form = $(x);
+            var url = form.attr('action');
+            var type = form.attr('method');
+            setTimeout(function(){
+                $.ajax({
+                    type: "POST",
+                    url: "#",
+                    data: form.serialize(), // serializes the form's elements.
+                    success: function(data)
+                    {
+                        console.log(data);
+                    },
+                    failed: function(data){
+                        console.log(data);
+                    }
+                });
+            }, 2000);
+
+        }).catch(function(err) {
+            document.querySelector("#errors p").style.display ="block";
+            document.querySelector("#errors p").innerText = JSON.stringify(err);
+            console.log("Client error: " + err);
+        });
+    });
+
+    function showModal() {
+        $('#myModal').modal('show');
+    }
+
+</script>
+
+
+
+<script src="https://web.getpinch.com.au/capture/capture.bundle.js"></script>
+</script>
