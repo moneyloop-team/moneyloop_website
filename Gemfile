@@ -20,22 +20,15 @@ gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
-# For user authentication
-gem 'devise'
 
-# Asset Pipeline Gems
-# Use Bootstrap
-gem 'bootstrap', '~> 4.3.1'
-# Use Font Awesome
-gem 'font-awesome-rails'
-# Use Fontello
-gem 'fontello-rails'
-# Use jQuery UI
+# Assets
 gem 'jquery-ui-rails'
-# Owl Carousel
+gem 'bootstrap', '~> 4.3.1'
+gem 'font-awesome-rails'
+gem 'fontello-rails'
 gem 'owlcarousel-rails'
 
-# Blogging functionality
+# Blogging with ButterCMS
 gem 'buttercms-rails'
 
 # AWS s3 buckets for ActiveStorage
@@ -46,9 +39,6 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 # For IP address searching
 gem 'browser'
-
-# for the blog
-gem 'rack-reverse-proxy', require: 'rack/reverse_proxy'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

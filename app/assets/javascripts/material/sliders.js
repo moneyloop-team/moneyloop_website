@@ -1,7 +1,7 @@
 $(document).on('turbolinks:load', function() {
     "use strict";
 
-    // Slider for the home page
+    // Slider for the static page
     $(".home-slider").owlCarousel({
         animateOut:'fadeOut',
         animateIn: 'fadeIn',

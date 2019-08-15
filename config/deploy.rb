@@ -1,4 +1,3 @@
-# Cahnge these
 server '13.54.68.36', port: 22, roles: [:web, :app, :db], primary: true
 
 set :repo_url,        'git@github.com:m8srates-holdings-pty-ltd/moneyloop-rails.git'
@@ -12,7 +11,7 @@ set :pty,             true
 set :use_sudo,        false
 set :stage,           :production
 set :deploy_via,      :remote_cache
-set :deploy_to,       "/home/#{fetch(:user)}/apps/#{fetch(:application)}"
+set :deploy_to,       "/static/#{fetch(:user)}/apps/#{fetch(:application)}"
 set :puma_bind,       "unix://#{shared_path}/tmp/sockets/#{fetch(:application)}-puma.sock"
 set :puma_state,      "#{shared_path}/tmp/pids/puma.state"
 set :puma_pid,        "#{shared_path}/tmp/pids/puma.pid"

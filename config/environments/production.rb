@@ -67,13 +67,6 @@ Rails.application.configure do
   # Allow the development environment to perform deliveries
   config.action_mailer.perform_deliveries = true
 
-  # This is for devise
-  # TODO - set this to the host domain
-  config.action_mailer.default_url_options = { 
-    :host => "localhost",
-    :port => 3000 
-  }
-
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = true
 

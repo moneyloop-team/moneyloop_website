@@ -1,5 +1,5 @@
-// Scripts required in :about
+// Scripts required in :static
 //= require owl.carousel
-//= require "material/sliders"
 //= require "aos"
+//= require "material/sliders"
 //= require "material/aos-init"

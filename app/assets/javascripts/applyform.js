@@ -1,4 +1,4 @@
 // Scripts required in :applyform
-//= require material/dobpicker
-//= require js/dobpicker-init
-//= require js/map-init
+//= require "dobpicker"
+//= require "material/dobpicker-init"
+//= require "material/map-init"
