@@ -1,0 +1,961 @@
+Index: app/assets/javascripts/applyform.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>// Scripts required in :applyform\n//= require material/dobpicker\n//= require js/dobpicker-init\n//= require js/map-init
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/assets/javascripts/applyform.js	(revision a15ffb5febfc0362ee148e16270f8e2e5e87e28c)
++++ app/assets/javascripts/applyform.js	(date 1565834073077)
+@@ -1,4 +1,5 @@
+ // Scripts required in :applyform
+ //= require material/dobpicker
+ //= require js/dobpicker-init
+-//= require js/map-init
+\ No newline at end of file
++//= require js/map-init
++//= require js/success.js
+\ No newline at end of file
+Index: app/views/applyform/success.html.erb
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><section class=\"container\">\n  <div class=\"row'\">\n    <div class=\"text-center\">\n       <h2 id=\"header-title\">Congratulations</h2>\n    <p id=\"header-desc\">You have been pre-approved for a MoneyLoop inbstallment plan. </p>\n    <div class=\"row\" id=\"schedule\" style=\"\">\n      <div class=\"col-lg-8 col-md-8 col-sm-8 col-xs-12\">\n        <h3 class=\"mb20\">Repayment Schedule</h3>\n        <div style=\"display:none\" id=\"source_added\">\n          Payment Source Added\n        </div>\n        <button id=\"add_payment\" onclick=\"showModal()\">Add Payment Details </button>\n        <div class=\"modal fade\" id=\"myModal\" role=\"dialog\">\n          <div class=\"modal-dialog\">\n\n            <!-- Modal content-->\n            <div class=\"modal-content\">\n              <div class=\"modal-header\">\n                <button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button>\n                <h4 class=\"modal-title\">Add Card</h4>\n\n              </div>\n              <div class=\"modal-body\">\n                <div class=\"single-pro-review-area mt-t-30 mg-b-15\">\n                  <div class=\"container-fluid\">\n                    <div class=\"row\">\n                      <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n                        <div class=\"product-payment-inner-st\">\n                          <ul id=\"myTab4\" class=\"tab-review-design\">\n                            <h3>Add you repayment method.</h3>\n\n                          </ul>\n\n                          <div id=\"myTabContent\" class=\"tab-content custom-product-edit\">\n                            <div class=\"product-tab-list \" >\n                              <div class=\"row\">\n                                <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n                                  <div class=\"review-content-section\">\n                                    <div class=\"row\">\n                                      <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n\n                                        <form id=\"add_funds_form\" method=\"POST\" action=\"\"data-remote=\"true\" local=\"true\">\n                                          <div class=\"devit-card-custom\">\n                                            <div class=\"form-group\">\n                                              <input type=\"text\" class=\"form-control\" placeholder=\"Type your Full Name\", id=\"cardHolderName\", name=\"cardHolderName\" >\n                                            </div>\n                                            <div class=\"form-group CVV\">\n                                              <input type=\"text\" class=\"form-control\" id=\"PayerEmail\" placeholder=\"email\" value=\"\">\n                                            </div>\n                                            <div class=\"form-group CVV\">\n                                              <input type=\"text\" class=\"form-control\" id=\"cvc\" placeholder=\"CVV\">\n                                            </div>\n                                            <div class=\"form-group\" id=\"card-number-field\">\n                                              <input id=\"cardNumber\" class=\"form-control\" placeholder=\"Card Number\"/>\n                                            </div>\n                                            <select class=\"form-control mg-b-15\" id=\"expiryMonth\">\n                                              <option>Select Month</option>\n                                              <option value=\"01\">January</option>\n                                              <option value=\"02\">February </option>\n                                              <option value=\"03\">March</option>\n                                              <option value=\"04\">April</option>\n                                              <option value=\"05\">May</option>\n                                              <option value=\"06\">June</option>\n                                              <option value=\"07\">July</option>\n                                              <option value=\"08\">August</option>\n                                              <option value=\"09\">September</option>\n                                              <option value=\"10\">October</option>\n                                              <option value=\"11\">November</option>\n                                              <option value=\"12\">December</option>\n                                            </select>\n                                            <select class=\"form-control\" id=\"expiryYear\">\n                                              <option>Select Year</option>\n                                              <% (2019..2100).each do |i| %>\n                                              <option value='<%=i%>'> <%=i%></option>\n                                              <%end%>\n                                            </select>\n                                            <div class=\"padding-top-5\">\n                                              <label><input type=\"checkbox\" id=\"tou\" name=\"tou\" required/><a onlcick=\"openInNewTab('<%= asset_url('Terms_of_use.pdf')%>')\" href=\"#\"> Agree to Terms of Use</a></label>\n                                            </div>\n                                            <div class=\"payment-method-ht\">\n                                              <span><i class=\"fa fa-cc-paypal\" aria-hidden=\"true\"></i></span>\n                                              <span><i class=\"fa fa-cc-visa\" aria-hidden=\"true\"></i></span>\n                                              <span><i class=\"fa fa-credit-card\" aria-hidden=\"true\"></i></span>\n                                              <span><i class=\"fa fa-cc-mastercard\" aria-hidden=\"true\"></i></span>\n                                            </div>\n                                            <input id=\"creditCardToken\" name=\"creditCardToken\" type=\"hidden\"/>\n                                            <input type='hidden' id=\"customer_id\" name=\"customer_id\" value=\"<%=params[:customer_id]%>\">\n                                            <input type ='hidden' id=\"duration\" name=\"duration\" value=\"<%=params[:duration]%>\">\n                                            <%= hidden_field_tag :authenticity_token, form_authenticity_token, id: :form_token %>\n                                            <input type=\"hidden\" value=\"<%=params[:customer_id]%>\"/>\n                                            <div class=\"loader\" id=\"loader\"></div>\n                                            <p style=\"color: #17917f\" id=\"alert_payment\"></p>\n                                            <input type=\"submit\" class=\"btn btn-primary waves-effect waves-light\" id=\"payments_button\">\n                                          </div>\n                                        </form>\n                                        <div class=\"form-group\" id=\"errors\" style=\"display:none;\">\n                                          <h3>Errors:</h3>\n                                          <p>No errors.</p>\n                                        </div>\n                                      </div>\n                                    </div>\n                                  </div>\n                                </div>\n                              </div>\n                            </div>\n                          </div>\n                        </div>\n                      </div>\n                    </div>\n                  </div>\n                </div>\n              </div>\n              <div class=\"modal-footer\">\n                <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Close</button>\n              </div>\n            </div>\n\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n\n    </div>\n  </div>\n</section>\n\n\n<script>\n\n    var form = document.getElementById(\"add_funds_form\");\n    form.addEventListener('submit', function (e) {\n        var btn = document.getElementById('payments_button');\n        btn.style.display=\"none\";\n        var loader = document.getElementById('loader');\n        loader.style.display=\"block\";\n        e.preventDefault();\n        var capture = Pinch.Capture({\n            publishableKey: 'pk_test_kde7CD01xy4phyvG0CvK6fbj1dK3HBTo'\n        });\n        capture.createToken({\n            cardNumber: document.getElementById(\"cardNumber\").value,\n            expiryMonth: document.getElementById(\"expiryMonth\").value,\n            expiryYear: document.getElementById(\"expiryYear\").value,\n            cvc: document.getElementById(\"cvc\").value,\n            cardHolderName: document.getElementById(\"cardHolderName\").value\n        }).then(function(result) {\n            console.log(\"Client received token: \" + result.token);\n            var l = document.getElementById(\"creditCardToken\");\n            l.value = result.token;\n            x = document.getElementById('add_funds_form');\n            var form = $(x);\n            var url = form.attr('action');\n            var type = form.attr('method');\n            setTimeout(function(){\n                $.ajax({\n                    type: \"POST\",\n                    url: \"#\",\n                    data: form.serialize(), // serializes the form's elements.\n                    success: function(data)\n                    {\n                        console.log(data);\n                    },\n                    failed: function(data){\n                        console.log(data);\n                    }\n                });\n            }, 2000);\n\n        }).catch(function(err) {\n            document.querySelector(\"#errors p\").style.display =\"block\";\n            document.querySelector(\"#errors p\").innerText = JSON.stringify(err);\n            console.log(\"Client error: \" + err);\n        });\n    });\n\n    function showModal() {\n        $('#myModal').modal('show');\n    }\n\n</script>\n\n\n\n<script src=\"https://web.getpinch.com.au/capture/capture.bundle.js\"></script>\n</script>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/views/applyform/success.html.erb	(revision a15ffb5febfc0362ee148e16270f8e2e5e87e28c)
++++ app/views/applyform/success.html.erb	(date 1565833883174)
+@@ -2,7 +2,7 @@
+   <div class="row'">
+     <div class="text-center">
+        <h2 id="header-title">Congratulations</h2>
+-    <p id="header-desc">You have been pre-approved for a MoneyLoop inbstallment plan. </p>
++    <p id="header-desc">You have been pre-approved for a MoneyLoop installment plan. </p>
+     <div class="row" id="schedule" style="">
+       <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+         <h3 class="mb20">Repayment Schedule</h3>
+@@ -129,56 +129,6 @@
+ 
+ <script>
+ 
+-    var form = document.getElementById("add_funds_form");
+-    form.addEventListener('submit', function (e) {
+-        var btn = document.getElementById('payments_button');
+-        btn.style.display="none";
+-        var loader = document.getElementById('loader');
+-        loader.style.display="block";
+-        e.preventDefault();
+-        var capture = Pinch.Capture({
+-            publishableKey: 'pk_test_kde7CD01xy4phyvG0CvK6fbj1dK3HBTo'
+-        });
+-        capture.createToken({
+-            cardNumber: document.getElementById("cardNumber").value,
+-            expiryMonth: document.getElementById("expiryMonth").value,
+-            expiryYear: document.getElementById("expiryYear").value,
+-            cvc: document.getElementById("cvc").value,
+-            cardHolderName: document.getElementById("cardHolderName").value
+-        }).then(function(result) {
+-            console.log("Client received token: " + result.token);
+-            var l = document.getElementById("creditCardToken");
+-            l.value = result.token;
+-            x = document.getElementById('add_funds_form');
+-            var form = $(x);
+-            var url = form.attr('action');
+-            var type = form.attr('method');
+-            setTimeout(function(){
+-                $.ajax({
+-                    type: "POST",
+-                    url: "#",
+-                    data: form.serialize(), // serializes the form's elements.
+-                    success: function(data)
+-                    {
+-                        console.log(data);
+-                    },
+-                    failed: function(data){
+-                        console.log(data);
+-                    }
+-                });
+-            }, 2000);
+-
+-        }).catch(function(err) {
+-            document.querySelector("#errors p").style.display ="block";
+-            document.querySelector("#errors p").innerText = JSON.stringify(err);
+-            console.log("Client error: " + err);
+-        });
+-    });
+-
+-    function showModal() {
+-        $('#myModal').modal('show');
+-    }
+-
+ </script>
+ 
+ 
+Index: .idea/webServers.xml
+===================================================================
+--- .idea/webServers.xml	(revision a15ffb5febfc0362ee148e16270f8e2e5e87e28c)
++++ .idea/webServers.xml	(revision a15ffb5febfc0362ee148e16270f8e2e5e87e28c)
+@@ -1,15 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="WebServers">
+-    <option name="servers">
+-      <webServer id="8265de05-af66-47d1-b6da-d2a21792cb3a" name="landingpage" url="http://159.65.246.63">
+-        <fileTransfer host="159.65.246.63" port="22" rootFolder="/home/rails" accessType="SFTP">
+-          <advancedOptions>
+-            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+-          </advancedOptions>
+-          <option name="port" value="22" />
+-        </fileTransfer>
+-      </webServer>
+-    </option>
+-  </component>
+-</project>
+\ No newline at end of file
+Index: config/environments/development.rb
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>Rails.application.configure do\n  # Code is reloaded between requests, so the web server doesn't need \n  # to restart when the code changes.\n  config.cache_classes = false\n\n  # Do not eager load code on boot.\n  config.eager_load = false\n\n  # Show full error reports.\n  config.consider_all_requests_local = true\n\n  # Enable/disable caching. By default caching is disabled.\n  # Run rails dev:cache to toggle caching.\n  if Rails.root.join('tmp', 'caching-dev.txt').exist?\n    config.action_controller.perform_caching = true\n\n    config.cache_store = :memory_store\n    config.public_file_server.headers = {\n      'Cache-Control' => \"public, max-age=#{2.days.to_i}\"\n    }\n  else\n    config.action_controller.perform_caching = false\n\n    config.cache_store = :null_store\n  end\n  config.force_ssl = true\n  # Store uploaded files on the local file system (see config/storage.yml for options)\n  config.active_storage.service = :local\n\n  # Allow the development environment to perform deliveries\n  config.action_mailer.perform_deliveries = true\n\n  # This is for devise\n  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }\n\n  # Don't care if the mailer can't send.\n  config.action_mailer.raise_delivery_errors = true\n\n  config.action_mailer.perform_caching = false\n\n  config.action_mailer.smtp_settings = {\n    :address => \"email-smtp.us-west-2.amazonaws.com\",\n    :port => 587,\n    :user_name => Rails.application.credentials[:SES_SMTP_USERNAME],\n    :password => Rails.application.credentials[:SES_SMTP_PASSWORD],\n    :authentication => :login,\n    :enable_starttls_auto => true\n  }\n\n  # Print deprecation notices to the Rails logger.\n  config.active_support.deprecation = :log\n\n  # Raise an error on page load if there are pending migrations.\n  config.active_record.migration_error = :page_load\n\n  # Highlight code that triggered database queries in logs.\n  config.active_record.verbose_query_logs = true\n\n  # Debug mode disables concatenation and preprocessing of assets.\n  # This option may cause significant delays in view rendering with a large\n  # number of complex assets.\n  config.assets.debug = true\n\n  # Suppress logger output for asset requests.\n  config.assets.quiet = true\n\n  # Raises error for missing translations\n  # config.action_view.raise_on_missing_translations = true\n\n  # Use an evented file watcher to asynchronously detect changes in source code,\n  # routes, locales, etc. This feature depends on the listen gem.\n  config.file_watcher = ActiveSupport::EventedFileUpdateChecker\nend\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- config/environments/development.rb	(revision a15ffb5febfc0362ee148e16270f8e2e5e87e28c)
++++ config/environments/development.rb	(date 1565832592970)
+@@ -1,6 +1,7 @@
+ Rails.application.configure do
+   # Code is reloaded between requests, so the web server doesn't need 
+   # to restart when the code changes.
++  config.force_ssl = true
+   config.cache_classes = false
+ 
+   # Do not eager load code on boot.
+Index: config/routes.rb
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>Rails.application.routes.draw do\n  # Static Pages\n  get 'home/home', to: 'home#home'\n  get 'about', to: 'home#about'\n  get 'team', to: 'home#team'\n  get 'insurer', to: 'home#insurer'\n  get 'faq', to: 'home#faq'\n\n  # Contact us form\n  get 'contact', to: 'contact#index'\n  post '/send_email', to: 'contact#send_email', as: 'send_email'\n\n  # Application form\n  get 'apply/:company/:exposure', to: 'applyform#apply'\n  post 'apply', to: 'applyform#apply'  \n\n  # Users\n  # devise_for :users\n\n  # Blogging\n  get '/blogs', to: redirect('https://blog.moneyloop.com.au', status: 301)\n  # resources :blogs\n  # post 'blogs/upload', to: 'blogs#upload'\n\n  # Dashboard\n  get 'login', to: redirect('http://dashboard.moneyloop.com.au/admins/sign_in', status: 301)\n\n  # Root address\n  root 'home#home'\n\nend\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- config/routes.rb	(revision a15ffb5febfc0362ee148e16270f8e2e5e87e28c)
++++ config/routes.rb	(date 1565833066938)
+@@ -14,6 +14,8 @@
+   get 'apply/:company/:exposure', to: 'applyform#apply'
+   post 'apply', to: 'applyform#apply'  
+ 
++  get 'success', to: 'applyform#success'
++
+   # Users
+   # devise_for :users
+ 
+Index: .idea/moneyloop_website.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<module type=\"RUBY_MODULE\" version=\"4\">\n  <component name=\"FacetManager\">\n    <facet type=\"RailsFacetType\" name=\"Ruby on Rails\">\n      <configuration>\n        <RAILS_FACET_CONFIG_ID NAME=\"RAILS_FACET_SUPPORT_REMOVED\" VALUE=\"false\" />\n        <RAILS_FACET_CONFIG_ID NAME=\"RAILS_TESTS_SOURCES_PATCHED\" VALUE=\"true\" />\n        <RAILS_FACET_CONFIG_ID NAME=\"RAILS_FACET_APPLICATION_ROOT\" VALUE=\"$MODULE_DIR$\" />\n      </configuration>\n    </facet>\n  </component>\n  <component name=\"ModuleRunConfigurationManager\">\n    <shared />\n  </component>\n  <component name=\"NewModuleRootManager\">\n    <content url=\"file://$MODULE_DIR$\">\n      <sourceFolder url=\"file://$MODULE_DIR$/test\" isTestSource=\"true\" />\n      <sourceFolder url=\"file://$MODULE_DIR$/spec\" isTestSource=\"true\" />\n      <excludeFolder url=\"file://$MODULE_DIR$/.bundle\" />\n      <excludeFolder url=\"file://$MODULE_DIR$/components\" />\n      <excludeFolder url=\"file://$MODULE_DIR$/log\" />\n      <excludeFolder url=\"file://$MODULE_DIR$/public/packs\" />\n      <excludeFolder url=\"file://$MODULE_DIR$/public/system\" />\n      <excludeFolder url=\"file://$MODULE_DIR$/tmp\" />\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/bundle\" />\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/cache\" />\n    </content>\n    <orderEntry type=\"inheritedJdk\" />\n    <orderEntry type=\"sourceFolder\" forTests=\"false\" />\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"addressable (v2.6.0, ruby-2.6.3-p62) [gem]\" level=\"application\" />\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"arel (v9.0.0, ruby-2.6.3-p62) [gem]\" level=\"application\" />\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"autoprefixer-rails (v9.6.0, ruby-2.6.3-p62) [gem]\" level=\"application\" />\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"bcrypt (v3.1.13, ruby-2.6.3-p62) [gem]\" level=\"application\" />\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"bindex (v0.7.0, ruby-2.6.3-p62) [gem]\" level=\"application\" />\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"bootsnap (v1.4.4, ruby-2.6.3-p62) [gem]\" level=\"application\" />\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"builder (v3.2.3, ruby-2.6.3-p62) [gem]\" level=\"application\" />\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"bundler (v2.0.1, ruby-2.6.3-p62) [gem]\" level=\"application\" />\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"byebug (v11.0.1, ruby-2.6.3-p62) [gem]\" level=\"application\" />\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"childprocess (v1.0.1, ruby-2.6.3-p62) [gem]\" level=\"application\" />\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"coffee-rails (v4.2.2, ruby-2.6.3-p62) [gem]\" level=\"application\" />\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"coffee-script (v2.4.1, ruby-2.6.3-p62) [gem]\" level=\"application\" />\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"coffee-script-source (v1.12.2, ruby-2.6.3-p62) [gem]\" level=\"application\" />\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"concurrent-ruby (v1.1.5, ruby-2.6.3-p62) [gem]\" level=\"application\" />\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"crass (v1.0.4, ruby-2.6.3-p62) [gem]\" level=\"application\" />\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"devise (v4.6.2, ruby-2.6.3-p62) [gem]\" level=\"application\" />\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"erubi (v1.8.0, ruby-2.6.3-p62) [gem]\" level=\"application\" />\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"execjs (v2.7.0, ruby-2.6.3-p62) [gem]\" level=\"application\" />\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"ffi (v1.11.1, ruby-2.6.3-p62) [gem]\" level=\"application\" />\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"globalid (v0.4.2, ruby-2.6.3-p62) [gem]\" level=\"application\" />\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"i18n (v1.6.0, ruby-2.6.3-p62) [gem]\" level=\"application\" />\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"jbuilder (v2.9.1, ruby-2.6.3-p62) [gem]\" level=\"application\" />\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"loofah (v2.2.3, ruby-2.6.3-p62) [gem]\" level=\"application\" />\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"mail (v2.7.1, ruby-2.6.3-p62) [gem]\" level=\"application\" />\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"marcel (v0.3.3, ruby-2.6.3-p62) [gem]\" level=\"application\" />\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"method_source (v0.9.2, ruby-2.6.3-p62) [gem]\" level=\"application\" />\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"mimemagic (v0.3.3, ruby-2.6.3-p62) [gem]\" level=\"application\" />\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"mini_mime (v1.0.1, ruby-2.6.3-p62) [gem]\" level=\"application\" />\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"mini_portile2 (v2.4.0, ruby-2.6.3-p62) [gem]\" level=\"application\" />\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"minitest (v5.11.3, ruby-2.6.3-p62) [gem]\" level=\"application\" />\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"msgpack (v1.2.10, ruby-2.6.3-p62) [gem]\" level=\"application\" />\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"mysql2 (v0.5.2, ruby-2.6.3-p62) [gem]\" level=\"application\" />\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"nio4r (v2.3.1, ruby-2.6.3-p62) [gem]\" level=\"application\" />\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"nokogiri (v1.10.3, ruby-2.6.3-p62) [gem]\" level=\"application\" />\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"orm_adapter (v0.5.0, ruby-2.6.3-p62) [gem]\" level=\"application\" />\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"public_suffix (v3.1.0, ruby-2.6.3-p62) [gem]\" level=\"application\" />\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"puma (v3.12.1, ruby-2.6.3-p62) [gem]\" level=\"application\" />\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"rack (v2.0.7, ruby-2.6.3-p62) [gem]\" level=\"application\" />\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"rack-proxy (v0.6.5, ruby-2.6.3-p62) [gem]\" level=\"application\" />\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"rack-test (v1.1.0, ruby-2.6.3-p62) [gem]\" level=\"application\" />\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"rails-dom-testing (v2.0.3, ruby-2.6.3-p62) [gem]\" level=\"application\" />\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"rails-html-sanitizer (v1.0.4, ruby-2.6.3-p62) [gem]\" level=\"application\" />\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"rake (v12.3.2, ruby-2.6.3-p62) [gem]\" level=\"application\" />\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"rb-fsevent (v0.10.3, ruby-2.6.3-p62) [gem]\" level=\"application\" />\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"rb-inotify (v0.10.0, ruby-2.6.3-p62) [gem]\" level=\"application\" />\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"regexp_parser (v1.5.1, ruby-2.6.3-p62) [gem]\" level=\"application\" />\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"responders (v2.4.1, ruby-2.6.3-p62) [gem]\" level=\"application\" />\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"rubyzip (v1.2.3, ruby-2.6.3-p62) [gem]\" level=\"application\" />\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"sass (v3.7.4, ruby-2.6.3-p62) [gem]\" level=\"application\" />\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"sass-listen (v4.0.0, ruby-2.6.3-p62) [gem]\" level=\"application\" />\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"sass-rails (v5.0.7, ruby-2.6.3-p62) [gem]\" level=\"application\" />\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"sassc (v2.0.1, ruby-2.6.3-p62) [gem]\" level=\"application\" />\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"selenium-webdriver (v3.142.3, ruby-2.6.3-p62) [gem]\" level=\"application\" />\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"spring (v2.0.2, ruby-2.6.3-p62) [gem]\" level=\"application\" />\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"spring-watcher-listen (v2.0.1, ruby-2.6.3-p62) [gem]\" level=\"application\" />\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"sprockets (v3.7.2, ruby-2.6.3-p62) [gem]\" level=\"application\" />\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"sprockets-rails (v3.2.1, ruby-2.6.3-p62) [gem]\" level=\"application\" />\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"thor (v0.20.3, ruby-2.6.3-p62) [gem]\" level=\"application\" />\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"thread_safe (v0.3.6, ruby-2.6.3-p62) [gem]\" level=\"application\" />\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"tilt (v2.0.9, ruby-2.6.3-p62) [gem]\" level=\"application\" />\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"turbolinks (v5.2.0, ruby-2.6.3-p62) [gem]\" level=\"application\" />\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"turbolinks-source (v5.2.0, ruby-2.6.3-p62) [gem]\" level=\"application\" />\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"tzinfo (v1.2.5, ruby-2.6.3-p62) [gem]\" level=\"application\" />\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"uglifier (v4.1.20, ruby-2.6.3-p62) [gem]\" level=\"application\" />\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"warden (v1.2.8, ruby-2.6.3-p62) [gem]\" level=\"application\" />\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"web-console (v3.7.0, ruby-2.6.3-p62) [gem]\" level=\"application\" />\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"xpath (v3.2.0, ruby-2.6.3-p62) [gem]\" level=\"application\" />\n  </component>\n  <component name=\"RModuleSettingsStorage\">\n    <LOAD_PATH number=\"0\" />\n    <I18N_FOLDERS number=\"1\" string0=\"$MODULE_DIR$/config/locales\" />\n  </component>\n</module>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/moneyloop_website.iml	(revision a15ffb5febfc0362ee148e16270f8e2e5e87e28c)
++++ .idea/moneyloop_website.iml	(date 1565831415657)
+@@ -25,75 +25,121 @@
+       <excludeFolder url="file://$MODULE_DIR$/vendor/bundle" />
+       <excludeFolder url="file://$MODULE_DIR$/vendor/cache" />
+     </content>
+-    <orderEntry type="inheritedJdk" />
++    <orderEntry type="jdk" jdkName="RVM: ruby-2.6.1" jdkType="RUBY_SDK" />
+     <orderEntry type="sourceFolder" forTests="false" />
+-    <orderEntry type="library" scope="PROVIDED" name="addressable (v2.6.0, ruby-2.6.3-p62) [gem]" level="application" />
+-    <orderEntry type="library" scope="PROVIDED" name="arel (v9.0.0, ruby-2.6.3-p62) [gem]" level="application" />
+-    <orderEntry type="library" scope="PROVIDED" name="autoprefixer-rails (v9.6.0, ruby-2.6.3-p62) [gem]" level="application" />
+-    <orderEntry type="library" scope="PROVIDED" name="bcrypt (v3.1.13, ruby-2.6.3-p62) [gem]" level="application" />
+-    <orderEntry type="library" scope="PROVIDED" name="bindex (v0.7.0, ruby-2.6.3-p62) [gem]" level="application" />
+-    <orderEntry type="library" scope="PROVIDED" name="bootsnap (v1.4.4, ruby-2.6.3-p62) [gem]" level="application" />
+-    <orderEntry type="library" scope="PROVIDED" name="builder (v3.2.3, ruby-2.6.3-p62) [gem]" level="application" />
+-    <orderEntry type="library" scope="PROVIDED" name="bundler (v2.0.1, ruby-2.6.3-p62) [gem]" level="application" />
+-    <orderEntry type="library" scope="PROVIDED" name="byebug (v11.0.1, ruby-2.6.3-p62) [gem]" level="application" />
+-    <orderEntry type="library" scope="PROVIDED" name="childprocess (v1.0.1, ruby-2.6.3-p62) [gem]" level="application" />
+-    <orderEntry type="library" scope="PROVIDED" name="coffee-rails (v4.2.2, ruby-2.6.3-p62) [gem]" level="application" />
+-    <orderEntry type="library" scope="PROVIDED" name="coffee-script (v2.4.1, ruby-2.6.3-p62) [gem]" level="application" />
+-    <orderEntry type="library" scope="PROVIDED" name="coffee-script-source (v1.12.2, ruby-2.6.3-p62) [gem]" level="application" />
+-    <orderEntry type="library" scope="PROVIDED" name="concurrent-ruby (v1.1.5, ruby-2.6.3-p62) [gem]" level="application" />
+-    <orderEntry type="library" scope="PROVIDED" name="crass (v1.0.4, ruby-2.6.3-p62) [gem]" level="application" />
+-    <orderEntry type="library" scope="PROVIDED" name="devise (v4.6.2, ruby-2.6.3-p62) [gem]" level="application" />
+-    <orderEntry type="library" scope="PROVIDED" name="erubi (v1.8.0, ruby-2.6.3-p62) [gem]" level="application" />
+-    <orderEntry type="library" scope="PROVIDED" name="execjs (v2.7.0, ruby-2.6.3-p62) [gem]" level="application" />
+-    <orderEntry type="library" scope="PROVIDED" name="ffi (v1.11.1, ruby-2.6.3-p62) [gem]" level="application" />
+-    <orderEntry type="library" scope="PROVIDED" name="globalid (v0.4.2, ruby-2.6.3-p62) [gem]" level="application" />
+-    <orderEntry type="library" scope="PROVIDED" name="i18n (v1.6.0, ruby-2.6.3-p62) [gem]" level="application" />
+-    <orderEntry type="library" scope="PROVIDED" name="jbuilder (v2.9.1, ruby-2.6.3-p62) [gem]" level="application" />
+-    <orderEntry type="library" scope="PROVIDED" name="loofah (v2.2.3, ruby-2.6.3-p62) [gem]" level="application" />
+-    <orderEntry type="library" scope="PROVIDED" name="mail (v2.7.1, ruby-2.6.3-p62) [gem]" level="application" />
+-    <orderEntry type="library" scope="PROVIDED" name="marcel (v0.3.3, ruby-2.6.3-p62) [gem]" level="application" />
+-    <orderEntry type="library" scope="PROVIDED" name="method_source (v0.9.2, ruby-2.6.3-p62) [gem]" level="application" />
+-    <orderEntry type="library" scope="PROVIDED" name="mimemagic (v0.3.3, ruby-2.6.3-p62) [gem]" level="application" />
+-    <orderEntry type="library" scope="PROVIDED" name="mini_mime (v1.0.1, ruby-2.6.3-p62) [gem]" level="application" />
+-    <orderEntry type="library" scope="PROVIDED" name="mini_portile2 (v2.4.0, ruby-2.6.3-p62) [gem]" level="application" />
+-    <orderEntry type="library" scope="PROVIDED" name="minitest (v5.11.3, ruby-2.6.3-p62) [gem]" level="application" />
+-    <orderEntry type="library" scope="PROVIDED" name="msgpack (v1.2.10, ruby-2.6.3-p62) [gem]" level="application" />
+-    <orderEntry type="library" scope="PROVIDED" name="mysql2 (v0.5.2, ruby-2.6.3-p62) [gem]" level="application" />
+-    <orderEntry type="library" scope="PROVIDED" name="nio4r (v2.3.1, ruby-2.6.3-p62) [gem]" level="application" />
+-    <orderEntry type="library" scope="PROVIDED" name="nokogiri (v1.10.3, ruby-2.6.3-p62) [gem]" level="application" />
+-    <orderEntry type="library" scope="PROVIDED" name="orm_adapter (v0.5.0, ruby-2.6.3-p62) [gem]" level="application" />
+-    <orderEntry type="library" scope="PROVIDED" name="public_suffix (v3.1.0, ruby-2.6.3-p62) [gem]" level="application" />
+-    <orderEntry type="library" scope="PROVIDED" name="puma (v3.12.1, ruby-2.6.3-p62) [gem]" level="application" />
+-    <orderEntry type="library" scope="PROVIDED" name="rack (v2.0.7, ruby-2.6.3-p62) [gem]" level="application" />
+-    <orderEntry type="library" scope="PROVIDED" name="rack-proxy (v0.6.5, ruby-2.6.3-p62) [gem]" level="application" />
+-    <orderEntry type="library" scope="PROVIDED" name="rack-test (v1.1.0, ruby-2.6.3-p62) [gem]" level="application" />
+-    <orderEntry type="library" scope="PROVIDED" name="rails-dom-testing (v2.0.3, ruby-2.6.3-p62) [gem]" level="application" />
+-    <orderEntry type="library" scope="PROVIDED" name="rails-html-sanitizer (v1.0.4, ruby-2.6.3-p62) [gem]" level="application" />
+-    <orderEntry type="library" scope="PROVIDED" name="rake (v12.3.2, ruby-2.6.3-p62) [gem]" level="application" />
+-    <orderEntry type="library" scope="PROVIDED" name="rb-fsevent (v0.10.3, ruby-2.6.3-p62) [gem]" level="application" />
+-    <orderEntry type="library" scope="PROVIDED" name="rb-inotify (v0.10.0, ruby-2.6.3-p62) [gem]" level="application" />
+-    <orderEntry type="library" scope="PROVIDED" name="regexp_parser (v1.5.1, ruby-2.6.3-p62) [gem]" level="application" />
+-    <orderEntry type="library" scope="PROVIDED" name="responders (v2.4.1, ruby-2.6.3-p62) [gem]" level="application" />
+-    <orderEntry type="library" scope="PROVIDED" name="rubyzip (v1.2.3, ruby-2.6.3-p62) [gem]" level="application" />
+-    <orderEntry type="library" scope="PROVIDED" name="sass (v3.7.4, ruby-2.6.3-p62) [gem]" level="application" />
+-    <orderEntry type="library" scope="PROVIDED" name="sass-listen (v4.0.0, ruby-2.6.3-p62) [gem]" level="application" />
+-    <orderEntry type="library" scope="PROVIDED" name="sass-rails (v5.0.7, ruby-2.6.3-p62) [gem]" level="application" />
+-    <orderEntry type="library" scope="PROVIDED" name="sassc (v2.0.1, ruby-2.6.3-p62) [gem]" level="application" />
+-    <orderEntry type="library" scope="PROVIDED" name="selenium-webdriver (v3.142.3, ruby-2.6.3-p62) [gem]" level="application" />
+-    <orderEntry type="library" scope="PROVIDED" name="spring (v2.0.2, ruby-2.6.3-p62) [gem]" level="application" />
+-    <orderEntry type="library" scope="PROVIDED" name="spring-watcher-listen (v2.0.1, ruby-2.6.3-p62) [gem]" level="application" />
+-    <orderEntry type="library" scope="PROVIDED" name="sprockets (v3.7.2, ruby-2.6.3-p62) [gem]" level="application" />
+-    <orderEntry type="library" scope="PROVIDED" name="sprockets-rails (v3.2.1, ruby-2.6.3-p62) [gem]" level="application" />
+-    <orderEntry type="library" scope="PROVIDED" name="thor (v0.20.3, ruby-2.6.3-p62) [gem]" level="application" />
+-    <orderEntry type="library" scope="PROVIDED" name="thread_safe (v0.3.6, ruby-2.6.3-p62) [gem]" level="application" />
+-    <orderEntry type="library" scope="PROVIDED" name="tilt (v2.0.9, ruby-2.6.3-p62) [gem]" level="application" />
+-    <orderEntry type="library" scope="PROVIDED" name="turbolinks (v5.2.0, ruby-2.6.3-p62) [gem]" level="application" />
+-    <orderEntry type="library" scope="PROVIDED" name="turbolinks-source (v5.2.0, ruby-2.6.3-p62) [gem]" level="application" />
+-    <orderEntry type="library" scope="PROVIDED" name="tzinfo (v1.2.5, ruby-2.6.3-p62) [gem]" level="application" />
+-    <orderEntry type="library" scope="PROVIDED" name="uglifier (v4.1.20, ruby-2.6.3-p62) [gem]" level="application" />
+-    <orderEntry type="library" scope="PROVIDED" name="warden (v1.2.8, ruby-2.6.3-p62) [gem]" level="application" />
+-    <orderEntry type="library" scope="PROVIDED" name="web-console (v3.7.0, ruby-2.6.3-p62) [gem]" level="application" />
+-    <orderEntry type="library" scope="PROVIDED" name="xpath (v3.2.0, ruby-2.6.3-p62) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="actioncable (v5.2.3, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="actionmailer (v5.2.3, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="actionpack (v5.2.3, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="actionview (v5.2.3, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="activejob (v5.2.3, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="activemodel (v5.2.3, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="activerecord (v5.2.3, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="activestorage (v5.2.3, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="activesupport (v5.2.3, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="addressable (v2.6.0, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="airbrussh (v1.3.1, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="archive-zip (v0.12.0, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="arel (v9.0.0, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="autoprefixer-rails (v9.6.0, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="aws-eventstream (v1.0.3, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="aws-partitions (v1.172.0, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-core (v3.54.2, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-kms (v1.21.0, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-s3 (v1.42.0, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="aws-sigv4 (v1.1.0, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="bcrypt (v3.1.13, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="bindex (v0.7.0, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="bootsnap (v1.4.4, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="bootstrap (v4.3.1, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="browser (v2.5.3, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="builder (v3.2.3, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="bundler (v2.0.2, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="buttercms-rails (v1.2.1, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="buttercms-ruby (v1.3.2, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="byebug (v11.0.1, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="capistrano (v3.11.0, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="capistrano-bundler (v1.5.0, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="capistrano-rails (v1.4.0, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="capistrano-rvm (v0.1.2, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="capistrano3-puma (v3.1.1, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="capybara (v3.22.0, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="childprocess (v1.0.1, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="chromedriver-helper (v2.1.1, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="coffee-rails (v4.2.2, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="coffee-script (v2.4.1, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="coffee-script-source (v1.12.2, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="concurrent-ruby (v1.1.5, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="crass (v1.0.4, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="devise (v4.6.2, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="erubi (v1.8.0, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="execjs (v2.7.0, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="ffi (v1.11.1, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="font-awesome-rails (v4.7.0.5, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="fontello-rails (v0.2.0, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="globalid (v0.4.2, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="i18n (v1.6.0, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="io-like (v0.3.0, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="jbuilder (v2.9.1, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="jmespath (v1.4.0, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="jquery-ui-rails (v6.0.1, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="listen (v3.1.5, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="loofah (v2.2.3, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="mail (v2.7.1, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="marcel (v0.3.3, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="method_source (v0.9.2, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="mimemagic (v0.3.3, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="mini_mime (v1.0.1, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="mini_portile2 (v2.4.0, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="minitest (v5.11.3, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="msgpack (v1.2.10, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="mysql2 (v0.5.2, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="net-scp (v2.0.0, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="net-ssh (v5.2.0, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="nio4r (v2.3.1, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="nokogiri (v1.10.3, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="orm_adapter (v0.5.0, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="owlcarousel-rails (v2.2.3.5, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="popper_js (v1.14.5, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="public_suffix (v3.1.0, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="puma (v3.12.1, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="rack (v2.0.7, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="rack-proxy (v0.6.5, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="rack-reverse-proxy (v0.12.0, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="rack-test (v1.1.0, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="rails (v5.2.3, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="rails-dom-testing (v2.0.3, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="rails-html-sanitizer (v1.0.4, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="railties (v5.2.3, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="rake (v12.3.2, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="rb-fsevent (v0.10.3, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="rb-inotify (v0.10.0, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="regexp_parser (v1.5.1, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="responders (v2.4.1, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="ruby_dep (v1.5.0, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="rubyzip (v1.2.3, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="sass (v3.7.4, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="sass-listen (v4.0.0, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="sass-rails (v5.0.7, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="sassc (v2.0.1, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="sassc-rails (v2.1.1, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="selenium-webdriver (v3.142.3, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="spring (v2.0.2, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="spring-watcher-listen (v2.0.1, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="sprockets (v3.7.2, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="sprockets-rails (v3.2.1, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="sshkit (v1.18.2, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="thor (v0.20.3, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="thread_safe (v0.3.6, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="tilt (v2.0.9, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="turbolinks (v5.2.0, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="turbolinks-source (v5.2.0, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="tzinfo (v1.2.5, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="uglifier (v4.1.20, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="warden (v1.2.8, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="web-console (v3.7.0, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="websocket-driver (v0.7.0, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="websocket-extensions (v0.1.3, RVM: ruby-2.6.1) [gem]" level="application" />
++    <orderEntry type="library" scope="PROVIDED" name="xpath (v3.2.0, RVM: ruby-2.6.1) [gem]" level="application" />
+   </component>
+   <component name="RModuleSettingsStorage">
+     <LOAD_PATH number="0" />
+Index: app/assets/javascripts/js/success.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/assets/javascripts/js/success.js	(date 1565834539091)
++++ app/assets/javascripts/js/success.js	(date 1565834539091)
+@@ -0,0 +1,51 @@
++$(document).ready(function() {
++    var form = document.getElementById("add_funds_form");
++    form.addEventListener('submit', function (e) {
++        var btn = document.getElementById('payments_button');
++        btn.style.display="none";
++        var loader = document.getElementById('loader');
++        loader.style.display="block";
++        e.preventDefault();
++        var capture = Pinch.Capture({
++            publishableKey: 'pk_test_kde7CD01xy4phyvG0CvK6fbj1dK3HBTo'
++        });
++        capture.createToken({
++            cardNumber: document.getElementById("cardNumber").value,
++            expiryMonth: document.getElementById("expiryMonth").value,
++            expiryYear: document.getElementById("expiryYear").value,
++            cvc: document.getElementById("cvc").value,
++            cardHolderName: document.getElementById("cardHolderName").value
++        }).then(function(result) {
++            console.log("Client received token: " + result.token);
++            var l = document.getElementById("creditCardToken");
++            l.value = result.token;
++            x = document.getElementById('add_funds_form');
++            var form = $(x);
++            var url = form.attr('action');
++            var type = form.attr('method');
++            setTimeout(function(){
++                $.ajax({
++                    type: "POST",
++                    url: "#",
++                    data: form.serialize(), // serializes the form's elements.
++                    success: function(data)
++                    {
++                        console.log(data);
++                    },
++                    failed: function(data){
++                        console.log(data);
++                    }
++                });
++            }, 2000);
++
++        }).catch(function(err) {
++            document.querySelector("#errors p").style.display ="block";
++            document.querySelector("#errors p").innerText = JSON.stringify(err);
++            console.log("Client error: " + err);
++        });
++    });
++})
++
++const showModal = function () {
++    $('#myModal').modal('show');
++};
+\ No newline at end of file
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"07dfb893-b59b-49a2-b2b3-ecce2d4c510c\" name=\"Default Changelist\" comment=\"\">\n      <change afterPath=\"$PROJECT_DIR$/app/views/applyform/success_card.html.erb\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/app/assets/stylesheets/common/style.scss\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/app/assets/stylesheets/common/style.scss\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/app/controllers/applyform_controller.rb\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/app/controllers/applyform_controller.rb\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/app/views/applyform/apply.html.erb\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/app/views/applyform/apply.html.erb\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/app/views/applyform/success.html.erb\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/app/views/applyform/success.html.erb\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/app/views/shared/_news.html.erb\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/app/views/shared/_news.html.erb\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/app/views/shared/_testimonials.html.erb\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/app/views/shared/_testimonials.html.erb\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/config/credentials.yml.enc\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/config/credentials.yml.enc\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/config/database.yml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/config/database.yml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/config/environments/development.rb\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/config/environments/development.rb\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/config/routes.rb\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/config/routes.rb\" afterDir=\"false\" />\n    </list>\n    <ignored path=\"$PROJECT_DIR$/.bundle/\" />\n    <ignored path=\"$PROJECT_DIR$/components/\" />\n    <ignored path=\"$PROJECT_DIR$/log/\" />\n    <ignored path=\"$PROJECT_DIR$/public/packs/\" />\n    <ignored path=\"$PROJECT_DIR$/public/system/\" />\n    <ignored path=\"$PROJECT_DIR$/tmp/\" />\n    <ignored path=\"$PROJECT_DIR$/vendor/bundle/\" />\n    <ignored path=\"$PROJECT_DIR$/vendor/cache/\" />\n    <option name=\"EXCLUDED_CONVERTED_TO_IGNORED\" value=\"true\" />\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"FileEditorManager\">\n    <leaf SIDE_TABS_SIZE_LIMIT_KEY=\"300\">\n      <file pinned=\"false\" current-in-tab=\"false\">\n        <entry file=\"file://$PROJECT_DIR$/config/environments/development.rb\">\n          <provider selected=\"true\" editor-type-id=\"text-editor\">\n            <state relative-caret-position=\"289\">\n              <caret line=\"17\" column=\"41\" lean-forward=\"true\" selection-start-line=\"17\" selection-start-column=\"41\" selection-end-line=\"17\" selection-end-column=\"41\" />\n            </state>\n          </provider>\n        </entry>\n      </file>\n      <file pinned=\"false\" current-in-tab=\"false\">\n        <entry file=\"file://$PROJECT_DIR$/app/views/home/home.html.erb\">\n          <provider selected=\"true\" editor-type-id=\"text-editor\">\n            <state relative-caret-position=\"-1959\">\n              <caret line=\"31\" column=\"26\" lean-forward=\"true\" selection-start-line=\"31\" selection-start-column=\"26\" selection-end-line=\"31\" selection-end-column=\"26\" />\n            </state>\n          </provider>\n        </entry>\n      </file>\n      <file pinned=\"false\" current-in-tab=\"false\">\n        <entry file=\"file://$PROJECT_DIR$/app/views/shared/_testimonials.html.erb\">\n          <provider selected=\"true\" editor-type-id=\"text-editor\">\n            <state relative-caret-position=\"240\">\n              <caret line=\"32\" column=\"68\" selection-start-line=\"32\" selection-start-column=\"68\" selection-end-line=\"32\" selection-end-column=\"68\" />\n            </state>\n          </provider>\n        </entry>\n      </file>\n      <file pinned=\"false\" current-in-tab=\"false\">\n        <entry file=\"file://$PROJECT_DIR$/app/views/shared/_news.html.erb\">\n          <provider selected=\"true\" editor-type-id=\"text-editor\">\n            <state relative-caret-position=\"136\">\n              <caret line=\"8\" column=\"26\" selection-start-line=\"8\" selection-start-column=\"26\" selection-end-line=\"8\" selection-end-column=\"26\" />\n            </state>\n          </provider>\n        </entry>\n      </file>\n      <file pinned=\"false\" current-in-tab=\"false\">\n        <entry file=\"file://$PROJECT_DIR$/app/assets/stylesheets/home.scss\">\n          <provider selected=\"true\" editor-type-id=\"text-editor\">\n            <state relative-caret-position=\"115\">\n              <caret line=\"40\" column=\"13\" selection-start-line=\"40\" selection-start-column=\"13\" selection-end-line=\"40\" selection-end-column=\"13\" />\n            </state>\n          </provider>\n        </entry>\n      </file>\n      <file pinned=\"false\" current-in-tab=\"false\">\n        <entry file=\"file://$PROJECT_DIR$/app/assets/stylesheets/common/style.scss\">\n          <provider selected=\"true\" editor-type-id=\"text-editor\">\n            <state relative-caret-position=\"-806\">\n              <caret line=\"78\" column=\"15\" selection-start-line=\"78\" selection-start-column=\"15\" selection-end-line=\"78\" selection-end-column=\"15\" />\n            </state>\n          </provider>\n        </entry>\n      </file>\n      <file pinned=\"false\" current-in-tab=\"false\">\n        <entry file=\"file://$PROJECT_DIR$/app/assets/javascripts/home.js\">\n          <provider selected=\"true\" editor-type-id=\"text-editor\">\n            <state relative-caret-position=\"85\">\n              <caret line=\"5\" column=\"25\" lean-forward=\"true\" selection-start-line=\"5\" selection-start-column=\"25\" selection-end-line=\"5\" selection-end-column=\"25\" />\n              <folding>\n                <element signature=\"n#!!doc\" expanded=\"true\" />\n              </folding>\n            </state>\n          </provider>\n        </entry>\n      </file>\n      <file pinned=\"false\" current-in-tab=\"false\">\n        <entry file=\"file://$PROJECT_DIR$/app/assets/javascripts/js/slider.js\">\n          <provider selected=\"true\" editor-type-id=\"text-editor\">\n            <state>\n              <caret column=\"46\" lean-forward=\"true\" selection-start-column=\"46\" selection-end-column=\"46\" />\n            </state>\n          </provider>\n        </entry>\n      </file>\n      <file pinned=\"false\" current-in-tab=\"false\">\n        <entry file=\"file://$PROJECT_DIR$/app/views/applyform/apply.html.erb\">\n          <provider selected=\"true\" editor-type-id=\"text-editor\">\n            <state relative-caret-position=\"391\">\n              <caret line=\"23\" column=\"11\" selection-start-line=\"23\" selection-start-column=\"11\" selection-end-line=\"23\" selection-end-column=\"11\" />\n            </state>\n          </provider>\n        </entry>\n      </file>\n      <file pinned=\"false\" current-in-tab=\"true\">\n        <entry file=\"file://$PROJECT_DIR$/app/views/applyform/success.html.erb\">\n          <provider selected=\"true\" editor-type-id=\"text-editor\">\n            <state relative-caret-position=\"170\">\n              <caret line=\"10\" column=\"14\" selection-start-line=\"10\" selection-start-column=\"14\" selection-end-line=\"10\" selection-end-column=\"14\" />\n            </state>\n          </provider>\n        </entry>\n      </file>\n    </leaf>\n  </component>\n  <component name=\"FindInProjectRecents\">\n    <findStrings>\n      <find>company_name</find>\n      <find>img-md</find>\n    </findStrings>\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\n  </component>\n  <component name=\"IdeDocumentHistory\">\n    <option name=\"CHANGED_PATHS\">\n      <list>\n        <option value=\"$PROJECT_DIR$/config/credentials.yml.enc\" />\n        <option value=\"$PROJECT_DIR$/config/database.yml\" />\n        <option value=\"$PROJECT_DIR$/config/routes.rb\" />\n        <option value=\"$PROJECT_DIR$/app/views/applyform/apply.html.erb\" />\n        <option value=\"$PROJECT_DIR$/app/views/applyform/success_card.html.erb\" />\n        <option value=\"$PROJECT_DIR$/app/views/applyform/success.html.erb\" />\n        <option value=\"$PROJECT_DIR$/app/controllers/applyform_controller.rb\" />\n        <option value=\"$PROJECT_DIR$/config/environments/development.rb\" />\n        <option value=\"$PROJECT_DIR$/app/assets/javascripts/js/slider.js\" />\n        <option value=\"$PROJECT_DIR$/app/assets/stylesheets/home.scss\" />\n        <option value=\"$PROJECT_DIR$/app/views/home/home.html.erb\" />\n        <option value=\"$PROJECT_DIR$/app/views/shared/_testimonials.html.erb\" />\n        <option value=\"$PROJECT_DIR$/app/views/shared/_news.html.erb\" />\n        <option value=\"$PROJECT_DIR$/app/assets/stylesheets/common/style.scss\" />\n      </list>\n    </option>\n  </component>\n  <component name=\"ProjectConfigurationFiles\">\n    <option name=\"files\">\n      <list>\n        <option value=\"$PROJECT_DIR$/.idea/moneyloop_website.iml\" />\n        <option value=\"$PROJECT_DIR$/.idea/misc.xml\" />\n        <option value=\"$PROJECT_DIR$/.idea/vcs.xml\" />\n        <option value=\"$PROJECT_DIR$/.idea/modules.xml\" />\n        <option value=\"$PROJECT_DIR$/.idea/deployment.xml\" />\n        <option value=\"$PROJECT_DIR$/.idea/webServers.xml\" />\n      </list>\n    </option>\n  </component>\n  <component name=\"ProjectFrameBounds\" extendedState=\"6\">\n    <option name=\"x\" value=\"-10\" />\n    <option name=\"y\" value=\"2\" />\n    <option name=\"width\" value=\"3012\" />\n    <option name=\"height\" value=\"1930\" />\n  </component>\n  <component name=\"ProjectView\">\n    <navigator proportions=\"\" version=\"1\">\n      <foldersAlwaysOnTop value=\"true\" />\n    </navigator>\n    <panes>\n      <pane id=\"Scope\" />\n      <pane id=\"ProjectPane\">\n        <subPane>\n          <expand>\n            <path>\n              <item name=\"moneyloop_website\" type=\"b2602c69:ProjectViewProjectNode\" />\n              <item name=\"moneyloop_website\" type=\"462c0819:PsiDirectoryNode\" />\n            </path>\n            <path>\n              <item name=\"moneyloop_website\" type=\"b2602c69:ProjectViewProjectNode\" />\n              <item name=\"moneyloop_website\" type=\"462c0819:PsiDirectoryNode\" />\n              <item name=\"app\" type=\"462c0819:PsiDirectoryNode\" />\n            </path>\n            <path>\n              <item name=\"moneyloop_website\" type=\"b2602c69:ProjectViewProjectNode\" />\n              <item name=\"moneyloop_website\" type=\"462c0819:PsiDirectoryNode\" />\n              <item name=\"app\" type=\"462c0819:PsiDirectoryNode\" />\n              <item name=\"assets\" type=\"462c0819:PsiDirectoryNode\" />\n            </path>\n            <path>\n              <item name=\"moneyloop_website\" type=\"b2602c69:ProjectViewProjectNode\" />\n              <item name=\"moneyloop_website\" type=\"462c0819:PsiDirectoryNode\" />\n              <item name=\"app\" type=\"462c0819:PsiDirectoryNode\" />\n              <item name=\"views\" type=\"462c0819:PsiDirectoryNode\" />\n            </path>\n            <path>\n              <item name=\"moneyloop_website\" type=\"b2602c69:ProjectViewProjectNode\" />\n              <item name=\"moneyloop_website\" type=\"462c0819:PsiDirectoryNode\" />\n              <item name=\"app\" type=\"462c0819:PsiDirectoryNode\" />\n              <item name=\"views\" type=\"462c0819:PsiDirectoryNode\" />\n              <item name=\"applyform\" type=\"462c0819:PsiDirectoryNode\" />\n            </path>\n            <path>\n              <item name=\"moneyloop_website\" type=\"b2602c69:ProjectViewProjectNode\" />\n              <item name=\"moneyloop_website\" type=\"462c0819:PsiDirectoryNode\" />\n              <item name=\"app\" type=\"462c0819:PsiDirectoryNode\" />\n              <item name=\"views\" type=\"462c0819:PsiDirectoryNode\" />\n              <item name=\"layouts\" type=\"462c0819:PsiDirectoryNode\" />\n            </path>\n            <path>\n              <item name=\"moneyloop_website\" type=\"b2602c69:ProjectViewProjectNode\" />\n              <item name=\"moneyloop_website\" type=\"462c0819:PsiDirectoryNode\" />\n              <item name=\"app\" type=\"462c0819:PsiDirectoryNode\" />\n              <item name=\"views\" type=\"462c0819:PsiDirectoryNode\" />\n              <item name=\"shared\" type=\"462c0819:PsiDirectoryNode\" />\n            </path>\n            <path>\n              <item name=\"moneyloop_website\" type=\"b2602c69:ProjectViewProjectNode\" />\n              <item name=\"moneyloop_website\" type=\"462c0819:PsiDirectoryNode\" />\n              <item name=\"config\" type=\"462c0819:PsiDirectoryNode\" />\n            </path>\n            <path>\n              <item name=\"moneyloop_website\" type=\"b2602c69:ProjectViewProjectNode\" />\n              <item name=\"moneyloop_website\" type=\"462c0819:PsiDirectoryNode\" />\n              <item name=\"config\" type=\"462c0819:PsiDirectoryNode\" />\n              <item name=\"environments\" type=\"462c0819:PsiDirectoryNode\" />\n            </path>\n            <path>\n              <item name=\"moneyloop_website\" type=\"b2602c69:ProjectViewProjectNode\" />\n              <item name=\"moneyloop_website\" type=\"462c0819:PsiDirectoryNode\" />\n              <item name=\"public\" type=\"462c0819:PsiDirectoryNode\" />\n            </path>\n          </expand>\n          <select />\n        </subPane>\n      </pane>\n      <pane id=\"RailsProjectView\" />\n    </panes>\n  </component>\n  <component name=\"PropertiesComponent\">\n    <property name=\"WebServerToolWindowFactoryState\" value=\"true\" />\n    <property name=\"WebServerToolWindowPanel.toolwindow.highlight.mappings\" value=\"true\" />\n    <property name=\"WebServerToolWindowPanel.toolwindow.highlight.symlinks\" value=\"true\" />\n    <property name=\"WebServerToolWindowPanel.toolwindow.show.date\" value=\"false\" />\n    <property name=\"WebServerToolWindowPanel.toolwindow.show.permissions\" value=\"false\" />\n    <property name=\"WebServerToolWindowPanel.toolwindow.show.size\" value=\"false\" />\n    <property name=\"node.js.detected.package.eslint\" value=\"true\" />\n    <property name=\"node.js.detected.package.tslint\" value=\"true\" />\n    <property name=\"node.js.path.for.package.eslint\" value=\"project\" />\n    <property name=\"node.js.path.for.package.tslint\" value=\"project\" />\n    <property name=\"node.js.selected.package.eslint\" value=\"(autodetect)\" />\n    <property name=\"node.js.selected.package.tslint\" value=\"(autodetect)\" />\n    <property name=\"nodejs_interpreter_path.stuck_in_default_project\" value=\"undefined stuck path\" />\n    <property name=\"nodejs_npm_path_reset_for_default_project\" value=\"true\" />\n    <property name=\"nodejs_package_manager_path\" value=\"yarn\" />\n    <property name=\"settings.editor.selected.configurable\" value=\"org.jetbrains.plugins.ruby.settings.RubyActiveModuleSdkConfigurable\" />\n  </component>\n  <component name=\"RunDashboard\">\n    <option name=\"ruleStates\">\n      <list>\n        <RuleState>\n          <option name=\"name\" value=\"ConfigurationTypeDashboardGroupingRule\" />\n        </RuleState>\n        <RuleState>\n          <option name=\"name\" value=\"StatusDashboardGroupingRule\" />\n        </RuleState>\n      </list>\n    </option>\n  </component>\n  <component name=\"RunManager\" selected=\"Rails.Development: moneyloop_website\">\n    <configuration name=\"Development: moneyloop_website\" type=\"RailsRunConfigurationType\" factoryName=\"Rails\">\n      <module name=\"moneyloop_website\" />\n      <predefined_log_file enabled=\"true\" id=\"RUBY_RAILS_SERVER\" />\n      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME=\"RUBY_ARGS\" VALUE=\"\" />\n      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME=\"WORK DIR\" VALUE=\"$MODULE_DIR$\" />\n      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME=\"SHOULD_USE_SDK\" VALUE=\"false\" />\n      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME=\"ALTERN_SDK_NAME\" VALUE=\"\" />\n      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME=\"myPassParentEnvs\" VALUE=\"true\" />\n      <EXTENSION ID=\"BundlerRunConfigurationExtension\" bundleExecEnabled=\"false\" />\n      <EXTENSION ID=\"JRubyRunConfigurationExtension\" NailgunExecEnabled=\"false\" />\n      <EXTENSION ID=\"RubyCoverageRunConfigurationExtension\" track_test_folders=\"true\" runner=\"rcov\" />\n      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME=\"SCRIPT_ARGS\" VALUE=\"\" />\n      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME=\"PORT\" VALUE=\"3000\" />\n      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME=\"IP\" VALUE=\"127.0.0.1\" />\n      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME=\"DUMMY_APP\" VALUE=\"test/dummy\" />\n      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME=\"RAILS_SERVER_TYPE\" VALUE=\"Default\" />\n      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME=\"ENVIRONMENT_TYPE\" VALUE=\"development\" />\n      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME=\"LAUNCH_JS\" VALUE=\"false\" />\n      <method v=\"2\" />\n    </configuration>\n    <configuration name=\"Production: moneyloop_website\" type=\"RailsRunConfigurationType\" factoryName=\"Rails\">\n      <module name=\"moneyloop_website\" />\n      <predefined_log_file enabled=\"true\" id=\"RUBY_RAILS_SERVER\" />\n      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME=\"RUBY_ARGS\" VALUE=\"\" />\n      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME=\"WORK DIR\" VALUE=\"$MODULE_DIR$\" />\n      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME=\"SHOULD_USE_SDK\" VALUE=\"false\" />\n      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME=\"ALTERN_SDK_NAME\" VALUE=\"\" />\n      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME=\"myPassParentEnvs\" VALUE=\"true\" />\n      <EXTENSION ID=\"BundlerRunConfigurationExtension\" bundleExecEnabled=\"false\" />\n      <EXTENSION ID=\"JRubyRunConfigurationExtension\" NailgunExecEnabled=\"false\" />\n      <EXTENSION ID=\"RubyCoverageRunConfigurationExtension\" track_test_folders=\"true\" runner=\"rcov\" />\n      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME=\"SCRIPT_ARGS\" VALUE=\"\" />\n      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME=\"PORT\" VALUE=\"3000\" />\n      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME=\"IP\" VALUE=\"127.0.0.1\" />\n      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME=\"DUMMY_APP\" VALUE=\"test/dummy\" />\n      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME=\"RAILS_SERVER_TYPE\" VALUE=\"Default\" />\n      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME=\"ENVIRONMENT_TYPE\" VALUE=\"production\" />\n      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME=\"LAUNCH_JS\" VALUE=\"false\" />\n      <method v=\"2\" />\n    </configuration>\n    <configuration name=\"spec: moneyloop_website\" type=\"RakeRunConfigurationType\" factoryName=\"Rake\">\n      <module name=\"moneyloop_website\" />\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"RUBY_ARGS\" VALUE=\"\" />\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"WORK DIR\" VALUE=\"$MODULE_DIR$\" />\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"SHOULD_USE_SDK\" VALUE=\"false\" />\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"ALTERN_SDK_NAME\" VALUE=\"\" />\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"myPassParentEnvs\" VALUE=\"true\" />\n      <EXTENSION ID=\"BundlerRunConfigurationExtension\" bundleExecEnabled=\"false\" />\n      <EXTENSION ID=\"JRubyRunConfigurationExtension\" NailgunExecEnabled=\"false\" />\n      <EXTENSION ID=\"RubyCoverageRunConfigurationExtension\" track_test_folders=\"true\" runner=\"rcov\" />\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"RAKE_TASK_NAME\" VALUE=\"spec\" />\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"RAKE_TASK_ARGS\" VALUE=\"\" />\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"RAKE_TASK_ATTACHED_TEST_FRAMEWORKS\" VALUE=\":rspec \" />\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"RAKE_TASK_OPTION_TRACE\" VALUE=\"false\" />\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"RAKE_TASK_OPTION_DRYRUN\" VALUE=\"false\" />\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"RAKE_TASK_OPTION_PREREQS\" VALUE=\"false\" />\n      <method v=\"2\" />\n    </configuration>\n    <configuration name=\"test: moneyloop_website\" type=\"RakeRunConfigurationType\" factoryName=\"Rake\">\n      <module name=\"moneyloop_website\" />\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"RUBY_ARGS\" VALUE=\"\" />\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"WORK DIR\" VALUE=\"$MODULE_DIR$\" />\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"SHOULD_USE_SDK\" VALUE=\"false\" />\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"ALTERN_SDK_NAME\" VALUE=\"\" />\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"myPassParentEnvs\" VALUE=\"true\" />\n      <envs>\n        <env name=\"RAILS_ENV\" value=\"test\" />\n      </envs>\n      <EXTENSION ID=\"BundlerRunConfigurationExtension\" bundleExecEnabled=\"false\" />\n      <EXTENSION ID=\"JRubyRunConfigurationExtension\" NailgunExecEnabled=\"false\" />\n      <EXTENSION ID=\"RubyCoverageRunConfigurationExtension\" track_test_folders=\"true\" runner=\"rcov\" />\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"RAKE_TASK_NAME\" VALUE=\"test\" />\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"RAKE_TASK_ARGS\" VALUE=\"\" />\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"RAKE_TASK_ATTACHED_TEST_FRAMEWORKS\" VALUE=\":test_unit \" />\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"RAKE_TASK_OPTION_TRACE\" VALUE=\"false\" />\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"RAKE_TASK_OPTION_DRYRUN\" VALUE=\"false\" />\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"RAKE_TASK_OPTION_PREREQS\" VALUE=\"false\" />\n      <method v=\"2\" />\n    </configuration>\n  </component>\n  <component name=\"SpringUtil\" SPRING_PRE_LOADER_OPTION=\"true\" />\n  <component name=\"SvnConfiguration\">\n    <configuration />\n  </component>\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\n      <changelist id=\"07dfb893-b59b-49a2-b2b3-ecce2d4c510c\" name=\"Default Changelist\" comment=\"\" />\n      <created>1565569412413</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1565569412413</updated>\n      <workItem from=\"1565569413707\" duration=\"5267000\" />\n      <workItem from=\"1565669749464\" duration=\"8388000\" />\n      <workItem from=\"1565741042017\" duration=\"1904000\" />\n      <workItem from=\"1565742964239\" duration=\"3092000\" />\n    </task>\n    <servers />\n  </component>\n  <component name=\"TimeTrackingManager\">\n    <option name=\"totallyTimeSpent\" value=\"18651000\" />\n  </component>\n  <component name=\"ToolWindowManager\">\n    <frame x=\"-6\" y=\"-6\" width=\"1513\" height=\"973\" extended-state=\"6\" />\n    <editor active=\"true\" />\n    <layout>\n      <window_info active=\"true\" content_ui=\"combo\" id=\"Project\" order=\"0\" visible=\"true\" weight=\"0.25910652\" />\n      <window_info id=\"Structure\" order=\"1\" side_tool=\"true\" weight=\"0.25\" />\n      <window_info id=\"Favorites\" order=\"2\" side_tool=\"true\" />\n      <window_info anchor=\"bottom\" id=\"Message\" order=\"0\" />\n      <window_info anchor=\"bottom\" id=\"Find\" order=\"1\" />\n      <window_info anchor=\"bottom\" id=\"Run\" order=\"2\" />\n      <window_info anchor=\"bottom\" id=\"Debug\" order=\"3\" weight=\"0.4\" />\n      <window_info anchor=\"bottom\" id=\"Cvs\" order=\"4\" weight=\"0.25\" />\n      <window_info anchor=\"bottom\" id=\"Inspection\" order=\"5\" weight=\"0.4\" />\n      <window_info anchor=\"bottom\" id=\"TODO\" order=\"6\" />\n      <window_info anchor=\"bottom\" id=\"Docker\" order=\"7\" show_stripe_button=\"false\" />\n      <window_info anchor=\"bottom\" id=\"File Transfer\" order=\"8\" sideWeight=\"0.4993094\" visible=\"true\" weight=\"0.3262159\" />\n      <window_info anchor=\"bottom\" id=\"Database Changes\" order=\"9\" />\n      <window_info anchor=\"bottom\" id=\"Terminal\" order=\"10\" />\n      <window_info anchor=\"bottom\" id=\"Event Log\" order=\"11\" sideWeight=\"0.5006906\" side_tool=\"true\" weight=\"0.32934132\" />\n      <window_info anchor=\"bottom\" id=\"Version Control\" order=\"12\" />\n      <window_info anchor=\"bottom\" id=\"Messages\" order=\"13\" weight=\"0.32934132\" />\n      <window_info anchor=\"right\" id=\"Commander\" internal_type=\"SLIDING\" order=\"0\" type=\"SLIDING\" weight=\"0.4\" />\n      <window_info anchor=\"right\" id=\"Ant Build\" order=\"1\" weight=\"0.25\" />\n      <window_info anchor=\"right\" content_ui=\"combo\" id=\"Hierarchy\" order=\"2\" weight=\"0.25\" />\n      <window_info anchor=\"right\" id=\"Database\" order=\"3\" />\n      <window_info anchor=\"right\" id=\"Remote Host\" order=\"4\" weight=\"0.32941988\" />\n    </layout>\n  </component>\n  <component name=\"TypeScriptGeneratedFilesManager\">\n    <option name=\"version\" value=\"1\" />\n  </component>\n  <component name=\"editorHistoryManager\">\n    <entry file=\"file://$PROJECT_DIR$/config/cable.yml\">\n      <provider selected=\"true\" editor-type-id=\"text-editor\" />\n    </entry>\n    <entry file=\"file://$PROJECT_DIR$/config/application.rb\">\n      <provider selected=\"true\" editor-type-id=\"text-editor\" />\n    </entry>\n    <entry file=\"file://$PROJECT_DIR$/config/boot.rb\">\n      <provider selected=\"true\" editor-type-id=\"text-editor\" />\n    </entry>\n    <entry file=\"file://$PROJECT_DIR$/config/deploy.rb\">\n      <provider selected=\"true\" editor-type-id=\"text-editor\" />\n    </entry>\n    <entry file=\"file://$PROJECT_DIR$/config/database.yml\">\n      <provider selected=\"true\" editor-type-id=\"text-editor\">\n        <state relative-caret-position=\"289\">\n          <caret line=\"53\" column=\"24\" lean-forward=\"true\" selection-start-line=\"53\" selection-start-column=\"24\" selection-end-line=\"53\" selection-end-column=\"24\" />\n        </state>\n      </provider>\n    </entry>\n    <entry file=\"file://$PROJECT_DIR$/config/environment.rb\">\n      <provider selected=\"true\" editor-type-id=\"text-editor\" />\n    </entry>\n    <entry file=\"file://$PROJECT_DIR$/config/credentials.yml.enc\">\n      <provider selected=\"true\" editor-type-id=\"text-editor\">\n        <state>\n          <caret column=\"45\" selection-start-column=\"41\" selection-end-column=\"45\" />\n        </state>\n      </provider>\n    </entry>\n    <entry file=\"file://$PROJECT_DIR$/config/routes.rb\">\n      <provider selected=\"true\" editor-type-id=\"text-editor\">\n        <state relative-caret-position=\"112\">\n          <caret line=\"13\" column=\"31\" selection-start-line=\"13\" selection-start-column=\"31\" selection-end-line=\"13\" selection-end-column=\"31\" />\n        </state>\n      </provider>\n    </entry>\n    <entry file=\"file://$PROJECT_DIR$/app/controllers/home_controller.rb\">\n      <provider selected=\"true\" editor-type-id=\"text-editor\" />\n    </entry>\n    <entry file=\"file://$PROJECT_DIR$/app/views/applyform/success_card.html.erb\">\n      <provider selected=\"true\" editor-type-id=\"text-editor\">\n        <state>\n          <caret column=\"22\" selection-start-column=\"22\" selection-end-column=\"22\" />\n        </state>\n      </provider>\n    </entry>\n    <entry file=\"file://$PROJECT_DIR$/app/controllers/applyform_controller.rb\">\n      <provider selected=\"true\" editor-type-id=\"text-editor\">\n        <state relative-caret-position=\"2329\">\n          <caret line=\"137\" column=\"38\" selection-start-line=\"137\" selection-start-column=\"38\" selection-end-line=\"137\" selection-end-column=\"38\" />\n        </state>\n      </provider>\n    </entry>\n    <entry file=\"file://$PROJECT_DIR$/app/views/applyform/error.html.erb\">\n      <provider selected=\"true\" editor-type-id=\"text-editor\">\n        <state relative-caret-position=\"357\">\n          <caret line=\"21\" column=\"21\" selection-start-line=\"21\" selection-start-column=\"21\" selection-end-line=\"21\" selection-end-column=\"21\" />\n        </state>\n      </provider>\n    </entry>\n    <entry file=\"file://$PROJECT_DIR$/config/environments/production.rb\">\n      <provider selected=\"true\" editor-type-id=\"text-editor\">\n        <state relative-caret-position=\"1819\">\n          <caret line=\"107\" column=\"55\" selection-start-line=\"107\" selection-start-column=\"55\" selection-end-line=\"107\" selection-end-column=\"55\" />\n        </state>\n      </provider>\n    </entry>\n    <entry file=\"file://$PROJECT_DIR$/config/environments/development.rb\">\n      <provider selected=\"true\" editor-type-id=\"text-editor\">\n        <state relative-caret-position=\"289\">\n          <caret line=\"17\" column=\"41\" lean-forward=\"true\" selection-start-line=\"17\" selection-start-column=\"41\" selection-end-line=\"17\" selection-end-column=\"41\" />\n        </state>\n      </provider>\n    </entry>\n    <entry file=\"file://$PROJECT_DIR$/app/assets/javascripts/home.js\">\n      <provider selected=\"true\" editor-type-id=\"text-editor\">\n        <state relative-caret-position=\"85\">\n          <caret line=\"5\" column=\"25\" lean-forward=\"true\" selection-start-line=\"5\" selection-start-column=\"25\" selection-end-line=\"5\" selection-end-column=\"25\" />\n          <folding>\n            <element signature=\"n#!!doc\" expanded=\"true\" />\n          </folding>\n        </state>\n      </provider>\n    </entry>\n    <entry file=\"file://$PROJECT_DIR$/app/assets/javascripts/js/slider.js\">\n      <provider selected=\"true\" editor-type-id=\"text-editor\">\n        <state>\n          <caret column=\"46\" lean-forward=\"true\" selection-start-column=\"46\" selection-end-column=\"46\" />\n        </state>\n      </provider>\n    </entry>\n    <entry file=\"file://$PROJECT_DIR$/app/views/applyform/apply.html.erb\">\n      <provider selected=\"true\" editor-type-id=\"text-editor\">\n        <state relative-caret-position=\"391\">\n          <caret line=\"23\" column=\"11\" selection-start-line=\"23\" selection-start-column=\"11\" selection-end-line=\"23\" selection-end-column=\"11\" />\n        </state>\n      </provider>\n    </entry>\n    <entry file=\"file://$PROJECT_DIR$/app/views/home/home.html.erb\">\n      <provider selected=\"true\" editor-type-id=\"text-editor\">\n        <state relative-caret-position=\"-1959\">\n          <caret line=\"31\" column=\"26\" lean-forward=\"true\" selection-start-line=\"31\" selection-start-column=\"26\" selection-end-line=\"31\" selection-end-column=\"26\" />\n        </state>\n      </provider>\n    </entry>\n    <entry file=\"file://$PROJECT_DIR$/app/views/shared/_testimonials.html.erb\">\n      <provider selected=\"true\" editor-type-id=\"text-editor\">\n        <state relative-caret-position=\"240\">\n          <caret line=\"32\" column=\"68\" selection-start-line=\"32\" selection-start-column=\"68\" selection-end-line=\"32\" selection-end-column=\"68\" />\n        </state>\n      </provider>\n    </entry>\n    <entry file=\"file://$PROJECT_DIR$/app/views/shared/_news.html.erb\">\n      <provider selected=\"true\" editor-type-id=\"text-editor\">\n        <state relative-caret-position=\"136\">\n          <caret line=\"8\" column=\"26\" selection-start-line=\"8\" selection-start-column=\"26\" selection-end-line=\"8\" selection-end-column=\"26\" />\n        </state>\n      </provider>\n    </entry>\n    <entry file=\"file://$PROJECT_DIR$/app/assets/stylesheets/home.scss\">\n      <provider selected=\"true\" editor-type-id=\"text-editor\">\n        <state relative-caret-position=\"115\">\n          <caret line=\"40\" column=\"13\" selection-start-line=\"40\" selection-start-column=\"13\" selection-end-line=\"40\" selection-end-column=\"13\" />\n        </state>\n      </provider>\n    </entry>\n    <entry file=\"file://$PROJECT_DIR$/app/assets/stylesheets/common/style.scss\">\n      <provider selected=\"true\" editor-type-id=\"text-editor\">\n        <state relative-caret-position=\"-806\">\n          <caret line=\"78\" column=\"15\" selection-start-line=\"78\" selection-start-column=\"15\" selection-end-line=\"78\" selection-end-column=\"15\" />\n        </state>\n      </provider>\n    </entry>\n    <entry file=\"file://$PROJECT_DIR$/app/views/applyform/success.html.erb\">\n      <provider selected=\"true\" editor-type-id=\"text-editor\">\n        <state relative-caret-position=\"170\">\n          <caret line=\"10\" column=\"14\" selection-start-line=\"10\" selection-start-column=\"14\" selection-end-line=\"10\" selection-end-column=\"14\" />\n        </state>\n      </provider>\n    </entry>\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/workspace.xml	(revision a15ffb5febfc0362ee148e16270f8e2e5e87e28c)
++++ .idea/workspace.xml	(date 1565834540381)
+@@ -2,128 +2,35 @@
+ <project version="4">
+   <component name="ChangeListManager">
+     <list default="true" id="07dfb893-b59b-49a2-b2b3-ecce2d4c510c" name="Default Changelist" comment="">
+-      <change afterPath="$PROJECT_DIR$/app/views/applyform/success_card.html.erb" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/app/assets/stylesheets/common/style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/app/assets/stylesheets/common/style.scss" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/app/controllers/applyform_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/applyform_controller.rb" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/app/views/applyform/apply.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/applyform/apply.html.erb" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/app/assets/javascripts/js/success.js" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/.generators" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.generators" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/moneyloop_website.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/moneyloop_website.iml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/webServers.xml" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/assets/javascripts/applyform.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/assets/javascripts/applyform.js" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/app/views/applyform/success.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/applyform/success.html.erb" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/app/views/shared/_news.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/shared/_news.html.erb" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/app/views/shared/_testimonials.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/shared/_testimonials.html.erb" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/config/credentials.yml.enc" beforeDir="false" afterPath="$PROJECT_DIR$/config/credentials.yml.enc" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/config/database.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/database.yml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/config/environments/development.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/environments/development.rb" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/config/routes.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.rb" afterDir="false" />
+     </list>
+-    <ignored path="$PROJECT_DIR$/.bundle/" />
+-    <ignored path="$PROJECT_DIR$/components/" />
+-    <ignored path="$PROJECT_DIR$/log/" />
+-    <ignored path="$PROJECT_DIR$/public/packs/" />
+-    <ignored path="$PROJECT_DIR$/public/system/" />
+-    <ignored path="$PROJECT_DIR$/tmp/" />
+-    <ignored path="$PROJECT_DIR$/vendor/bundle/" />
+-    <ignored path="$PROJECT_DIR$/vendor/cache/" />
+     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+     <option name="LAST_RESOLUTION" value="IGNORE" />
+   </component>
+-  <component name="FileEditorManager">
+-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+-      <file pinned="false" current-in-tab="false">
+-        <entry file="file://$PROJECT_DIR$/config/environments/development.rb">
+-          <provider selected="true" editor-type-id="text-editor">
+-            <state relative-caret-position="289">
+-              <caret line="17" column="41" lean-forward="true" selection-start-line="17" selection-start-column="41" selection-end-line="17" selection-end-column="41" />
+-            </state>
+-          </provider>
+-        </entry>
+-      </file>
+-      <file pinned="false" current-in-tab="false">
+-        <entry file="file://$PROJECT_DIR$/app/views/home/home.html.erb">
+-          <provider selected="true" editor-type-id="text-editor">
+-            <state relative-caret-position="-1959">
+-              <caret line="31" column="26" lean-forward="true" selection-start-line="31" selection-start-column="26" selection-end-line="31" selection-end-column="26" />
+-            </state>
+-          </provider>
+-        </entry>
+-      </file>
+-      <file pinned="false" current-in-tab="false">
+-        <entry file="file://$PROJECT_DIR$/app/views/shared/_testimonials.html.erb">
+-          <provider selected="true" editor-type-id="text-editor">
+-            <state relative-caret-position="240">
+-              <caret line="32" column="68" selection-start-line="32" selection-start-column="68" selection-end-line="32" selection-end-column="68" />
+-            </state>
+-          </provider>
+-        </entry>
+-      </file>
+-      <file pinned="false" current-in-tab="false">
+-        <entry file="file://$PROJECT_DIR$/app/views/shared/_news.html.erb">
+-          <provider selected="true" editor-type-id="text-editor">
+-            <state relative-caret-position="136">
+-              <caret line="8" column="26" selection-start-line="8" selection-start-column="26" selection-end-line="8" selection-end-column="26" />
+-            </state>
+-          </provider>
+-        </entry>
+-      </file>
+-      <file pinned="false" current-in-tab="false">
+-        <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/home.scss">
+-          <provider selected="true" editor-type-id="text-editor">
+-            <state relative-caret-position="115">
+-              <caret line="40" column="13" selection-start-line="40" selection-start-column="13" selection-end-line="40" selection-end-column="13" />
+-            </state>
+-          </provider>
+-        </entry>
+-      </file>
+-      <file pinned="false" current-in-tab="false">
+-        <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/common/style.scss">
+-          <provider selected="true" editor-type-id="text-editor">
+-            <state relative-caret-position="-806">
+-              <caret line="78" column="15" selection-start-line="78" selection-start-column="15" selection-end-line="78" selection-end-column="15" />
+-            </state>
+-          </provider>
+-        </entry>
+-      </file>
+-      <file pinned="false" current-in-tab="false">
+-        <entry file="file://$PROJECT_DIR$/app/assets/javascripts/home.js">
+-          <provider selected="true" editor-type-id="text-editor">
+-            <state relative-caret-position="85">
+-              <caret line="5" column="25" lean-forward="true" selection-start-line="5" selection-start-column="25" selection-end-line="5" selection-end-column="25" />
+-              <folding>
+-                <element signature="n#!!doc" expanded="true" />
+-              </folding>
+-            </state>
+-          </provider>
+-        </entry>
+-      </file>
+-      <file pinned="false" current-in-tab="false">
+-        <entry file="file://$PROJECT_DIR$/app/assets/javascripts/js/slider.js">
+-          <provider selected="true" editor-type-id="text-editor">
+-            <state>
+-              <caret column="46" lean-forward="true" selection-start-column="46" selection-end-column="46" />
+-            </state>
+-          </provider>
+-        </entry>
+-      </file>
+-      <file pinned="false" current-in-tab="false">
+-        <entry file="file://$PROJECT_DIR$/app/views/applyform/apply.html.erb">
+-          <provider selected="true" editor-type-id="text-editor">
+-            <state relative-caret-position="391">
+-              <caret line="23" column="11" selection-start-line="23" selection-start-column="11" selection-end-line="23" selection-end-column="11" />
+-            </state>
+-          </provider>
+-        </entry>
+-      </file>
+-      <file pinned="false" current-in-tab="true">
+-        <entry file="file://$PROJECT_DIR$/app/views/applyform/success.html.erb">
+-          <provider selected="true" editor-type-id="text-editor">
+-            <state relative-caret-position="170">
+-              <caret line="10" column="14" selection-start-line="10" selection-start-column="14" selection-end-line="10" selection-end-column="14" />
+-            </state>
+-          </provider>
+-        </entry>
+-      </file>
+-    </leaf>
++  <component name="DatabaseView">
++    <option name="SHOW_INTERMEDIATE" value="true" />
++    <option name="GROUP_DATA_SOURCES" value="true" />
++    <option name="GROUP_SCHEMA" value="true" />
++    <option name="GROUP_CONTENTS" value="false" />
++    <option name="SORT_POSITIONED" value="false" />
++    <option name="SHOW_EMPTY_GROUPS" value="false" />
++    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
++    <option name="HIDDEN_KINDS">
++      <set />
++    </option>
++    <expand />
++    <select />
+   </component>
+   <component name="FindInProjectRecents">
+     <findStrings>
+@@ -134,119 +41,20 @@
+   <component name="Git.Settings">
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+   </component>
+-  <component name="IdeDocumentHistory">
+-    <option name="CHANGED_PATHS">
+-      <list>
+-        <option value="$PROJECT_DIR$/config/credentials.yml.enc" />
+-        <option value="$PROJECT_DIR$/config/database.yml" />
+-        <option value="$PROJECT_DIR$/config/routes.rb" />
+-        <option value="$PROJECT_DIR$/app/views/applyform/apply.html.erb" />
+-        <option value="$PROJECT_DIR$/app/views/applyform/success_card.html.erb" />
+-        <option value="$PROJECT_DIR$/app/views/applyform/success.html.erb" />
+-        <option value="$PROJECT_DIR$/app/controllers/applyform_controller.rb" />
+-        <option value="$PROJECT_DIR$/config/environments/development.rb" />
+-        <option value="$PROJECT_DIR$/app/assets/javascripts/js/slider.js" />
+-        <option value="$PROJECT_DIR$/app/assets/stylesheets/home.scss" />
+-        <option value="$PROJECT_DIR$/app/views/home/home.html.erb" />
+-        <option value="$PROJECT_DIR$/app/views/shared/_testimonials.html.erb" />
+-        <option value="$PROJECT_DIR$/app/views/shared/_news.html.erb" />
+-        <option value="$PROJECT_DIR$/app/assets/stylesheets/common/style.scss" />
+-      </list>
+-    </option>
+-  </component>
+-  <component name="ProjectConfigurationFiles">
+-    <option name="files">
+-      <list>
+-        <option value="$PROJECT_DIR$/.idea/moneyloop_website.iml" />
+-        <option value="$PROJECT_DIR$/.idea/misc.xml" />
+-        <option value="$PROJECT_DIR$/.idea/vcs.xml" />
+-        <option value="$PROJECT_DIR$/.idea/modules.xml" />
+-        <option value="$PROJECT_DIR$/.idea/deployment.xml" />
+-        <option value="$PROJECT_DIR$/.idea/webServers.xml" />
+-      </list>
+-    </option>
+-  </component>
+-  <component name="ProjectFrameBounds" extendedState="6">
+-    <option name="x" value="-10" />
+-    <option name="y" value="2" />
+-    <option name="width" value="3012" />
+-    <option name="height" value="1930" />
++  <component name="LogFilters">
++    <option name="FILTER_ERRORS" value="false" />
++    <option name="FILTER_WARNINGS" value="false" />
++    <option name="FILTER_INFO" value="true" />
++    <option name="FILTER_DEBUG" value="true" />
++    <option name="CUSTOM_FILTER" />
+   </component>
+-  <component name="ProjectView">
+-    <navigator proportions="" version="1">
+-      <foldersAlwaysOnTop value="true" />
+-    </navigator>
+-    <panes>
+-      <pane id="Scope" />
+-      <pane id="ProjectPane">
+-        <subPane>
+-          <expand>
+-            <path>
+-              <item name="moneyloop_website" type="b2602c69:ProjectViewProjectNode" />
+-              <item name="moneyloop_website" type="462c0819:PsiDirectoryNode" />
+-            </path>
+-            <path>
+-              <item name="moneyloop_website" type="b2602c69:ProjectViewProjectNode" />
+-              <item name="moneyloop_website" type="462c0819:PsiDirectoryNode" />
+-              <item name="app" type="462c0819:PsiDirectoryNode" />
+-            </path>
+-            <path>
+-              <item name="moneyloop_website" type="b2602c69:ProjectViewProjectNode" />
+-              <item name="moneyloop_website" type="462c0819:PsiDirectoryNode" />
+-              <item name="app" type="462c0819:PsiDirectoryNode" />
+-              <item name="assets" type="462c0819:PsiDirectoryNode" />
+-            </path>
+-            <path>
+-              <item name="moneyloop_website" type="b2602c69:ProjectViewProjectNode" />
+-              <item name="moneyloop_website" type="462c0819:PsiDirectoryNode" />
+-              <item name="app" type="462c0819:PsiDirectoryNode" />
+-              <item name="views" type="462c0819:PsiDirectoryNode" />
+-            </path>
+-            <path>
+-              <item name="moneyloop_website" type="b2602c69:ProjectViewProjectNode" />
+-              <item name="moneyloop_website" type="462c0819:PsiDirectoryNode" />
+-              <item name="app" type="462c0819:PsiDirectoryNode" />
+-              <item name="views" type="462c0819:PsiDirectoryNode" />
+-              <item name="applyform" type="462c0819:PsiDirectoryNode" />
+-            </path>
+-            <path>
+-              <item name="moneyloop_website" type="b2602c69:ProjectViewProjectNode" />
+-              <item name="moneyloop_website" type="462c0819:PsiDirectoryNode" />
+-              <item name="app" type="462c0819:PsiDirectoryNode" />
+-              <item name="views" type="462c0819:PsiDirectoryNode" />
+-              <item name="layouts" type="462c0819:PsiDirectoryNode" />
+-            </path>
+-            <path>
+-              <item name="moneyloop_website" type="b2602c69:ProjectViewProjectNode" />
+-              <item name="moneyloop_website" type="462c0819:PsiDirectoryNode" />
+-              <item name="app" type="462c0819:PsiDirectoryNode" />
+-              <item name="views" type="462c0819:PsiDirectoryNode" />
+-              <item name="shared" type="462c0819:PsiDirectoryNode" />
+-            </path>
+-            <path>
+-              <item name="moneyloop_website" type="b2602c69:ProjectViewProjectNode" />
+-              <item name="moneyloop_website" type="462c0819:PsiDirectoryNode" />
+-              <item name="config" type="462c0819:PsiDirectoryNode" />
+-            </path>
+-            <path>
+-              <item name="moneyloop_website" type="b2602c69:ProjectViewProjectNode" />
+-              <item name="moneyloop_website" type="462c0819:PsiDirectoryNode" />
+-              <item name="config" type="462c0819:PsiDirectoryNode" />
+-              <item name="environments" type="462c0819:PsiDirectoryNode" />
+-            </path>
+-            <path>
+-              <item name="moneyloop_website" type="b2602c69:ProjectViewProjectNode" />
+-              <item name="moneyloop_website" type="462c0819:PsiDirectoryNode" />
+-              <item name="public" type="462c0819:PsiDirectoryNode" />
+-            </path>
+-          </expand>
+-          <select />
+-        </subPane>
+-      </pane>
+-      <pane id="RailsProjectView" />
+-    </panes>
++  <component name="ProjectId" id="1PRKB8IDEE4h8QlgpmLWqtichJQ" />
++  <component name="ProjectLevelVcsManager">
++    <ConfirmationsSetting value="2" id="Add" />
+   </component>
+   <component name="PropertiesComponent">
++    <property name="DatabaseDriversLRU" value="postgresql" />
++    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+     <property name="WebServerToolWindowFactoryState" value="true" />
+     <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
+     <property name="WebServerToolWindowPanel.toolwindow.highlight.symlinks" value="true" />
+@@ -287,7 +95,11 @@
+       <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
+       <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="false" />
+       <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />
+-      <EXTENSION ID="RubyCoverageRunConfigurationExtension" track_test_folders="true" runner="rcov" />
++      <EXTENSION ID="RubyCoverageRunConfigurationExtension" track_test_folders="true" runner="rcov">
++        <COVERAGE_PATTERN ENABLED="true">
++          <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
++        </COVERAGE_PATTERN>
++      </EXTENSION>
+       <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="SCRIPT_ARGS" VALUE="" />
+       <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="PORT" VALUE="3000" />
+       <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="IP" VALUE="127.0.0.1" />
+@@ -307,7 +119,11 @@
+       <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
+       <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="false" />
+       <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />
+-      <EXTENSION ID="RubyCoverageRunConfigurationExtension" track_test_folders="true" runner="rcov" />
++      <EXTENSION ID="RubyCoverageRunConfigurationExtension" track_test_folders="true" runner="rcov">
++        <COVERAGE_PATTERN ENABLED="true">
++          <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
++        </COVERAGE_PATTERN>
++      </EXTENSION>
+       <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="SCRIPT_ARGS" VALUE="" />
+       <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="PORT" VALUE="3000" />
+       <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="IP" VALUE="127.0.0.1" />
+@@ -326,13 +142,18 @@
+       <RAKE_RUN_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
+       <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="false" />
+       <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />
+-      <EXTENSION ID="RubyCoverageRunConfigurationExtension" track_test_folders="true" runner="rcov" />
++      <EXTENSION ID="RubyCoverageRunConfigurationExtension" track_test_folders="true" runner="rcov">
++        <COVERAGE_PATTERN ENABLED="true">
++          <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
++        </COVERAGE_PATTERN>
++      </EXTENSION>
+       <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_NAME" VALUE="spec" />
+       <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_ARGS" VALUE="" />
+       <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_ATTACHED_TEST_FRAMEWORKS" VALUE=":rspec " />
+       <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_TRACE" VALUE="false" />
+       <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_DRYRUN" VALUE="false" />
+       <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_PREREQS" VALUE="false" />
++      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_VERBOSE" VALUE="null" />
+       <method v="2" />
+     </configuration>
+     <configuration name="test: moneyloop_website" type="RakeRunConfigurationType" factoryName="Rake">
+@@ -347,13 +168,18 @@
+       </envs>
+       <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="false" />
+       <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />
+-      <EXTENSION ID="RubyCoverageRunConfigurationExtension" track_test_folders="true" runner="rcov" />
++      <EXTENSION ID="RubyCoverageRunConfigurationExtension" track_test_folders="true" runner="rcov">
++        <COVERAGE_PATTERN ENABLED="true">
++          <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
++        </COVERAGE_PATTERN>
++      </EXTENSION>
+       <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_NAME" VALUE="test" />
+       <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_ARGS" VALUE="" />
+       <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_ATTACHED_TEST_FRAMEWORKS" VALUE=":test_unit " />
+       <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_TRACE" VALUE="false" />
+       <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_DRYRUN" VALUE="false" />
+       <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_PREREQS" VALUE="false" />
++      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_VERBOSE" VALUE="null" />
+       <method v="2" />
+     </configuration>
+   </component>
+@@ -372,183 +198,25 @@
+       <workItem from="1565669749464" duration="8388000" />
+       <workItem from="1565741042017" duration="1904000" />
+       <workItem from="1565742964239" duration="3092000" />
++      <workItem from="1565831332761" duration="2443000" />
+     </task>
+     <servers />
+   </component>
+-  <component name="TimeTrackingManager">
+-    <option name="totallyTimeSpent" value="18651000" />
+-  </component>
+-  <component name="ToolWindowManager">
+-    <frame x="-6" y="-6" width="1513" height="973" extended-state="6" />
+-    <editor active="true" />
+-    <layout>
+-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25910652" />
+-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+-      <window_info id="Favorites" order="2" side_tool="true" />
+-      <window_info anchor="bottom" id="Message" order="0" />
+-      <window_info anchor="bottom" id="Find" order="1" />
+-      <window_info anchor="bottom" id="Run" order="2" />
+-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+-      <window_info anchor="bottom" id="TODO" order="6" />
+-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+-      <window_info anchor="bottom" id="File Transfer" order="8" sideWeight="0.4993094" visible="true" weight="0.3262159" />
+-      <window_info anchor="bottom" id="Database Changes" order="9" />
+-      <window_info anchor="bottom" id="Terminal" order="10" />
+-      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5006906" side_tool="true" weight="0.32934132" />
+-      <window_info anchor="bottom" id="Version Control" order="12" />
+-      <window_info anchor="bottom" id="Messages" order="13" weight="0.32934132" />
+-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+-      <window_info anchor="right" id="Database" order="3" />
+-      <window_info anchor="right" id="Remote Host" order="4" weight="0.32941988" />
+-    </layout>
+-  </component>
+   <component name="TypeScriptGeneratedFilesManager">
+     <option name="version" value="1" />
+   </component>
+-  <component name="editorHistoryManager">
+-    <entry file="file://$PROJECT_DIR$/config/cable.yml">
+-      <provider selected="true" editor-type-id="text-editor" />
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/config/application.rb">
+-      <provider selected="true" editor-type-id="text-editor" />
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/config/boot.rb">
+-      <provider selected="true" editor-type-id="text-editor" />
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/config/deploy.rb">
+-      <provider selected="true" editor-type-id="text-editor" />
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/config/database.yml">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="289">
+-          <caret line="53" column="24" lean-forward="true" selection-start-line="53" selection-start-column="24" selection-end-line="53" selection-end-column="24" />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/config/environment.rb">
+-      <provider selected="true" editor-type-id="text-editor" />
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/config/credentials.yml.enc">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state>
+-          <caret column="45" selection-start-column="41" selection-end-column="45" />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/config/routes.rb">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="112">
+-          <caret line="13" column="31" selection-start-line="13" selection-start-column="31" selection-end-line="13" selection-end-column="31" />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/app/controllers/home_controller.rb">
+-      <provider selected="true" editor-type-id="text-editor" />
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/app/views/applyform/success_card.html.erb">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state>
+-          <caret column="22" selection-start-column="22" selection-end-column="22" />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/app/controllers/applyform_controller.rb">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="2329">
+-          <caret line="137" column="38" selection-start-line="137" selection-start-column="38" selection-end-line="137" selection-end-column="38" />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/app/views/applyform/error.html.erb">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="357">
+-          <caret line="21" column="21" selection-start-line="21" selection-start-column="21" selection-end-line="21" selection-end-column="21" />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/config/environments/production.rb">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="1819">
+-          <caret line="107" column="55" selection-start-line="107" selection-start-column="55" selection-end-line="107" selection-end-column="55" />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/config/environments/development.rb">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="289">
+-          <caret line="17" column="41" lean-forward="true" selection-start-line="17" selection-start-column="41" selection-end-line="17" selection-end-column="41" />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/home.js">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="85">
+-          <caret line="5" column="25" lean-forward="true" selection-start-line="5" selection-start-column="25" selection-end-line="5" selection-end-column="25" />
+-          <folding>
+-            <element signature="n#!!doc" expanded="true" />
+-          </folding>
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/js/slider.js">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state>
+-          <caret column="46" lean-forward="true" selection-start-column="46" selection-end-column="46" />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/app/views/applyform/apply.html.erb">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="391">
+-          <caret line="23" column="11" selection-start-line="23" selection-start-column="11" selection-end-line="23" selection-end-column="11" />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/app/views/home/home.html.erb">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="-1959">
+-          <caret line="31" column="26" lean-forward="true" selection-start-line="31" selection-start-column="26" selection-end-line="31" selection-end-column="26" />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/app/views/shared/_testimonials.html.erb">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="240">
+-          <caret line="32" column="68" selection-start-line="32" selection-start-column="68" selection-end-line="32" selection-end-column="68" />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/app/views/shared/_news.html.erb">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="136">
+-          <caret line="8" column="26" selection-start-line="8" selection-start-column="26" selection-end-line="8" selection-end-column="26" />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/home.scss">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="115">
+-          <caret line="40" column="13" selection-start-line="40" selection-start-column="13" selection-end-line="40" selection-end-column="13" />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/common/style.scss">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="-806">
+-          <caret line="78" column="15" selection-start-line="78" selection-start-column="15" selection-end-line="78" selection-end-column="15" />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/app/views/applyform/success.html.erb">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="170">
+-          <caret line="10" column="14" selection-start-line="10" selection-start-column="14" selection-end-line="10" selection-end-column="14" />
+-        </state>
+-      </provider>
+-    </entry>
++  <component name="Vcs.Log.Tabs.Properties">
++    <option name="TAB_STATES">
++      <map>
++        <entry key="MAIN">
++          <value>
++            <State />
++          </value>
++        </entry>
++      </map>
++    </option>
++  </component>
++  <component name="com.intellij.coverage.CoverageDataManagerImpl">
++    <SUITE FILE_PATH="coverage/moneyloop_ruby@Development__moneyloop_website.rcov" NAME="Development: moneyloop_website Coverage Results" MODIFIED="1565831460538" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="moneyloop_website" />
+   </component>
+ </project>
+\ No newline at end of file
