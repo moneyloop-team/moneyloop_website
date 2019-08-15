@@ -9,33 +9,49 @@ class ApplyformController < ApplicationController
   end
 
   def apply
-    # Get the company from the GET url params
-    @exposure = params['exposure']
-    id = params['company']
-    response = getCompany(id)
-    if(response.code == "200")
-      @company = JSON(response.body)
+    if request.post? && request.request_parameters["creditCardToken"].nil? == false
+     card_response = create_payment(params[:creditCardToken], $customer['cuid'], $customer["company_id"], 2)
+      if card_response.code == "200"
+        @notice = "Card Added Successfully"
+        @company_name =  getCompany( $customer["company_id"])['name']
+        render js: "$('#myModal').modal('hide');document.getElementById('add_payment').style.display='none';document.getElementById('source_added').style.display='block';" and return
+      end
     else
-      @error_msg = "Unable to find your Insurer"
-      render :error
-    end
-
-
-    # The customer has submitted an application form, let's create a new customer
-    if request.post?
-      get_request_params request    # Get the parameters required that the user didn't supply
-      response = create_customer()  # Send user data to the dashboard and save the response
-      response = JSON(response.body)
-      
-      if response['code'] == "200"  # Send the appropriate response
-        @notice = response['credit_score']
-        render :success
-        return
+      # The customer has submitted an application form, let's create a new customer
+      if request.post?
+        # Get the company from the GET url params
+        @exposure = params['exposure']
+        id = params[:company_id]
+        response = getCompany(id)
+        if(response.code == "200")
+          @company = JSON(response.body)
+        else
+          @error_msg = "Unable to find your Insurer"
+          render :error and return
+        end
+        get_request_params request    # Get the parameters required that the user didn't supply
+        response = create_customer()  # Send user data to the dashboard and save the response
+        response_customer = JSON(response.body)
+        if response.code == "201"  # Send the appropriate response
+          $customer = response_customer
+          @notice = response_customer['credit_score']
+          render :success and return
+        else
+          @error_code = response['code']
+          @error_body = response['body']
+          render :error and return
+        end
       else
-        @error_code = response['code']
-        @error_body = response['body']
-        render :error
-        return
+        # Get the company from the GET url params
+        @exposure = params['exposure']
+        id = params[:company]
+        response = getCompany(id)
+        if(response.code == "200")
+          @company = JSON(response.body)
+        else
+          @error_msg = "Unable to find your Insurer"
+          render :error and return
+        end
       end
     end
   end
@@ -115,5 +131,30 @@ class ApplyformController < ApplicationController
         http.request(request)
       end
       return response
+  end
+
+  def create_payment(creditCardToken, id, company_id, duration)
+    uri = URI.parse("http://157.230.242.156/add_payment_source/")
+    request = Net::HTTP::Post.new(uri)
+    request.content_type = "application/json"
+    request["Postman-Token"] = "c3bf8176-37dc-4ba3-ad8e-a8de8f92befa"
+    request["Cache-Control"] = "no-cache"
+    request.body = JSON.dump({
+      "creditCardToken" => creditCardToken,
+      "customer_id" => id,
+      "establishment_fee" => 1,
+      "company_id" => company_id,
+      "duration" => duration
+      })
+    req_options = {
+        use_ssl: uri.scheme == "https",
+    }
+
+    response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
+      http.request(request)
+    end
+    response.code
+    response.body
+    return response
   end
 end
