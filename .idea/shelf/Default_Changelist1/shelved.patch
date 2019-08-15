@@ -1,0 +1,23 @@
+Index: .idea/deployment.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"PublishConfigData\" autoUpload=\"Always\" serverName=\"landingpage\">\n    <serverData>\n      <paths name=\"landingpage\">\n        <serverdata>\n          <mappings>\n            <mapping deploy=\"/landingpage\" local=\"$PROJECT_DIR$\" web=\"/\" />\n          </mappings>\n        </serverdata>\n      </paths>\n    </serverData>\n    <option name=\"myAutoUpload\" value=\"ALWAYS\" />\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/deployment.xml	(revision a15ffb5febfc0362ee148e16270f8e2e5e87e28c)
++++ .idea/deployment.xml	(date 1565834670526)
+@@ -9,6 +9,13 @@
+           </mappings>
+         </serverdata>
+       </paths>
++      <paths name="landingpage (project level)">
++        <serverdata>
++          <mappings>
++            <mapping deploy="/landingpage" local="$PROJECT_DIR$" web="/" />
++          </mappings>
++        </serverdata>
++      </paths>
+     </serverData>
+     <option name="myAutoUpload" value="ALWAYS" />
+   </component>
