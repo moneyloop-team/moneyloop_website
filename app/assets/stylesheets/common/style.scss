@@ -15,6 +15,7 @@ Boxes, Cards and Sections
    margin-bottom: 7%;
 }
 .box-sm {
+   display: flex;
    min-height: 150px;
 }
 .title_box{
@@ -77,8 +78,8 @@ Text
    }
 }
 .center {
-   display: flex;
-   align-items: center;
+   margin: auto;
+   text-align: center;
 }
 
 /*-----------------------------------------
