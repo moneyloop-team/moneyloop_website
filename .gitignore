@@ -40,3 +40,6 @@ run
 
 # Ignore Revisions log files
 revisions.log
+
+# Ignore RubyMine
+.idea

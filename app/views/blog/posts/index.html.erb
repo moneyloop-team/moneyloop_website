@@ -1,0 +1,31 @@
+<%# Title Card %>
+<div class="moneyloop-bg-orange mb30 title-card">
+  <div class="container">
+    <div class="row">
+      <div class="text-center padding2 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+        <h1>In the News</h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="container">
+  <div class="row">
+    <!-- List of posts -->
+    <% @posts.each do |post| %>
+      <%= render :partial => 'post', :locals => {:post => post} %>
+      <br/><br/>
+    <% end %>
+
+    <!-- Pagination links -->
+    <div>
+      <% if @previous_page %>
+        <%= link_to "Prev", buttercms_blog_path(:page => @previous_page) %>
+      <% end %>
+
+      <% if @next_page %>
+        <%= link_to "Next", buttercms_blog_path(:page => @next_page) %>
+      <% end %>
+    </div>
+  </div>
+</section>
