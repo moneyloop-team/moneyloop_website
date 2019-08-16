@@ -17,9 +17,10 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 Rails.application.config.assets.precompile += %w( material/*.css material/*.js )
 
 # Add contoller-specific stylesheets and scripts in app/assets/stylesheets
-Rails.application.config.assets.precompile += %w( home.css home.js)
+Rails.application.config.assets.precompile += %w( static.css home.js)
 Rails.application.config.assets.precompile += %w( about.css about.js)
 Rails.application.config.assets.precompile += %w( contact.css contact.js)
 Rails.application.config.assets.precompile += %w( applyform.css applyform.js)
 Rails.application.config.assets.precompile += %w( blogs.css blogs.js)
 Rails.application.config.assets.precompile += %w( devise/*.css devise/*.js)
+Rails.application.config.assets.precompile += %w( static.js )
