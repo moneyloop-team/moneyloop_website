@@ -24,11 +24,15 @@ gem 'jbuilder', '~> 2.5'
 # Assets
 gem 'bootstrap', '~> 4.3.1'
 gem 'font-awesome-rails'
+gem 'fontello-rails'
 gem 'jquery-rails'
 gem 'owlcarousel-rails'
 
 # Blog Engine with ButterCMS
 gem 'buttercms-rails'
+
+# AWS s3 buckets for ActiveStorage
+gem 'aws-sdk-s3', require: false
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
