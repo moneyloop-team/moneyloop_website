@@ -1,2 +1,0 @@
-class Blogimage < ApplicationRecord
-end

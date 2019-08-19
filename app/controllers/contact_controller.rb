@@ -1,7 +1,7 @@
 class ContactController < ApplicationController
   layout 'mailer'
 
-  def index
+  def contact
   end
 
   def send_email

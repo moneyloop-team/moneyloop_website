@@ -1,2 +1,2 @@
 require 'buttercms-ruby'
-ButterCMS::api_token = '3e5269ea075a1540e45d687041109da43df62248';
+ButterCMS::api_token = Rails.application.credentials[:BUTTERCMS_API];

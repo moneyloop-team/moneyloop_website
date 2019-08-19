@@ -6,9 +6,6 @@
 
 .DS_Store
 
-# Ignore the run file
-run
-
 # Ignore bundler config.
 /.bundle
 
@@ -40,3 +37,6 @@ run
 
 # Ignore Revisions log files
 revisions.log
+
+# Ignore RubyMine
+.idea
