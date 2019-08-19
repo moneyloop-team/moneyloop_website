@@ -1,36 +1,4 @@
-# Moneyloop
-
-Moneyloop's rails repo
-
-## Getting Started
-
-Run `./run`
-
-### Prerequisites
-
-- AWS instance
-- Rails
-
-### Installing
-
-
-## Running the tests
-
-
-### Break down into end to end tests
-
-
-### And coding style tests
-
-
-## Deployment
-
-
-## Built With
-
-* 
-
-
+# Moneyloop - Website
 ## Authors
-
 * **Daniel Latimer** [danielmoneyloop](https://github.com/danielmoneylooop)
+* **Joshua Theeuf** [rmit-s3234575-joshua-theeuf](https://github.com/rmit-s3234575-joshua-theeuf)
