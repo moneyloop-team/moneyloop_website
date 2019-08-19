@@ -16,4 +16,5 @@ RUN rake db:create
 RUN rake db:migrate
 RUN rake db:seed
 # Start the main process.
+CMD["docker-compose up"]
 CMD ["rails", "server", "-b", "0.0.0.0"]
