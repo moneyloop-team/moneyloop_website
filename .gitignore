@@ -39,4 +39,4 @@
 revisions.log
 
 # Ignore RubyMine
-.idea
+/.idea
