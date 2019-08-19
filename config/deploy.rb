@@ -1,10 +1,11 @@
-server '13.54.68.36', port: 22, roles: [:web, :app, :db], primary: true
+server '165.22.55.23', port: 22, roles: [:web, :app, :db], primary: true
 
-set :repo_url,        'git@github.com:m8srates-holdings-pty-ltd/moneyloop-rails.git'
+set :repo_url,        'git@github.com:moneyloop-team/moneyloop_website.git'
 set :application,     'moneyloop'
-set :user,            'ubuntu'
+set :user,            'dan'
 set :puma_threads,    [4, 16]
 set :puma_workers,    0
+set :branch, ENV['BRANCH'] if ENV['BRANCH']
 
 # Don't change these unless you know what you're doing
 set :pty,             true

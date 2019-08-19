@@ -1,17 +1,4 @@
 Rails.application.routes.draw do
-  # Blog Engine with ButterCMS
-  scope module: 'blog' do
-    get '/categories/:slug' => 'categories#show', as: :buttercms_category
-    get '/author/:slug' => 'authors#show', as: :buttercms_author
-
-    get '/news/rss' => 'feeds#rss', format: 'rss', as: :buttercms_blog_rss
-    get '/news/atom' => 'feeds#atom', format: 'atom', as: :buttercms_blog_atom
-    get '/news/sitemap.xml' => 'feeds#sitemap', format: 'xml', as: :buttercms_blog_sitemap
-
-    get '/news(/page/:page)' => 'posts#index', defaults: { page: 1 }, as: :buttercms_blog
-    get '/news/:slug' => 'posts#show', as: :buttercms_post
-  end
-
   # Static Pages
   get 'home', to: 'static#home'
   get 'about', to: 'static#about'
@@ -29,6 +16,19 @@ Rails.application.routes.draw do
 
   # Dashboard
   get 'login', to: redirect('http://dashboard.moneyloop.com.au/admins/sign_in', status: 301)
+
+  # Blog Engine with ButterCMS
+  scope module: 'blog' do
+    get '/categories/:slug' => 'categories#show', as: :buttercms_category
+    get '/author/:slug' => 'authors#show', as: :buttercms_author
+
+    get '/news/rss' => 'feeds#rss', format: 'rss', as: :buttercms_blog_rss
+    get '/news/atom' => 'feeds#atom', format: 'atom', as: :buttercms_blog_atom
+    get '/news/sitemap.xml' => 'feeds#sitemap', format: 'xml', as: :buttercms_blog_sitemap
+
+    get '/news(/page/:page)' => 'posts#index', defaults: { page: 1 }, as: :buttercms_blog
+    get '/news/:slug' => 'posts#show', as: :buttercms_post
+  end
 
   # Root address
   root 'static#home'

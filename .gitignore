@@ -6,9 +6,6 @@
 
 .DS_Store
 
-# Ignore the run file
-run
-
 # Ignore bundler config.
 /.bundle
 

@@ -16,9 +16,9 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 # Add all the asset stylesheets and scripts in app/assets/stylesheets and app/assets/javascripts
 Rails.application.config.assets.precompile += %w( material/*.css material/*.js )
 
-# Add contoller-specific stylesheets and scripts in app/assets/stylesheets
-Rails.application.config.assets.precompile += %w( static.css static.js)
-Rails.application.config.assets.precompile += %w( about.css about.js)
-Rails.application.config.assets.precompile += %w( contact.css contact.js)
-Rails.application.config.assets.precompile += %w( applyform.css applyform.js)
-Rails.application.config.assets.precompile += %w( blog/*.css blog/*.js)
+# Add controller-specific stylesheets and scripts in app/assets/stylesheets
+Rails.application.config.assets.precompile += %w( static.css static.js )
+Rails.application.config.assets.precompile += %w( about.css about.js )
+Rails.application.config.assets.precompile += %w( contact.css contact.js )
+Rails.application.config.assets.precompile += %w( applyform.css applyform.js )
+Rails.application.config.assets.precompile += %w( blog/*.css blog/*.js )
