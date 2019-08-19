@@ -11,11 +11,16 @@
 
 <section class="container">
   <div class="row">
-    <!-- List of posts -->
-    <% @posts.each do |post| %>
-      <%= render :partial => 'post', :locals => {:post => post} %>
-      <br/><br/>
-    <% end %>
+    <%# List of posts %>
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+      <div class="row">
+        <% @posts.each do |post| %>
+          <div class="col-xl-5 offset-xl-1 col-lg-5 offset-lg-1 col-md-12 col-sm-12 col-12">
+            <%= render :partial => 'post', :locals => {:post => post, with_summary: true} %>
+          </div>
+        <% end %>
+      </div>
+    </div>
 
     <!-- Pagination links -->
     <div>
@@ -27,5 +32,6 @@
         <%= link_to "Next", buttercms_blog_path(:page => @next_page) %>
       <% end %>
     </div>
+
   </div>
 </section>

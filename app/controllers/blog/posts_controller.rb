@@ -11,8 +11,7 @@ class Blog::PostsController < Blog::BaseController
 
   def show
     @post = ButterCMS::Post.find(params[:slug])
-
-    @next_post = @post.meta.next_post
-    @previous_post = @post.meta.previous_post
+    category = @post.categories.first.slug # Get the first category
+    @category = ButterCMS::Category.find(category, include: :recent_posts)
   end
 end

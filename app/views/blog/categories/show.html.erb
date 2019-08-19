@@ -1,13 +1,23 @@
 <%= content_for :html_title, @category.name %>
 
-    <!-- Category name -->
-    <h2><%= @category.name %></h2>
+<section class="container">
+  <div class="row">
+    <%# Category name %>
+    <div class="text-center col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+      <h1><%= @category.name %></h1>
+    </div>
 
-    <!-- Recent posts -->
-    <h4>Recent posts</h4>
+    <%# Recent posts %>
+    <div class="padding2 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+      <h2>Recent posts</h2>
+      <div class="row">
+        <% @category.recent_posts.each do |post| %>
+          <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+            <%= render :partial => 'blog/posts/post', :locals => {:post => post, with_summary: false} %>
+          </div>
+        <% end %>
+      </div>
+    </div>
 
-    <ul>
-      <% @category.recent_posts.each do |post| %>
-        <li><%= render :partial => 'blog/posts/post', :locals => {:post => post} %></li>
-      <% end %>
-    </ul>
+  </div>
+</section>
