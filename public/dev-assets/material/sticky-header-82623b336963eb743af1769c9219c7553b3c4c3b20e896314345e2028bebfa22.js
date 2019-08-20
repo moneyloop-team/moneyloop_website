@@ -1,1 +1,0 @@
-$(document).on("ready",function(){"use strict";"768"<=$(window).width()&&$(".header, .header-2").sticky({topSpacing:0})}),$(document).on("ready",function(){"use strict";"768"<=$(window).width()&&$("#sub-nav").sticky({topSpacing:100})});

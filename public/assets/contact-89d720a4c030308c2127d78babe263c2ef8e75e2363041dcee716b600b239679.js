@@ -1,2 +1,0 @@
-// Scripts required in :contact
-;

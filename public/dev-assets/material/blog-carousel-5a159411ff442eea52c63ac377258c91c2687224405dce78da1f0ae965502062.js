@@ -1,1 +1,0 @@
-$(document).on("ready",function(){"use strict";$("#post-gallery").owlCarousel({navigation:!1,slideSpeed:300,paginationSpeed:400,singleItem:!0,pagination:!1,autoPlay:!0})});
