@@ -11,7 +11,8 @@ Rails.application.routes.draw do
   post 'send_email', to: 'contact#send_email', as: 'send_email'
 
   # Application form
-  get 'apply', to: 'applyform#apply'
+  # get 'apply/:company/:exposure', to: 'applyform#apply'
+  get 'application/:company/:exposure/:duration', to: 'applyform#apply'
   post 'apply', to: 'applyform#apply'
 
   # Dashboard
