@@ -69,6 +69,11 @@ Boxes, Cards and Sections
 /*-----------------------------------------
 Images
 ------------------------------------------*/
+.img-sm {
+  object-fit: cover;
+  max-width: 50px;
+  max-height: 50px;
+}
 .img-md {
 
    max-height: 100px;
@@ -85,11 +90,19 @@ Images
    width: 360px;
    height: 360px;
 }
-.img-grayscale{
+.img-banner {
+    object-fit: cover;
+    width: 720px;
+    height: 300px;
+}
+.img-grayscale {
    filter: grayscale(100%);
    &:hover{
       filter: grayscale(0%);
    }
+}
+.img-curve {
+  border-radius: 10px;
 }
 
 /*-----------------------------------------

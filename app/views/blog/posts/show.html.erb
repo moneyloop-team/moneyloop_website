@@ -1,30 +1,55 @@
 <%= content_for :html_title, @post.seo_title %>
 <%= content_for :meta_description, @post.meta_description %>
 
+<section class="container">
+  <div class="row">
+    <div class="pdb20 col-xl-8 offset-xl-2">
+      <%# Post Title %>
+      <h1><%= @post.title %></h1>
+      <%# Post Metadata %>
+      <div class="row pdb20">
+        <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1">
+          <% if @post.author.profile_image %>
+            <img src="<%= @post.author.profile_image %>" class="img-sm img-curve" />
+          <% end %>
+        </div>
+        <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9 col-9">
+          <p>
+            <%= link_to "#{@post.author.first_name} #{@post.author.last_name}", buttercms_author_path(@post.author.slug) %> <br/>
+            <small><%= Time.parse(@post.published).strftime('%B %d, %Y') %></small>
+          </p>
+        </div>
+      </div>
+      <%# Post Body %>
+      <%= @post.body.html_safe %>
 
-    <!-- Post title -->
-    <h2><%= @post.title %></h2>
+      <%# Categories %>
+      <% @post.categories.each do |category| %>
+        <%= link_to category.name, buttercms_category_path(category.slug), :title => category.name, class: "btn btn-small" %>
+      <% end %>
+    </div>
+    <%# Comments and Social Media? %>
+  </div>
+</section>
 
-    <!-- Post author -->
-    <p>
-      <%= link_to "#{@post.author.first_name} #{@post.author.last_name}", buttercms_author_path(@post.author.slug) %>
-    </p>
-
-    <!-- Post categories -->
-    <% @post.categories.each do |category| %>
-      <%= link_to category.name, buttercms_category_path(category.slug), :title => category.name %>
-    <% end %>
-
-    <!-- Publish date -->
-    <p><%= Time.parse(@post.published).strftime('%B %d, %Y') %></p>
-
-    <!-- Post body -->
-    <%= @post.body.html_safe %>
-
-    <!-- Link to Next Post -->
-    <% if @next_post %>
-      <%= link_to @next_post.title, buttercms_post_path(@next_post.slug), :title => @next_post.title %>
-    <% end %>
+<%# Related Articles %>
+<section class="moneyloop-bg-grey pinside20">
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-12">
+        <h2 class="text-center">Related Articles</h2>
+        <div class="row">
+          <% @category.recent_posts.each do |post| %>
+            <% next if (post.title ==  @post.title) %>
+            <div class="col-xl-4">
+              <%= render :partial => 'blog/posts/post', :locals => {:post => post, with_summary: false} %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 
 <!--

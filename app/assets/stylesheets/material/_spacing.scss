@@ -24,6 +24,11 @@ Margin space
 .mt-60 { margin-top: -60px; }
 .mt-80 { margin-top: -80px; }
 
+.marginside10 {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
 .marginside20 {
    margin-left: 20px;
    margin-right: 20px;
@@ -77,6 +82,10 @@ Padding space
 }
 .paddingb5 {
    padding-bottom: 5%;
+}
+
+.pdr0 {
+  padding-right: 0px;
 }
 
 .nopadding { padding: 0px; }
