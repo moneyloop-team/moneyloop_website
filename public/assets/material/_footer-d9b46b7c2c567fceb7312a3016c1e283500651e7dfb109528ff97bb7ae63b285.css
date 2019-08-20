@@ -1,0 +1,101 @@
+/*---------------------------------------
+  Footer              
+-----------------------------------------*/
+/* line 5, app/assets/stylesheets/material/_footer.scss */
+.footer {
+  background: #f6f7ef;
+  padding: 50px 0;
+}
+
+/* line 8, app/assets/stylesheets/material/_footer.scss */
+.footer h2 {
+  font-size: 20px;
+}
+
+/* line 11, app/assets/stylesheets/material/_footer.scss */
+.footer a, .footer p {
+  color: #909090;
+}
+
+/* line 14, app/assets/stylesheets/material/_footer.scss */
+.footer a:hover {
+  color: #f6893d;
+  text-decoration: none;
+}
+
+/* line 18, app/assets/stylesheets/material/_footer.scss */
+.footer strong {
+  color: #d9d9d9;
+}
+
+/* line 21, app/assets/stylesheets/material/_footer.scss */
+.footer address p {
+  margin-bottom: 0;
+}
+
+/* line 24, app/assets/stylesheets/material/_footer.scss */
+.footer .social-icon {
+  margin-top: 25px;
+}
+
+/* line 29, app/assets/stylesheets/material/_footer.scss */
+.footer-info {
+  margin-right: 2em;
+}
+
+/* line 31, app/assets/stylesheets/material/_footer.scss */
+.footer-info h2 {
+  color: #323232;
+  padding: 0;
+}
+
+/* line 38, app/assets/stylesheets/material/_footer.scss */
+.footer_menu ul {
+  margin: 0;
+  padding: 0;
+}
+
+/* line 42, app/assets/stylesheets/material/_footer.scss */
+.footer_menu li {
+  display: inline-block;
+  list-style: none;
+  margin: 5px 10px 5px 0;
+}
+
+/* line 49, app/assets/stylesheets/material/_footer.scss */
+.social-icon {
+  position: relative;
+  padding: 0;
+  margin: 0;
+}
+
+/* line 53, app/assets/stylesheets/material/_footer.scss */
+.social-icon li {
+  display: inline-block;
+  list-style: none;
+  margin-bottom: 5px;
+}
+
+/* line 57, app/assets/stylesheets/material/_footer.scss */
+.social-icon li a {
+  border-radius: 100px;
+  color: #33768e;
+  font-size: 15px;
+  width: 35px;
+  height: 35px;
+  line-height: 35px;
+  text-decoration: none;
+  text-align: center;
+  position: relative;
+  margin: 5px 5px 5px 0;
+}
+
+/* line 68, app/assets/stylesheets/material/_footer.scss */
+.social-icon li a:hover {
+  color: #f6893d;
+}
+
+/* line 75, app/assets/stylesheets/material/_footer.scss */
+.copyright-text {
+  font-size: 12px;
+}

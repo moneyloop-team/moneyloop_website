@@ -1,0 +1,1 @@
+$(document).on("ready",function(){"use strict";$(".slider").owlCarousel({navigation:!0,slideSpeed:3e3,paginationSpeed:400,singleItem:!0,pagination:!0,autoPlay:!0,navigationText:["<i class='fa fa-angle-left'></i>","<i class='fa fa-angle-right'></i>"],addClassActive:!0})});
