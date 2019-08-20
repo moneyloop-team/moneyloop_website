@@ -2,8 +2,8 @@ default: &default
   adapter: postgresql
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  user: moneyloop
-  password: <%= Rails.application.credentials.development[:moneyloop_database_password]%>
+  user: rails
+  password: <%= Rails.application.credentials.production[:moneyloop_database_password]%>
   host: 127.0.0.1
 
 development:
