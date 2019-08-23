@@ -3,8 +3,8 @@ default: &default
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: postgres
-  password: J05hua0148734!
-  host: datbase1.cwpbfni2ye1p.ap-southeast-2.rds.amazonaws.com
+  password: Rails.application.credentials[:development_password];
+  host: Rails.application.credentials[:development_host];
   port: 5432
 
 development:
