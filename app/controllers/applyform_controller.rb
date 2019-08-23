@@ -46,7 +46,6 @@ class ApplyformController < ApplicationController
         response = create_customer($id)  # Send user data to the dashboard and save the response
         response_customer = JSON(response.body)
         if response.code == "201"  # Send the appropriate response
-          byebug
           $customer = response_customer
           # dates for repayment schedule.
           date1 = Date.today()+14
@@ -206,8 +205,8 @@ end
     request["Content-Type"] = 'application/json'
     request['Authorization'] = 'Bearer  EaxnXpO5u65mukxDDk4Bsehnvg7rrsw4dlupEZJo'
     request.body = JSON.generate(payload)
-    byebug
+
     response = https.request(request)
-    byebug
+
     end
 end
