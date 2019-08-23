@@ -61,7 +61,7 @@ class ApplyformController < ApplicationController
           paid2 = "Still be to be paid."
           paid3= "Still be to be paid."
           paid4 = "Still be to be paid."
-          repayment_schedule(date1, date2, date3, date4, i_amount1,i_amount2,i_amount3,i_amount4, paid1, paid2, paid3, paid4, $customer[:email])
+          repayment_schedule(date1, date2, date3, date4, i_amount1,i_amount2,i_amount3,i_amount4, paid1, paid2, paid3, paid4, $customer['email'])
           @notice = response_customer['credit_score']
           render :success and return
         else
@@ -179,7 +179,7 @@ end
     url = URI("https://api.sidemail.io/v1/mail/send")
 
     payload = {
-        :fromAddress => "contact@moneyloop.com.au",
+          :fromAddress => "contact@moneyloop.com.au",
         :toAddress => customer_email,
         :templateName => "repayment_schedule",
         :templateProps => {
@@ -203,10 +203,9 @@ end
 
     request = Net::HTTP::Post.new(url)
     request["Content-Type"] = 'application/json'
-    request['Authorization'] = 'Bearer  EaxnXpO5u65mukxDDk4Bsehnvg7rrsw4dlupEZJo'
+    request['Authorization'] = 'Bearer EaxnXpO5u65mukxDDk4Bsehnvg7rrsw4dlupEZJo'
     request.body = JSON.generate(payload)
 
     response = https.request(request)
-
     end
 end
