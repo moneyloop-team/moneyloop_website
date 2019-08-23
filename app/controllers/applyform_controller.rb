@@ -151,7 +151,7 @@ end
   end
 
   def create_payment(creditCardToken, id, company_id, duration)
-    uri = URI.parse("https://dashboard.moneyloop.com.au//create_payment/")
+    uri = URI.parse("https://dashboard.moneyloop.com.au/create_payment")
     request = Net::HTTP::Post.new(uri)
     request.content_type = "application/json"
     request["Postman-Token"] = "c3bf8176-37dc-4ba3-ad8e-a8de8f92befa"
