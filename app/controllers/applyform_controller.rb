@@ -24,7 +24,7 @@ class ApplyformController < ApplicationController
       end
      else
       if request.request_parameters["creditCardToken"].nil? == false
-        card_response = create_payment(params[:creditCardToken], $customer['id'], $customer["company_id"], 2)
+        card_response = create_payment(params[:creditCardToken], 99, $customer["company_id"], 2)
         if card_response.code == "200"
           @notice = "Card Added Successfully"
           @company_name =  getCompany( $customer["company_id"])['name']
@@ -151,7 +151,7 @@ end
   end
 
   def create_payment(creditCardToken, id, company_id, duration)
-    uri = URI.parse("https://dashboard.moneyloop.com.au//create_payment/")
+    uri = URI.parse("https://dashboard.moneyloop.com.au/create_payment")
     request = Net::HTTP::Post.new(uri)
     request.content_type = "application/json"
     request["Postman-Token"] = "c3bf8176-37dc-4ba3-ad8e-a8de8f92befa"
@@ -170,6 +170,7 @@ end
     response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
       http.request(request)
     end
+	console.log(response.body)
     response.code
     response.body
     return response
