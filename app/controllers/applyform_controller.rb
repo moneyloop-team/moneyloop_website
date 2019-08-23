@@ -60,7 +60,7 @@ end
   private
   # Get the company
   def getCompany(id)
-    uri = URI.parse("http://dashboard.moneyloop.com.au/getCompany/#{id}")
+    uri = URI.parse("https://dashboard.moneyloop.com.au/getCompany/#{id}")
     request = Net::HTTP::Post.new(uri)
     request.content_type = "application/json"
     request["Postman-Token"] = "c3bf8176-37dc-4ba3-ad8e-a8de8f92befa"
