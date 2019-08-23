@@ -46,7 +46,23 @@ class ApplyformController < ApplicationController
         response = create_customer($id)  # Send user data to the dashboard and save the response
         response_customer = JSON(response.body)
         if response.code == "201"  # Send the appropriate response
+          byebug
           $customer = response_customer
+          # dates for repayment schedule.
+          date1 = Date.today()+14
+          date2 = Date.today()+28
+          date3 = Date.today()+42
+          date4 = Date.today()+58
+          #imstallment amounts
+          i_amount1 = "$"+ ($customer["exposure"].to_f/4).to_s + "0"
+          i_amount2 = "$" +($customer["exposure"].to_f/4).to_s + "0"
+          i_amount3 = "$"+($customer["exposure"].to_f/4).to_s + "0"
+          i_amount4 = "$"+($customer["exposure"].to_f/4).to_s + "0"
+          paid1 = "Still be to be paid."
+          paid2 = "Still be to be paid."
+          paid3= "Still be to be paid."
+          paid4 = "Still be to be paid."
+          repayment_schedule(date1, date2, date3, date4, i_amount1,i_amount2,i_amount3,i_amount4, paid1, paid2, paid3, paid4, $customer[:email])
           @notice = response_customer['credit_score']
           render :success and return
         else
@@ -159,4 +175,39 @@ end
     response.body
     return response
   end
+  def repayment_schedule(date1, date2, date3, date4, i_amount1,i_amount2,i_amount3,i_amount4, paid1, paid2, paid3, paid4, customer_email)
+    # SIDEMAIL_API_KEY = 'EaxnXpO5u65mukxDDk4Bsehnvg7rrsw4dlupEZJo'
+    url = URI("https://api.sidemail.io/v1/mail/send")
+
+    payload = {
+        :fromAddress => "contact@moneyloop.com.au",
+        :toAddress => customer_email,
+        :templateName => "repayment_schedule",
+        :templateProps => {
+            date1: date1,
+            i_amount1: i_amount1,
+            paid1: paid1,
+            date2: date2,
+            i_amount2: i_amount2,
+            paid2: paid2,
+            date3: date3,
+            i_amount3: i_amount3,
+            paid3: paid3,
+            date4: date4,
+            i_amount4: i_amount4,
+            paid4: paid4,
+        }
+    }
+
+    https = Net::HTTP.new(url.host, url.port)
+    https.use_ssl = true
+
+    request = Net::HTTP::Post.new(url)
+    request["Content-Type"] = 'application/json'
+    request['Authorization'] = 'Bearer  EaxnXpO5u65mukxDDk4Bsehnvg7rrsw4dlupEZJo'
+    request.body = JSON.generate(payload)
+    byebug
+    response = https.request(request)
+    byebug
+    end
 end
