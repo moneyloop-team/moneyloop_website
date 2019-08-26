@@ -24,8 +24,8 @@ class ApplyformController < ApplicationController
       end
      else
       if request.request_parameters["creditCardToken"].nil? == false
-        card_response = create_payment(params[:creditCardToken], 99, $customer["company_id"], 2)
-        if card_response.code == "200"
+        card_response = create_payment(params[:creditCardToken], $customer['id'], $customer["company_id"], 2)
+        if card_response.code != "400"
           @notice = "Card Added Successfully"
           @company_name =  getCompany( $customer["company_id"])['name']
           render js: "$('#myModal').modal('hide');document.getElementById('add_payment').style.display='none';document.getElementById('source_added').style.display='block';" and return
@@ -170,7 +170,6 @@ end
     response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
       http.request(request)
     end
-	console.log(response.body)
     response.code
     response.body
     return response
