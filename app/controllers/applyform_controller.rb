@@ -159,18 +159,16 @@ end
     request.body = JSON.dump({
       "creditCardToken" => creditCardToken,
       "customer_id" => id,
-      "establishment_fee" => 1,
+      "establishment_fee" => 1,res
       "company_id" => company_id,
       "duration" => duration
       })
     req_options = {
         use_ssl: uri.scheme == "https",
     }
-
     response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
       http.request(request)
     end
-	console.log(response.body)
     response.code
     response.body
     return response
