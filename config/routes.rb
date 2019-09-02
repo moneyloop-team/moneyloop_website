@@ -31,6 +31,7 @@ Rails.application.routes.draw do
     get '/news/:slug' => 'posts#show', as: :buttercms_post
   end
 
+  get '/healthcheck', to: proc { [200, {}, ['']]}
   # Root address
   root 'static#home'
 

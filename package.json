@@ -1,7 +1,5 @@
 {
   "name": "moneyloop",
   "private": true,
-  "dependencies": {
-    "@sidemail/sdk-js": "^0.1.3"
-  }
+  "dependencies": {}
 }

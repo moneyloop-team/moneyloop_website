@@ -1,8 +1,9 @@
+
 <section class="container">
   <div class="row'">
     <div class="text-center">
        <h2 id="header-title">Congratulations</h2>
-    <p id="header-desc">You have been pre-approved for a MoneyLoop inbstallment plan. </p>
+    <p id="header-desc">You have been pre-approved for a MoneyLoop installment plan. </p>
     <div class="row" id="schedule" style="">
       <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
         <h3 class="mb20">Repayment Schedule</h3>
@@ -45,7 +46,7 @@
                                               <input type="text" class="form-control" placeholder="Type your Full Name", id="cardHolderName", name="cardHolderName" >
                                             </div>
                                             <div class="form-group CVV">
-                                              <input type="text" class="form-control" id="PayerEmail" placeholder="email" value="">
+                                              <input type="text" class="form-control" id="PayerEmail" placeholder="email" value="<%=$customer['customer_email']%>">
                                             </div>
                                             <div class="form-group CVV">
                                               <input type="text" class="form-control" id="cvc" placeholder="CVV">
@@ -84,7 +85,7 @@
                                               <span><i class="fa fa-cc-mastercard" aria-hidden="true"></i></span>
                                             </div>
                                             <input id="creditCardToken" name="creditCardToken" type="hidden"/>
-                                            <input type='hidden' id="customer_id" name="customer_id" value="<%=params[:customer_id]%>">
+                                            <input type='hidden' id="customer_id" name="customer_id" value="<%=$customer["cuid"]%>">
                                             <input type ='hidden' id="duration" name="duration" value="<%=params[:duration]%>">
                                             <%= hidden_field_tag :authenticity_token, form_authenticity_token, id: :form_token %>
                                             <input type="hidden" value="<%=params[:customer_id]%>"/>
@@ -137,7 +138,7 @@
         loader.style.display="block";
         e.preventDefault();
         var capture = Pinch.Capture({
-            publishableKey: 'pk_live_od39RI3uHyFiA7eJDLDywMkFC4Gi37uv'
+            publishableKey: 'pk_test_kde7CD01xy4phyvG0CvK6fbj1dK3HBTo'
         });
         capture.createToken({
             cardNumber: document.getElementById("cardNumber").value,

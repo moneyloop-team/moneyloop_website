@@ -24,8 +24,8 @@ class ApplyformController < ApplicationController
       end
      else
       if request.request_parameters["creditCardToken"].nil? == false
-        card_response = create_payment(params[:creditCardToken], 99, $customer["company_id"], 2)
-        if card_response.code == "200"
+        card_response = create_payment(params[:creditCardToken], params[:customer_id], $customer["company_id"], 2)
+        if card_response.code != "400"
           @notice = "Card Added Successfully"
           @company_name =  getCompany( $customer["company_id"])['name']
           render js: "$('#myModal').modal('hide');document.getElementById('add_payment').style.display='none';document.getElementById('source_added').style.display='block';" and return
@@ -61,7 +61,7 @@ class ApplyformController < ApplicationController
           paid2 = "Still be to be paid."
           paid3= "Still be to be paid."
           paid4 = "Still be to be paid."
-          repayment_schedule(date1, date2, date3, date4, i_amount1,i_amount2,i_amount3,i_amount4, paid1, paid2, paid3, paid4, $customer['email'])
+          repayment_schedule(date1, date2, date3, date4, i_amount1,i_amount2,i_amount3,i_amount4, paid1, paid2, paid3, paid4, $customer['customer_email'])
           @notice = response_customer['credit_score']
           render :success and return
         else
@@ -75,7 +75,7 @@ end
   private
   # Get the company
   def getCompany(id)
-    uri = URI.parse("https://dashboard.moneyloop.com.au/getCompany/#{id}")
+    uri = URI.parse("http://localhost:3001/getCompany/#{id}")
     request = Net::HTTP::Post.new(uri)
     request.content_type = "application/json"
     request["Postman-Token"] = "c3bf8176-37dc-4ba3-ad8e-a8de8f92befa"
@@ -113,7 +113,7 @@ end
 
   # Send a JSON request to the dashboard
   def create_customer(id)
-    uri = URI.parse("https://dashboard.moneyloop.com.au/create_m8srates/"+id)
+    uri = URI.parse("http://localhost:3001/create_customer/"+id)
     request = Net::HTTP::Post.new(uri)
     request.content_type = "application/json"
     request["Postman-Token"] = "c3bf8176-37dc-4ba3-ad8e-a8de8f92befa"
@@ -151,7 +151,7 @@ end
   end
 
   def create_payment(creditCardToken, id, company_id, duration)
-    uri = URI.parse("https://dashboard.moneyloop.com.au/create_payment")
+    uri = URI.parse("http://localhost:3001/add_payment_source")
     request = Net::HTTP::Post.new(uri)
     request.content_type = "application/json"
     request["Postman-Token"] = "c3bf8176-37dc-4ba3-ad8e-a8de8f92befa"
@@ -159,13 +159,14 @@ end
     request.body = JSON.dump({
       "creditCardToken" => creditCardToken,
       "customer_id" => id,
-      "establishment_fee" => 1,res
+      "establishment_fee" => 1,
       "company_id" => company_id,
       "duration" => duration
       })
     req_options = {
         use_ssl: uri.scheme == "https",
     }
+
     response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
       http.request(request)
     end
@@ -176,7 +177,6 @@ end
   def repayment_schedule(date1, date2, date3, date4, i_amount1,i_amount2,i_amount3,i_amount4, paid1, paid2, paid3, paid4, customer_email)
     # SIDEMAIL_API_KEY = 'EaxnXpO5u65mukxDDk4Bsehnvg7rrsw4dlupEZJo'
     url = URI("https://api.sidemail.io/v1/mail/send")
-
     payload = {
           :fromAddress => "contact@moneyloop.com.au",
         :toAddress => customer_email,
@@ -206,5 +206,7 @@ end
     request.body = JSON.generate(payload)
 
     response = https.request(request)
-    end
+
+    response.body
+  end
 end

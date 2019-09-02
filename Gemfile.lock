@@ -51,6 +51,8 @@ GEM
     arel (9.0.0)
     autoprefixer-rails (9.6.0)
       execjs
+    aws-healthcheck (1.0.1)
+      rails (>= 3.0)
     bindex (0.7.0)
     bootsnap (1.4.4)
       msgpack (~> 1.0)
@@ -255,6 +257,7 @@ PLATFORMS
   x64-mingw32
 
 DEPENDENCIES
+  aws-healthcheck
   bootsnap (>= 1.1.0)
   bootstrap (~> 4.3.1)
   browser

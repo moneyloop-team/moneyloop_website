@@ -1,5 +1,5 @@
 Rails.application.configure do
-  # Code is reloaded between requests, so the web server doesn't need 
+  # Code is reloaded between requests, so the web server doesn't need
   # to restart when the code changes.
   config.cache_classes = false
 
@@ -40,8 +40,8 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     :address => "email-smtp.us-west-2.amazonaws.com",
     :port => 587,
-    :user_name => Rails.application.credentials[:SES_SMTP_USERNAME],
-    :password => Rails.application.credentials[:SES_SMTP_PASSWORD],
+    :user_name => "AKIA4RE6XISAFLXCHOW6",
+    :password => "BLsc4J39phWq1CBs5r6WxFH+z1/+YeT/u1nTWuMixMLT",
     :authentication => :login,
     :enable_starttls_auto => true
   }

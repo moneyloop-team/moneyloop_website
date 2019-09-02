@@ -29,12 +29,12 @@ WORKDIR $APP_HOME
 
 # Add our Gemfile
 # and install gems
-
+RUN gem install bundler:2.0.2
 ADD Gemfile* $APP_HOME/
 RUN bundle install
 
 # Copy over our application code
 ADD . $APP_HOME
-
+CMD bundle exec rake assets:precompile
 # Run our app
 CMD bundle exec rails s -p ${PORT} -b '0.0.0.0'
