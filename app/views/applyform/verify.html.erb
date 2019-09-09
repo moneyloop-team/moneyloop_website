@@ -1,0 +1,9 @@
+<h2> Please verify your code </h2>
+<%= form_tag apply_path, method: "post", id: "application_form" do |form| %>
+    <%= hidden_field_tag 'number', @number  %>
+    <p>Verification Code</p>
+    <input id="token" name="token" type="text" placeholder="Verification Code" required>
+
+    <br/><br/>
+    <button id="verify" type="submit">Submit</button>
+<% end %>

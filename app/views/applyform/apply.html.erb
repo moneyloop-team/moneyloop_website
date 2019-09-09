@@ -21,7 +21,7 @@
     </div>
 </div>
 
-<section id="contact" class="mt30 container">
+<section class="mt30 container">
     <div class="row">
         <%# Application Form%>
         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
@@ -81,7 +81,7 @@
                         <input id="address" name="address" type="text" placeholder="Address" class="form-control mb10" required>
                         <i class="grey">
                             Please use the auto-completed address. <br/>
-                            Make sure your web browser has javascript enabled.
+                            <noscript>Make sure your web browser has JavaScript enabled.</noscript>
                         </i>
                     </div>
                 </div>
@@ -144,7 +144,7 @@
                     </label>
                 </div>
 
-                <button id="myBtn" type="submit" class="btn btn-submit mb30">Submit</button>
+                <button id="apply" type="submit" class="btn btn-submit mb30">Submit</button>
             <% end %>
         </div>
 
@@ -183,3 +183,9 @@
 <!-- Google's autocomplete address -->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDHPVjNgG79rqU6e6_5nzbOwISVbTEAJig&libraries=places&callback=initAutocomplete"
  async defer></script>
+
+ <script>
+    $('#application_form').one('submit', function() {
+        $(this).find('input[type="submit"]').attr('disabled','disabled');
+    });
+ </script>

@@ -1,0 +1,5 @@
+20190909 changes
+- Apply form validation is implemented - see app/assets/javascripts/material/validate.js
+    - Field is highlighted green if valid
+    - Field is highlighted red if invalid
+- Added authy and phone verification

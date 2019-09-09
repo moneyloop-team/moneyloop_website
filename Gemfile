@@ -32,6 +32,9 @@ gem 'owlcarousel-rails'
 # Blog Engine with ButterCMS
 gem 'buttercms-rails'
 
+# Phone number verification with Authy
+gem 'authy'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 

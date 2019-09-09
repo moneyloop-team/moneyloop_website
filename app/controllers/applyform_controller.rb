@@ -1,29 +1,90 @@
 require 'net/http'
 require 'browser/aliases'
+require 'authy'
 Browser::Base.include(Browser::Aliases)
 
 class ApplyformController < ApplicationController
+  skip_before_action :verify_authenticity_token
+
   def success
   end
+
   def error
   end
 
+  def verify
+  end
+
   def apply
-    # redirect_to('https://moneyloop.com.au/application/'+params[:company]+'/'+params[:exposure]+'/'+params[:duration]) and return
-    if request.post? == false# The customer has submitted something
-      # They've submitted credit card information, let's add it
-      # Get the company from the GET url params
+    if request.get? # Render the initial application form
       @exposure = params['exposure']
       $id = params[:company]
-      response = getCompany($id)
-      if(response.code == "200")
-        @company = JSON(response.body)
-      else
-        @error_msg = "Unable to find your Insurer"
-        render :error and return
-      end
-     else
-      if request.request_parameters["creditCardToken"].nil? == false
+
+      @company = { "name" => "moneyloop" } #TODO - change this back
+      # response = getCompany($id)
+      # if(response.code == "200")
+      #   @company = JSON(response.body)
+      # else
+      #   @error_msg = "Unable to find your Insurer"
+      #   render :error and return
+      # end
+    else # Some data has been submitted
+      if params[:mobile] # Need to verify the supplied phone number
+        # TODO check the input
+        phone_number = params[:mobile] # Number to send to
+
+        # Remove the country code/first part of the number
+        # TODO - make this better
+        if phone_number[0] == '+' then phone_number[0..2] = '' else phone_number[0] = '' end
+        
+        if sendCode(phone_number)
+          @number = phone_number
+          render :verify and return
+        end
+      elsif params[:token] # Send verification code to Authy, if it works, ask for payment details
+        # TODO sanitise input (including number)
+        token = params[:token]
+        number = params[:number]
+
+        if verifyCode(token, number) # Phone number has been verified, create a user and go to payment details
+          # Get the company from the GET url params
+          @exposure = params['exposure']
+          response = getCompany($id)
+          if(response.code == "200")
+            @company = JSON(response.body)
+          else
+            @error_msg = "Unable to find your Insurer"
+            render :error and return
+          end
+          get_request_params request    # Get the parameters required that the user didn't supply
+          response = create_customer($id)  # Send user data to the dashboard and save the response
+          response_customer = JSON(response.body)
+          if response.code == "201"  # Send the appropriate response
+            $customer = response_customer
+            # dates for repayment schedule.
+            date1 = Date.today()+14
+            date2 = Date.today()+28
+            date3 = Date.today()+42
+            date4 = Date.today()+58
+            #imstallment amounts
+            i_amount1 = "$"+ ($customer["exposure"].to_f/4).to_s + "0"
+            i_amount2 = "$" +($customer["exposure"].to_f/4).to_s + "0"
+            i_amount3 = "$"+($customer["exposure"].to_f/4).to_s + "0"
+            i_amount4 = "$"+($customer["exposure"].to_f/4).to_s + "0"
+            paid1 = "Still be to be paid."
+            paid2 = "Still be to be paid."
+            paid3= "Still be to be paid."
+            paid4 = "Still be to be paid."
+            repayment_schedule(date1, date2, date3, date4, i_amount1,i_amount2,i_amount3,i_amount4, paid1, paid2, paid3, paid4, $customer['customer_email'])
+            @notice = response_customer['credit_score']
+            render :success and return
+          else
+            @error_code = response['code']
+            @error_body = response['body']
+            render :error and return
+          end
+        end        
+      elsif ! request.request_parameters["creditCardToken"].nil? # Credit card information has been submitted
         card_response = create_payment(params[:creditCardToken], params[:customer_id], $customer["company_id"], 2)
         if card_response.code != "400"
           @notice = "Card Added Successfully"
@@ -32,46 +93,38 @@ class ApplyformController < ApplicationController
         # TODO - add the fail case here
         end
       # They've submitted their customer details, lets add that
-      else
-        # Get the company from the GET url params
-        @exposure = params['exposure']
-        response = getCompany($id)
-        if(response.code == "200")
-          @company = JSON(response.body)
-        else
-          @error_msg = "Unable to find your Insurer"
-          render :error and return
-        end
-        get_request_params request    # Get the parameters required that the user didn't supply
-        response = create_customer($id)  # Send user data to the dashboard and save the response
-        response_customer = JSON(response.body)
-        if response.code == "201"  # Send the appropriate response
-          $customer = response_customer
-          # dates for repayment schedule.
-          date1 = Date.today()+14
-          date2 = Date.today()+28
-          date3 = Date.today()+42
-          date4 = Date.today()+58
-          #imstallment amounts
-          i_amount1 = "$"+ ($customer["exposure"].to_f/4).to_s + "0"
-          i_amount2 = "$" +($customer["exposure"].to_f/4).to_s + "0"
-          i_amount3 = "$"+($customer["exposure"].to_f/4).to_s + "0"
-          i_amount4 = "$"+($customer["exposure"].to_f/4).to_s + "0"
-          paid1 = "Still be to be paid."
-          paid2 = "Still be to be paid."
-          paid3= "Still be to be paid."
-          paid4 = "Still be to be paid."
-          repayment_schedule(date1, date2, date3, date4, i_amount1,i_amount2,i_amount3,i_amount4, paid1, paid2, paid3, paid4, $customer['customer_email'])
-          @notice = response_customer['credit_score']
-          render :success and return
-        else
-          @error_code = response['code']
-          @error_body = response['body']
-          render :error and return
-          end
-        end
+      end
     end
-end
+  end
+
+  def verifyCode(code, phone_number)
+    response = Authy::PhoneVerification.check(
+      verification_code: code,
+      country_code: "+61",
+      phone_number: phone_number
+    )
+
+    # Check if it succeeded
+    if response.ok? then return true else return false end
+  end
+
+  # Send a verification code to the provided phone number via Authy
+  # Assumes the country code is "+61"
+  # Params:
+  #   - phone_number: phone number provided, not including country code
+  #                   e.g. if the number provided was +61 438580062, phone_number should be only 438580062
+  def sendCode(phone_number)
+    #Send a message to Authy
+    response = Authy::PhoneVerification.start(
+        via: "SMS",
+        country_code: "+61",
+        phone_number: phone_number
+    )
+
+    # Check if it succeeded
+    if response.ok? then return true else return false end
+  end
+
   private
   # Get the company
   def getCompany(id)

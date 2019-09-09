@@ -2,3 +2,4 @@
 //= require "dobpicker"
 //= require "material/dobpicker-init"
 //= require "material/map-init"
+//= require "material/validate"
